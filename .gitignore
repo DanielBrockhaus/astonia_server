@@ -1,0 +1,16 @@
+.obj/
+chatserver
+create_account
+create_armor
+create_character
+create_weapons
+motd.txt
+my
+runtime/
+server
+start
+update_server
+v3.*
+zones/
+*.e
+*.ex
