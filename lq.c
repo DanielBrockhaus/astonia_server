@@ -935,6 +935,10 @@ void cmd_questend(int cn,char *ptr) {
     log_sys(cn,"Rewarded %d players.",cnt);
 }
 
+// TODO: add error checking to read() and write()
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
+
 void cmd_questsave(int cn,char *ptr) {
     int n,handle;
     char name[40],password[40],file[80];
@@ -1043,6 +1047,8 @@ void cmd_questload(int cn,char *ptr) {
     log_sys(cn,"Loaded quest %s.",name);
 }
 
+#pragma GCC diagnostic pop
+
 int cost2skill(int v,int cost,int seyan) {
     int sum,n;
 
@@ -1055,7 +1061,6 @@ int cost2skill(int v,int cost,int seyan) {
 
 void lq_raise(int cn,int level) {
     int spend,sum,cost;
-    double weight;
     int n;
 
     spend=level2exp(level+2)-1;
@@ -1083,7 +1088,6 @@ void lq_raise(int cn,int level) {
             case V_LIGHT:
             case V_WEAPON:
             case V_ARMOR:
-                weight=0;
                 continue;
         }
         if (!ch[cn].value[1][n]) continue;
@@ -1429,8 +1433,11 @@ void cmd_nimmortal(int cn,char *ptr) {
 
     n=atoi(nick);
     if (n>0 && n<MAXLQNPC) {
-        if (lq_npc[n].basename[0] && (co=get_lq_char(n))) { if (onoff) ch[co].flags|=(CF_IMMORTAL|CF_NOATTACK);
-            else ch[co].flags&=~(CF_IMMORTAL|CF_NOATTACK); cnt++; }
+        if (lq_npc[n].basename[0] && (co=get_lq_char(n))) {
+            if (onoff) ch[co].flags|=(CF_IMMORTAL|CF_NOATTACK);
+            else ch[co].flags&=~(CF_IMMORTAL|CF_NOATTACK);
+            cnt++;
+        }
     } else {
         for (n=1; n<MAXLQNPC; n++) {
             if (lq_npc[n].basename[0] && (!strcasecmp(lq_npc[n].nick[0],nick) || !strcasecmp(lq_npc[n].nick[1],nick)) && (co=get_lq_char(n))) {

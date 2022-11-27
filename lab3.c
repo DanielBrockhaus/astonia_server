@@ -665,8 +665,8 @@ void lab3_init_password(struct lab_ppd *ppd) {
     if (*ppd->password1) return;
 
     ho=RANDOM(sizeof(password)/(8*2))*2;
-    sprintf(ppd->password1,password[ho]);
-    sprintf(ppd->password2,password[ho+1]);
+    sprintf(ppd->password1,"%s",password[ho]);
+    sprintf(ppd->password2,"%s",password[ho+1]);
 }
 
 void lab3_special(int in,int cn) {

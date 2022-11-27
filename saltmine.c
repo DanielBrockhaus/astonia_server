@@ -255,7 +255,8 @@ void monk_gatama_driver(int cn,int ret,int lastact) {
 
                     // Begin (check)
                 case 30: if (monksout(co,ppd)) ppd->gatamastate=40;
-                    else ppd->gatamastate++; break;
+                    else ppd->gatamastate++;
+                    break;
                 case 31: say(cn,"Come here, Monks. The mighty %s offers %s help. I want to see and hear quick feet now!",ch[co].name,hisname(co)); didsay=1; ppd->gatamastate++;
                     create_worker(co,ppd);
                     create_worker(co,ppd);

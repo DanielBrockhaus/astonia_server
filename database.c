@@ -2020,9 +2020,11 @@ static int load_char_pwd(char *pass,int sID,int *ppaid_till,int *ppaid,int vendo
 
 #ifdef STAFF
     paid_till=time_now+60*60*24;
-#endif
 
+    if (42) {   // in order to avoid a warning about a pointless if-clause, we gotta do it this way.
+#else
     if (paid_till && (paid_till>time_now || paid_till>creation_time+60*60*24*7*4)) {
+#endif
         if (paid_till&1) t=paid_till;               // 12 hour paid account?
         else t=(paid_till+60*60*24-1)&0xfffffffe;       // paid account?
         if (ppaid) *ppaid=paid_till;

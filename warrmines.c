@@ -86,7 +86,7 @@ void lowerstrcpy(char *dst,char *src) {
 int analyse_text_driver(int cn,int type,char *text,int co) {
     char word[256];
     char wordlist[20][256];
-    int n,w,q,name=0;
+    int n,w,q;
 
     // ignore game messages
     if (type==LOG_SYSTEM || type==LOG_INFO) return 0;
@@ -119,7 +119,7 @@ int analyse_text_driver(int cn,int type,char *text,int co) {
             case '.':       if (n) {
                     word[n]=0;
                     lowerstrcpy(wordlist[w],word);
-                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; } else name=1;
+                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; }
                 }
                 n=0; text++;
                 break;
@@ -808,7 +808,7 @@ void pick_berry(int in,int cn) {
 }
 
 void flower_mixer(int in,int cn) {
-    int bit1,bit2,in2;
+    int bit2,in2;
 
     if (!cn) return;
 
@@ -822,7 +822,6 @@ void flower_mixer(int in,int cn) {
         return;
     }
 
-    bit1=it[in].drdata[0];
     bit2=it[in2].drdata[0];
 
     if (it[in].sprite!=11189 && it[in2].sprite!=11189) {

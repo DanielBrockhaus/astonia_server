@@ -98,7 +98,7 @@ void lowerstrcpy(char *dst,char *src) {
 int analyse_text_driver(int cn,int type,char *text,int co) {
     char word[256];
     char wordlist[20][256];
-    int n,w,q,name=0;
+    int n,w,q;
 
     // ignore game messages
     if (type==LOG_SYSTEM || type==LOG_INFO) return 0;
@@ -131,7 +131,7 @@ int analyse_text_driver(int cn,int type,char *text,int co) {
             case '.':       if (n) {
                     word[n]=0;
                     lowerstrcpy(wordlist[w],word);
-                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; } else name=1;
+                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; }
                 }
                 n=0; text++;
                 break;
@@ -723,7 +723,7 @@ void nomad(int cn,int ret,int lastact) {
     struct nomad_data *dat;
     struct nomad_ppd *ppd;
     struct msg *msg,*next;
-    int co,cc,val,in,res,talkdir=0,didsay=0;
+    int co,val,in,res,talkdir=0,didsay=0;
     char *ptr;
 
     dat=set_data(cn,DRD_NOMADDRIVER,sizeof(struct nomad_data));
@@ -843,14 +843,6 @@ void nomad(int cn,int ret,int lastact) {
                     ch[cn].citem=0;
                 }
             }
-        }
-
-        if (msg->type==NT_GOTHIT) {
-            co=msg->dat1;
-        }
-        if (msg->type==NT_SEEHIT) {
-            cc=msg->dat1;
-            co=msg->dat2;
         }
 
         if (msg->type==NT_NPC) {

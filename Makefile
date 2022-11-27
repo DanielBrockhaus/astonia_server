@@ -28,7 +28,7 @@ runtime/37/arkhata.dll create_account create_character
 
 CC=gcc
 DEBUG=-g
-CFLAGS=-Wall -Wshadow -Wno-pointer-sign -O3 $(DEBUG) -fno-strict-aliasing -m32 -DSTAFF
+CFLAGS=-Wall -Wshadow -Wno-pointer-sign -Wno-format-overflow -Wno-format-truncation -O3 $(DEBUG) -fno-strict-aliasing -m32 -DSTAFF
 LDFLAGS=-O $(DEBUG) -m32 -L/usr/lib/mysql
 LDRFLAGS=-O $(DEBUG) -m32 -rdynamic -L/usr/lib/mysql
 DDFLAGS=-O $(DEBUG) -m32 -fPIC -shared
@@ -66,7 +66,7 @@ server:	$(OBJS)
 
 .obj/tool.o:		tool.c server.h log.h talk.h direction.h create.h skill.h player.h tool.h
 	$(CC) $(CFLAGS) -o .obj/tool.o -c tool.c
-	
+
 .obj/questlog.o:	questlog.c server.h log.h talk.h direction.h create.h skill.h player.h tool.h
 	$(CC) $(CFLAGS) -o .obj/questlog.o -c questlog.c
 
@@ -84,7 +84,7 @@ server:	$(OBJS)
 
 .obj/notify.o:		notify.c server.h log.h see.h mem.h sector.h notify.h create.h
 	$(CC) $(CFLAGS) -o .obj/notify.o -c notify.c
-	
+
 .obj/teufel_pk.o:	teufel_pk.c server.h log.h see.h mem.h sector.h notify.h create.h
 	$(CC) $(CFLAGS) -o .obj/teufel_pk.o -c teufel_pk.c
 
@@ -95,7 +95,7 @@ server:	$(OBJS)
 	$(CC) $(CFLAGS) -o .obj/do.o -c do.c
 
 .obj/act.o:		act.c server.h log.h direction.h notify.h libload.h light.h tool.h map.h death.h create.h effect.h timer.h talk.h drvlib.h database.h drdata.h do.h see.h spell.h container.h path.h sector.h act.h balance.h
-	$(CC) $(CFLAGS) -o .obj/act.o -c act.c	
+	$(CC) $(CFLAGS) -o .obj/act.o -c act.c
 
 .obj/player.o:		player.c mail.h server.h do.h log.h io.h client.h map.h database.h create.h see.h notify.h player.h los.h effect.h talk.h drvlib.h direction.h drdata.h act.h command.h container.h date.h skill.h store.h libload.h death.h tool.h sector.h
 	$(CC) $(CFLAGS) -o .obj/player.o -c player.c
@@ -225,7 +225,7 @@ server:	$(OBJS)
 
 .obj/btrace.o:		btrace.c btrace.h
 	$(CC) $(CFLAGS) -o .obj/btrace.o -c btrace.c
-	
+
 .obj/badip.o:		badip.c badip.h log.h talk.h server.h mem.h
 	$(CC) $(CFLAGS) -o .obj/badip.o -c badip.c
 
@@ -233,154 +233,154 @@ server:	$(OBJS)
 
 runtime/generic/base.dll:	.obj/base.o
 	$(CC) $(DDFLAGS) -o base.tmp .obj/base.o
-	mv base.tmp runtime/generic/base.dll
+	@mv base.tmp runtime/generic/base.dll
 
 .obj/base.o:		base.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h map.h create.h container.h tool.h spell.h effect.h light.h los.h
 	$(CC) $(DFLAGS) -o .obj/base.o -c base.c
 
 runtime/generic/sidestory.dll:	.obj/sidestory.o
 	$(CC) $(DDFLAGS) -o sidestory.tmp .obj/sidestory.o
-	mv sidestory.tmp runtime/generic/sidestory.dll
+	@mv sidestory.tmp runtime/generic/sidestory.dll
 
 .obj/sidestory.o:		sidestory.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h map.h create.h container.h tool.h spell.h effect.h light.h los.h
 	$(CC) $(DFLAGS) -o .obj/sidestory.o -c sidestory.c
 
 runtime/generic/pents.dll:	.obj/pents.o
 	$(CC) $(DDFLAGS) -o pents.tmp .obj/pents.o
-	mv pents.tmp runtime/generic/pents.dll
+	@mv pents.tmp runtime/generic/pents.dll
 
 .obj/pents.o:		pents.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h map.h create.h container.h tool.h spell.h effect.h light.h los.h
 	$(CC) $(DFLAGS) -o .obj/pents.o -c pents.c
 
 runtime/generic/professor.dll:	.obj/professor.o
 	$(CC) $(DDFLAGS) -o professor.tmp .obj/professor.o
-	mv professor.tmp runtime/generic/professor.dll
+	@mv professor.tmp runtime/generic/professor.dll
 
 .obj/professor.o:		professor.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h map.h create.h container.h tool.h spell.h effect.h light.h los.h
 	$(CC) $(DFLAGS) -o .obj/professor.o -c professor.c
 
 runtime/generic/bank.dll:	.obj/bank.o
 	$(CC) $(DDFLAGS) -o bank.tmp .obj/bank.o
-	mv bank.tmp runtime/generic/bank.dll
+	@mv bank.tmp runtime/generic/bank.dll
 
 .obj/bank.o:		bank.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h map.h create.h container.h tool.h spell.h effect.h light.h los.h
 	$(CC) $(DFLAGS) -o .obj/bank.o -c bank.c
 
 runtime/generic/alchemy.dll:	.obj/alchemy.o
 	$(CC) $(DDFLAGS) -o alchemy.tmp .obj/alchemy.o
-	mv alchemy.tmp runtime/generic/alchemy.dll
+	@mv alchemy.tmp runtime/generic/alchemy.dll
 
 .obj/alchemy.o:		alchemy.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h map.h create.h container.h tool.h spell.h effect.h light.h los.h
 	$(CC) $(DFLAGS) -o .obj/alchemy.o -c alchemy.c
 
 runtime/generic/book.dll:	.obj/book.o
 	$(CC) $(DDFLAGS) -o book.tmp .obj/book.o
-	mv book.tmp runtime/generic/book.dll
+	@mv book.tmp runtime/generic/book.dll
 
 .obj/book.o:		book.c server.h book.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h map.h create.h container.h tool.h spell.h effect.h light.h los.h
 	$(CC) $(DFLAGS) -o .obj/book.o -c book.c
 
 runtime/generic/transport.dll:	.obj/transport.o
 	$(CC) $(DDFLAGS) -o transport.tmp .obj/transport.o
-	mv transport.tmp runtime/generic/transport.dll
+	@mv transport.tmp runtime/generic/transport.dll
 
 .obj/transport.o:		transport.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h map.h create.h container.h tool.h spell.h effect.h light.h los.h
 	$(CC) $(DFLAGS) -o .obj/transport.o -c transport.c
 
 runtime/generic/clanmaster.dll:	.obj/clanmaster.o
 	$(CC) $(DDFLAGS) -o clanmaster.tmp .obj/clanmaster.o
-	mv clanmaster.tmp runtime/generic/clanmaster.dll
+	@mv clanmaster.tmp runtime/generic/clanmaster.dll
 
 .obj/clanmaster.o:		clanmaster.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h map.h create.h container.h tool.h spell.h effect.h light.h los.h
 	$(CC) $(DFLAGS) -o .obj/clanmaster.o -c clanmaster.c
 
 runtime/generic/clubmaster.dll:	.obj/clubmaster.o
 	$(CC) $(DDFLAGS) -o clubmaster.tmp .obj/clubmaster.o
-	mv clubmaster.tmp runtime/generic/clubmaster.dll
+	@mv clubmaster.tmp runtime/generic/clubmaster.dll
 
 .obj/clubmaster.o:		clubmaster.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h map.h create.h container.h tool.h spell.h effect.h light.h los.h
 	$(CC) $(DFLAGS) -o .obj/clubmaster.o -c clubmaster.c
 
 runtime/generic/lostcon.dll:	.obj/lostcon.o
 	$(CC) $(DDFLAGS) -o lostcon.tmp .obj/lostcon.o
-	mv lostcon.tmp runtime/generic/lostcon.dll
+	@mv lostcon.tmp runtime/generic/lostcon.dll
 
 .obj/lostcon.o:		lostcon.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h player.h
 	$(CC) $(DFLAGS) -o .obj/lostcon.o -c lostcon.c
 
 runtime/generic/merchant.dll:	.obj/merchant.o
 	$(CC) $(DDFLAGS) -o merchant.tmp .obj/merchant.o
-	mv merchant.tmp runtime/generic/merchant.dll
+	@mv merchant.tmp runtime/generic/merchant.dll
 
 .obj/merchant.o:	merchant.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h
 	$(CC) $(DFLAGS) -o .obj/merchant.o -c merchant.c
 
 runtime/generic/simple_baddy.dll:	.obj/simple_baddy.o
 	$(CC) $(DDFLAGS) -o simple_baddy.tmp .obj/simple_baddy.o
-	mv simple_baddy.tmp runtime/generic/simple_baddy.dll
+	@mv simple_baddy.tmp runtime/generic/simple_baddy.dll
 
 .obj/simple_baddy.o:		simple_baddy.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h
 	$(CC) $(DFLAGS) -o .obj/simple_baddy.o -c simple_baddy.c
 
 runtime/1/gwendylon.dll:	.obj/gwendylon.o
 	$(CC) $(DDFLAGS) -o gwendylon.tmp .obj/gwendylon.o
-	mv gwendylon.tmp runtime/1/gwendylon.dll
+	@mv gwendylon.tmp runtime/1/gwendylon.dll
 
 .obj/gwendylon.o:	gwendylon.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/gwendylon.o -c gwendylon.c
 
 runtime/1/shrike.dll:	.obj/shrike.o
 	$(CC) $(DDFLAGS) -o shrike.tmp .obj/shrike.o
-	mv shrike.tmp runtime/1/shrike.dll
+	@mv shrike.tmp runtime/1/shrike.dll
 
 .obj/shrike.o:	shrike.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/shrike.o -c shrike.c
 
 runtime/2/area2.dll:	.obj/area2.o
 	$(CC) $(DDFLAGS) -o area2.tmp .obj/area2.o
-	mv area2.tmp runtime/2/area2.dll
+	@mv area2.tmp runtime/2/area2.dll
 
 .obj/area2.o:	area2.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/area2.o -c area2.c
 
 runtime/3/area3.dll:	.obj/area3.o
 	$(CC) $(DDFLAGS) -o area3.tmp .obj/area3.o
-	mv area3.tmp runtime/3/area3.dll
+	@mv area3.tmp runtime/3/area3.dll
 
 .obj/area3.o:	area3.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/area3.o -c area3.c
-	
+
 runtime/37/arkhata.dll:	.obj/arkhata.o
 	$(CC) $(DDFLAGS) -o arkhata.tmp .obj/arkhata.o
-	mv arkhata.tmp runtime/37/arkhata.dll
+	@mv arkhata.tmp runtime/37/arkhata.dll
 
 .obj/arkhata.o:	arkhata.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/arkhata.o -c arkhata.c
 
 runtime/22/lab2.dll:	.obj/lab2.o
 	$(CC) $(DDFLAGS) -o lab2.tmp .obj/lab2.o
-	mv lab2.tmp runtime/22/lab2.dll
+	@mv lab2.tmp runtime/22/lab2.dll
 
 .obj/lab2.o:	lab2.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/lab2.o -c lab2.c
 
 runtime/22/lab3.dll:	.obj/lab3.o
 	$(CC) $(DDFLAGS) -o lab3.tmp .obj/lab3.o
-	mv lab3.tmp runtime/22/lab3.dll
+	@mv lab3.tmp runtime/22/lab3.dll
 
 .obj/lab3.o:	lab3.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/lab3.o -c lab3.c
 
 runtime/22/lab4.dll:	.obj/lab4.o
 	$(CC) $(DDFLAGS) -o lab4.tmp .obj/lab4.o
-	mv lab4.tmp runtime/22/lab4.dll
+	@mv lab4.tmp runtime/22/lab4.dll
 
 .obj/lab4.o:	lab4.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/lab4.o -c lab4.c
 
 runtime/22/lab5.dll:	.obj/lab5.o
 	$(CC) $(DDFLAGS) -o lab5.tmp .obj/lab5.o
-	mv lab5.tmp runtime/22/lab5.dll
+	@mv lab5.tmp runtime/22/lab5.dll
 
 .obj/lab5.o:	lab5.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/lab5.o -c lab5.c
@@ -388,209 +388,209 @@ runtime/22/lab5.dll:	.obj/lab5.o
 
 runtime/3/arena.dll:	.obj/arena.o
 	$(CC) $(DDFLAGS) -o arena.tmp .obj/arena.o
-	mv arena.tmp runtime/3/arena.dll
+	@mv arena.tmp runtime/3/arena.dll
 
 .obj/arena.o:	arena.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/arena.o -c arena.c
 
 runtime/3/gatekeeper.dll:	.obj/gatekeeper.o
 	$(CC) $(DDFLAGS) -o gatekeeper.tmp .obj/gatekeeper.o
-	mv gatekeeper.tmp runtime/3/gatekeeper.dll
+	@mv gatekeeper.tmp runtime/3/gatekeeper.dll
 
 .obj/gatekeeper.o:	gatekeeper.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/gatekeeper.o -c gatekeeper.c
 
 runtime/3/military.dll:	.obj/military.o
 	$(CC) $(DDFLAGS) -o military.tmp .obj/military.o
-	cp military.tmp military.tmp2
-	mv military.tmp runtime/3/military.dll
-	mv military.tmp2 runtime/29/military.dll
+	@cp military.tmp military.tmp2
+	@mv military.tmp runtime/3/military.dll
+	@mv military.tmp2 runtime/29/military.dll
 
 .obj/military.o:	military.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/military.o -c military.c
 
 runtime/6/edemon.dll:	.obj/edemon.o
 	$(CC) $(DDFLAGS) -o edemon.tmp .obj/edemon.o
-	mv edemon.tmp runtime/6/edemon.dll
+	@mv edemon.tmp runtime/6/edemon.dll
 
 .obj/edemon.o:	edemon.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/edemon.o -c edemon.c
 
 runtime/5/sewers.dll:	.obj/sewers.o
 	$(CC) $(DDFLAGS) -o sewers.tmp .obj/sewers.o
-	mv sewers.tmp runtime/5/sewers.dll
+	@mv sewers.tmp runtime/5/sewers.dll
 
 .obj/sewers.o:	sewers.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/sewers.o -c sewers.c
 
 runtime/8/fdemon.dll:	.obj/fdemon.o
 	$(CC) $(DDFLAGS) -o fdemon.tmp .obj/fdemon.o
-	mv fdemon.tmp runtime/8/fdemon.dll
+	@mv fdemon.tmp runtime/8/fdemon.dll
 
 .obj/fdemon.o:	fdemon.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/fdemon.o -c fdemon.c
 
 runtime/10/ice.dll:	.obj/ice.o
 	$(CC) $(DDFLAGS) -o ice.tmp .obj/ice.o
-	mv ice.tmp runtime/10/ice.dll
+	@mv ice.tmp runtime/10/ice.dll
 
 .obj/ice.o:	ice.c ice_shared.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/ice.o -c ice.c
 
 runtime/11/palace.dll:	.obj/palace.o
 	$(CC) $(DDFLAGS) -o palace.tmp .obj/palace.o
-	mv palace.tmp runtime/11/palace.dll
+	@mv palace.tmp runtime/11/palace.dll
 
 .obj/palace.o:	palace.c ice_shared.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/palace.o -c palace.c
 
 runtime/13/dungeon.dll:	.obj/dungeon.o
 	$(CC) $(DDFLAGS) -o dungeon.tmp .obj/dungeon.o
-	mv dungeon.tmp runtime/13/dungeon.dll
+	@mv dungeon.tmp runtime/13/dungeon.dll
 
 .obj/dungeon.o:	dungeon.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/dungeon.o -c dungeon.c
 
 runtime/14/random.dll:	.obj/random.o
 	$(CC) $(DDFLAGS) -o random.tmp .obj/random.o
-	mv random.tmp runtime/14/random.dll
+	@mv random.tmp runtime/14/random.dll
 
 .obj/random.o:	random.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/random.o -c random.c
 
 runtime/15/swamp.dll:	.obj/swamp.o
 	$(CC) $(DDFLAGS) -o swamp.tmp .obj/swamp.o
-	mv swamp.tmp runtime/15/swamp.dll
+	@mv swamp.tmp runtime/15/swamp.dll
 
 .obj/swamp.o:	swamp.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/swamp.o -c swamp.c
 
 runtime/16/forest.dll:	.obj/forest.o
 	$(CC) $(DDFLAGS) -o forest.tmp .obj/forest.o
-	mv forest.tmp runtime/16/forest.dll
+	@mv forest.tmp runtime/16/forest.dll
 
 .obj/forest.o:	forest.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/forest.o -c forest.c
 
 runtime/17/two.dll:	.obj/two.o
 	$(CC) $(DDFLAGS) -o two.tmp .obj/two.o
-	mv two.tmp runtime/17/two.dll
+	@mv two.tmp runtime/17/two.dll
 
 .obj/two.o:	two.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/two.o -c two.c
 
 runtime/18/bones.dll:	.obj/bones.o
 	$(CC) $(DDFLAGS) -o bones.tmp .obj/bones.o
-	mv bones.tmp runtime/18/bones.dll
+	@mv bones.tmp runtime/18/bones.dll
 
 .obj/bones.o:	bones.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/bones.o -c bones.c
 
 runtime/19/nomad.dll:	.obj/nomad.o
 	$(CC) $(DDFLAGS) -o nomad.tmp .obj/nomad.o
-	mv nomad.tmp runtime/19/nomad.dll
+	@mv nomad.tmp runtime/19/nomad.dll
 
 .obj/nomad.o:	nomad.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/nomad.o -c nomad.c
 
 runtime/19/saltmine.dll:	.obj/saltmine.o
 	$(CC) $(DDFLAGS) -o saltmine.tmp .obj/saltmine.o
-	mv saltmine.tmp runtime/19/saltmine.dll
+	@mv saltmine.tmp runtime/19/saltmine.dll
 
 .obj/saltmine.o:	saltmine.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/saltmine.o -c saltmine.c
 
 runtime/26/staffer.dll:	.obj/staffer.o
 	$(CC) $(DDFLAGS) -o staffer.tmp .obj/staffer.o
-	mv staffer.tmp runtime/26/staffer.dll
+	@mv staffer.tmp runtime/26/staffer.dll
 
 .obj/staffer.o:	staffer.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/staffer.o -c staffer.c
 
 runtime/29/staffer2.dll:	.obj/staffer2.o
 	$(CC) $(DDFLAGS) -o staffer2.tmp .obj/staffer2.o
-	mv staffer2.tmp runtime/29/staffer2.dll
+	@mv staffer2.tmp runtime/29/staffer2.dll
 
 .obj/staffer2.o:	staffer2.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/staffer2.o -c staffer2.c
 
 runtime/28/staffer3.dll:	.obj/staffer3.o
 	$(CC) $(DDFLAGS) -o staffer3.tmp .obj/staffer3.o
-	mv staffer3.tmp runtime/28/staffer3.dll
+	@mv staffer3.tmp runtime/28/staffer3.dll
 
 .obj/staffer3.o:	staffer3.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/staffer3.o -c staffer3.c
 
 runtime/25/warped.dll:	.obj/warped.o
 	$(CC) $(DDFLAGS) -o warped.tmp .obj/warped.o
-	mv warped.tmp runtime/25/warped.dll
+	@mv warped.tmp runtime/25/warped.dll
 
 .obj/warped.o:	warped.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/warped.o -c warped.c
 
 runtime/20/lq.dll:	.obj/lq.o
 	$(CC) $(DDFLAGS) -o lq.tmp .obj/lq.o
-	cp lq.tmp lq.tmpx
-	mv lq.tmpx runtime/35/lq.dll
-	mv lq.tmp runtime/20/lq.dll
+	@cp lq.tmp lq.tmpx
+	@mv lq.tmpx runtime/35/lq.dll
+	@mv lq.tmp runtime/20/lq.dll
 
 .obj/lq.o:	lq.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/lq.o -c lq.c
 
 runtime/generic/mine.dll:	.obj/mine.o
 	$(CC) $(DDFLAGS) -o mine.tmp .obj/mine.o
-	mv mine.tmp runtime/generic/mine.dll
+	@mv mine.tmp runtime/generic/mine.dll
 
 .obj/mine.o:	mine.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/mine.o -c mine.c
 
 runtime/22/lab1.dll:		.obj/lab1.o
 	$(CC) $(DDFLAGS) -o lab1.tmp .obj/lab1.o
-	mv lab1.tmp runtime/22/lab1.dll
+	@mv lab1.tmp runtime/22/lab1.dll
 
 .obj/lab1.o:	lab1.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/lab1.o -c lab1.c
 
 runtime/23/strategy.dll: 	.obj/strategy.o
 	$(CC) $(DDFLAGS) -o strategy.tmp .obj/strategy.o
-	cp strategy.tmp strategy2.tmp
-	mv strategy.tmp runtime/23/strategy.dll
-	mv strategy2.tmp runtime/24/strategy.dll
+	@cp strategy.tmp strategy2.tmp
+	@mv strategy.tmp runtime/23/strategy.dll
+	@mv strategy2.tmp runtime/24/strategy.dll
 
 .obj/strategy.o:	strategy.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/strategy.o -c strategy.c
 
 runtime/33/tunnel.dll: 	.obj/tunnel.o
 	$(CC) $(DDFLAGS) -o tunnel.tmp .obj/tunnel.o
-	mv tunnel.tmp runtime/33/tunnel.dll
+	@mv tunnel.tmp runtime/33/tunnel.dll
 
 .obj/tunnel.o:	tunnel.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/tunnel.o -c tunnel.c
 
 runtime/31/warrmines.dll: .obj/warrmines.o
 	$(CC) $(DDFLAGS) -o warrmines.tmp .obj/warrmines.o
-	mv warrmines.tmp runtime/31/warrmines.dll
+	@mv warrmines.tmp runtime/31/warrmines.dll
 
 .obj/warrmines.o:	warrmines.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/warrmines.o -c warrmines.c
 
 runtime/32/missions.dll: .obj/missions.o
 	$(CC) $(DDFLAGS) -o missions.tmp .obj/missions.o
-	mv missions.tmp runtime/32/missions.dll
+	@mv missions.tmp runtime/32/missions.dll
 
 .obj/missions.o:	missions.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h mission_ppd.h
 	$(CC) $(DFLAGS) -o .obj/missions.o -c missions.c
-	
+
 runtime/34/teufel.dll: .obj/teufel.o
 	$(CC) $(DDFLAGS) -o teufel.tmp .obj/teufel.o
-	mv teufel.tmp runtime/34/teufel.dll
+	@mv teufel.tmp runtime/34/teufel.dll
 
 .obj/teufel.o:	teufel.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h mission_ppd.h
-	$(CC) $(DFLAGS) -o .obj/teufel.o -c teufel.c	
-	
+	$(CC) $(DFLAGS) -o .obj/teufel.o -c teufel.c
+
 runtime/36/caligar.dll: .obj/caligar.o
 	$(CC) $(DDFLAGS) -o caligar.tmp .obj/caligar.o
-	mv caligar.tmp runtime/36/caligar.dll
+	@mv caligar.tmp runtime/36/caligar.dll
 
 .obj/caligar.o:	caligar.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/caligar.o -c caligar.c
@@ -602,7 +602,7 @@ update_server:	.obj/update_server.o
 	$(CC) $(CFLAGS) -o .obj/update_server.o -c update_server.c
 
 zones/generic/weapons.itm:	create_weapons
-	./create_weapons >zones/generic/weapons.itm
+	@./create_weapons >zones/generic/weapons.itm
 
 create_weapons:	.obj/create_weapons.o
 	$(CC) $(LDFLAGS) -o create_weapons .obj/create_weapons.o
@@ -611,7 +611,7 @@ create_weapons:	.obj/create_weapons.o
 	$(CC) $(CFLAGS) -o .obj/create_weapons.o -c create_weapons.c
 
 zones/generic/armor.itm:	create_armor
-	./create_armor >zones/generic/armor.itm
+	@./create_armor >zones/generic/armor.itm
 
 create_armor:		.obj/create_armor.o
 	$(CC) $(LDFLAGS) -o create_armor .obj/create_armor.o
@@ -624,10 +624,10 @@ chatserver:		.obj/chatserver.o
 
 .obj/chatserver.o:	chatserver.c
 	$(CC) $(CFLAGS) -o .obj/chatserver.o -c chatserver.c
-	
+
 create_account:		create_account.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o create_account create_account.c -lmysqlclient
-	
+
 create_character:	create_character.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o create_character create_character.c -lmysqlclient
 
@@ -635,5 +635,5 @@ create_character:	create_character.c
 # ------- Helper -----
 
 clean:
-	rm server .obj/*.o *~ zones/*/*~ runtime/*/* chatserver update_server create_weapons create_armor create_account create_character
-	
+	rm server .obj/*.o *~ zones/*/*~ runtime/*/* chatserver update_server create_weapons create_armor create_account create_character ; true
+

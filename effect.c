@@ -522,7 +522,7 @@ int ishit_fireball(int cn,int frx,int fry,int tox,int toy,int (*isenemy)(int,int
 }
 
 int create_fireball(int cn,int frx,int fry,int tox,int toy,int str) {
-    int n,dx,dy;
+    int n;
 
     n=alloc_effect(EF_FIREBALL);
     if (!n) return 0;
@@ -538,9 +538,6 @@ int create_fireball(int cn,int frx,int fry,int tox,int toy,int str) {
     ef[n].field_cnt=0;
     ef[n].stop=ticker+TICKS;
     ef[n].number_of_enemies=0;
-
-    dx=(ef[n].tox-ef[n].frx);
-    dy=(ef[n].toy-ef[n].fry);
 
     ef[n].x=ef[n].frx*1024+512;
     ef[n].y=ef[n].fry*1024+512;
@@ -1153,7 +1150,7 @@ static void ef_edemonball(int fn) {
 }
 
 int create_edemonball(int cn,int frx,int fry,int tox,int toy,int str,int base) {
-    int n,dx,dy;
+    int n;
 
     n=alloc_effect(EF_EDEMONBALL);
     if (!n) return 0;
@@ -1170,9 +1167,6 @@ int create_edemonball(int cn,int frx,int fry,int tox,int toy,int str,int base) {
     ef[n].stop=ticker+TICKS*4;
     ef[n].number_of_enemies=0;
     ef[n].base_sprite=base;
-
-    dx=(ef[n].tox-ef[n].frx);
-    dy=(ef[n].toy-ef[n].fry);
 
     ef[n].x=ef[n].frx*1024+512;
     ef[n].y=ef[n].fry*1024+512;

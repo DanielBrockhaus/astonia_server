@@ -116,7 +116,7 @@ void lowerstrcpy(char *dst,char *src) {
 int analyse_text_driver(int cn,int type,char *text,int co) {
     char word[256];
     char wordlist[20][256];
-    int n,w,q,name=0;
+    int n,w,q;
 
     // ignore game messages
     if (type==LOG_SYSTEM || type==LOG_INFO) return 0;
@@ -149,7 +149,7 @@ int analyse_text_driver(int cn,int type,char *text,int co) {
             case '.':       if (n) {
                     word[n]=0;
                     lowerstrcpy(wordlist[w],word);
-                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; } else name=1;
+                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; }
                 }
                 n=0; text++;
                 break;
@@ -1127,19 +1127,6 @@ void teufelquest_driver(int cn,int ret,int lastact) {
 }
 
 void teufelrat_driver(int cn,int ret,int lastact) {
-    struct msg *msg,*next;
-    int co;
-
-    // loop through our messages
-    for (msg=ch[cn].msg; msg; msg=next) {
-        next=msg->next;
-
-        switch (msg->type) {
-            case NT_CHAR:
-                co=msg->dat1;
-                break;
-        }
-    }
 
     char_driver(CDR_SIMPLEBADDY,CDT_DRIVER,cn,ret,lastact);
 }

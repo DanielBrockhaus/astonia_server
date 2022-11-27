@@ -24,7 +24,7 @@ static char *motd=NULL;
 
 int read_motd(void) {
     struct stat st;
-    int handle,len;
+    int handle,len,tmp;
 
     if (stat("motd.txt",&st)) {
         elog("Error stat-ing motd");
@@ -37,7 +37,11 @@ int read_motd(void) {
         len=lseek(handle,0,SEEK_END);
         lseek(handle,0,SEEK_SET);
         motd=xrealloc(motd,len+1,IM_BASE);
-        read(handle,motd,len); motd[len]=0;
+        if ((tmp=read(handle,motd,len))!=len) {
+            elog("motd expected size %d, but got size %d.",len,tmp);
+            motd[0]=0;
+        } else motd[len]=0;
+
         close(handle);
 
         xlog("Read MotD");

@@ -516,7 +516,7 @@ int scompact(int nr) {
 }
 
 void sfree_nolock(void *ap,int dorelease) {
-    struct header *p,*q,*start=NULL;
+    struct header *p,*q;
     int nr;
 
     nr=smalloc_addr2nr(ap); //(((int)ap)-0x50000000)/(24*1024*1024); !!!!!!!!!!!!!!!
@@ -532,7 +532,6 @@ void sfree_nolock(void *ap,int dorelease) {
 
     for (q=region[nr].allocp; !(p>q && p<q->ptr); q=q->ptr) {
         if (q>=q->ptr && (p>q || p<q->ptr)) break;
-        start=q;
     }
 
     if (p+p->size==q->ptr) {

@@ -281,11 +281,11 @@ int do_story(int cn,int co,struct sidestory_ppd *ppd,struct story_npc *me,struct
                 }
                 pos+=sprintf(buf+pos," ]"); // (state=%d, like=%d)",me->state,me->like);
                 me->last_say=realtime;
-                say(cn,buf);
+                say(cn,"%s",buf);
                 do_story_special(cn,co,ppd,me,story,n,story[n].opt);
                 return 1;
             } else if (story[n].a[0].nextstate) {
-                say(cn,buf);
+                say(cn,"%s",buf);
                 do_story_special(cn,co,ppd,me,story,n,story[n].opt);
 
                 if (story[n].special!=SPEC_ITEM && story[n].special!=SPEC_ALCITEM && story[n].special!=SPEC_ITEM32 && story[n].special!=SPEC_ITEMDRV) {
@@ -298,7 +298,7 @@ int do_story(int cn,int co,struct sidestory_ppd *ppd,struct story_npc *me,struct
                 }
             } else {
                 me->last_say=0x7fffffff;
-                say(cn,buf);
+                say(cn,"%s",buf);
                 do_story_special(cn,co,ppd,me,story,n,story[n].opt);
                 return 2;
             }

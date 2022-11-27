@@ -94,7 +94,7 @@ void lowerstrcpy(char *dst,char *src) {
 int analyse_text_driver(int cn,int type,char *text,int co) {
     char word[256];
     char wordlist[20][256];
-    int n,w,q,name=0;
+    int n,w,q;
 
     // ignore game messages
     if (type==LOG_SYSTEM || type==LOG_INFO) return 0;
@@ -127,7 +127,7 @@ int analyse_text_driver(int cn,int type,char *text,int co) {
             case '.':       if (n) {
                     word[n]=0;
                     lowerstrcpy(wordlist[w],word);
-                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; } else name=1;
+                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; }
                 }
                 n=0; text++;
                 break;
@@ -319,7 +319,8 @@ void warpbonus_driver(int in,int cn) {
                 case 3:		log_char(cn,LOG_SYSTEM,0,"You received military rank."); give_military_pts_no_npc(cn,level,0); break;
                 case 4:		ch[cn].gold+=level*level*10; ch[cn].flags|=CF_ITEMS; log_char(cn,LOG_SYSTEM,0,"You received %d gold.",level*level/10); break;
                 case 5:		in3=create_item("lollipop"); if (give_char_item(cn,in3)) log_char(cn,LOG_SYSTEM,0,"You received a lollipop.");
-                    else destroy_item(in3); break;
+                    else destroy_item(in3);
+                    break;
             }
         }
         if (ppd->base>139) return;

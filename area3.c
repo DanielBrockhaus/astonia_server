@@ -173,7 +173,7 @@ void lowerstrcpy(char *dst,char *src) {
 int analyse_text_driver(int cn,int type,char *text,int co) {
     char word[256];
     char wordlist[20][256];
-    int n,w,q,name=0;
+    int n,w,q;
 
     // ignore game messages
     if (type==LOG_SYSTEM || type==LOG_INFO) return 0;
@@ -206,7 +206,7 @@ int analyse_text_driver(int cn,int type,char *text,int co) {
             case '.':       if (n) {
                     word[n]=0;
                     lowerstrcpy(wordlist[w],word);
-                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; } else name=1;
+                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; }
                 }
                 n=0; text++;
                 break;
@@ -1367,10 +1367,7 @@ struct supermax_driver_data {
 };
 
 void supermax_list(int cn,int co) {
-    int smax,left,seyan,n,cnt=0;
-
-    if ((ch[co].flags&(CF_WARRIOR|CF_MAGE))==(CF_WARRIOR|CF_MAGE)) seyan=1;
-    else seyan=0;
+    int smax,left,n,cnt=0;
 
     left=ch[co].exp-ch[co].exp_used;
     if (left<1) {
@@ -1396,13 +1393,10 @@ void supermax_list(int cn,int co) {
 }
 
 void supermax_raise(int cn,int co,int skl) {
-    int seyan,left,smax,cost;
+    int left,smax,cost;
     struct misc_ppd *ppd;
 
     ppd=set_data(co,DRD_MISC_PPD,sizeof(struct misc_ppd));
-
-    if ((ch[co].flags&(CF_WARRIOR|CF_MAGE))==(CF_WARRIOR|CF_MAGE)) seyan=1;
-    else seyan=0;
 
     left=ch[co].exp-ch[co].exp_used;
     cost=supermax_cost(co,skl,ch[co].value[1][skl]);
@@ -1437,14 +1431,7 @@ void supermax_raise(int cn,int co,int skl) {
 }
 
 void supermax_lower(int cn,int co,int skl) {
-    int seyan,smax,cost;
-    struct misc_ppd *ppd;
-
-    ppd=set_data(co,DRD_MISC_PPD,sizeof(struct misc_ppd));
-
-    if ((ch[co].flags&(CF_WARRIOR|CF_MAGE))==(CF_WARRIOR|CF_MAGE)) seyan=1;
-    else seyan=0;
-
+    int smax,cost;
 
     smax=skillmax(co);
 
@@ -1463,7 +1450,7 @@ void supermax_lower(int cn,int co,int skl) {
 void supermax_driver(int cn,int ret,int lastact) {
     struct carlos_driver_data *dat;
     struct misc_ppd *ppd;
-    int co,talkdir=0,didsay=0,smax,left;
+    int co,talkdir=0,didsay=0,smax;
     struct msg *msg,*next;
 
     dat=set_data(cn,DRD_SUPERMAXDRIVER,sizeof(struct supermax_driver_data));
@@ -1500,7 +1487,6 @@ void supermax_driver(int cn,int ret,int lastact) {
 
             //say(cn,"state=%d",ppd->carlos_state);
 
-            left=ch[co].exp-ch[co].exp_used;
             smax=skillmax(co);
 
             if (ppd) {

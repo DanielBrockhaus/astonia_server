@@ -242,6 +242,10 @@ void tunneldoor(int in,int cn) {
     b2=RANDOM(2);
     c=RANDOM(3);
 
+// TODO: find out why gcc warns about the for loops
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstrict-overflow"
+
     used=1;
     for (xoff=1; xoff<210; xoff+=31) {
         for (yoff=1; yoff<255; yoff+=127) {
@@ -262,6 +266,7 @@ void tunneldoor(int in,int cn) {
         log_char(cn,LOG_SYSTEM,0,"All tunnels are busy. Please try again later.");
         return;
     }
+#pragma GCC diagnostic pop
 
     for (x=1+xoff; x<32+xoff; x++) {
         for (y=1+yoff; y<128+yoff; y++) {

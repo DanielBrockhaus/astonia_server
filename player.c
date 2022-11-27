@@ -702,7 +702,7 @@ static void cl_look_container(int nr,char *buf) {
 }
 
 static void cl_raise(int nr,char *buf) {
-    int n,cn,ret;
+    int n,cn;
 
     n=*(unsigned short *)(buf);
 
@@ -710,7 +710,7 @@ static void cl_raise(int nr,char *buf) {
 
     cn=player[nr]->cn;
 
-    ret=raise_value(cn,n);
+    raise_value(cn,n);
 }
 
 static void cl_text(int nr,char *buf) {
@@ -746,7 +746,7 @@ static void cl_log(int nr,char *buf) {
     len=*(unsigned char *)(buf+0);
 
     buf[len]=0;
-    charlog(cn,buf+1);
+    charlog(cn,"%s",buf+1);
 }
 
 static void cl_take_gold(int nr,char *buf) {

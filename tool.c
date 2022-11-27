@@ -1931,7 +1931,7 @@ void shutdown_warn(void) {
         else sprintf(buf,"°c3The server will go down NOW. Expected downtime: %d minutes.",shutdown_down);
         for (n=1; n<MAXCHARS; n++) {
             if (!(ch[n].flags&CF_PLAYER)) continue;
-            log_char(n,LOG_SYSTEM,0,buf);
+            log_char(n,LOG_SYSTEM,0,"%s",buf);
         }
         shutdown_last=min;
         if (min<3) nologin=1;

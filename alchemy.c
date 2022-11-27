@@ -299,14 +299,12 @@ int mixer_power(int in,int cn) {
 }
 
 int mixer_duration(int in,double *divi) {
-    int cnt,d60,d10,d20,d30;
+    int d60,d10,d20,d30;
 
     d60=it[in].drdata[27];
     d10=it[in].drdata[28];
     d20=it[in].drdata[29];
     d30=it[in].drdata[30];
-
-    cnt=d60+d10+d20+d30;
 
     if (d60) { *divi=1.75; return 60; }
     if (d30) { *divi=1.5; return 30; }

@@ -291,95 +291,95 @@ void exec_rune(int cn,int nr,int lastholder) {
     switch (nr) {
         // level 1
         case 1:		teleport_char_driver(cn,90,25); break;      // teleport to next area
-        case 11:        give_exp(cn,level_value(min(ch[cn].level+5,50))/6); flag=1;     // bonus
-            log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
+        case 11:    give_exp(cn,level_value(min(ch[cn].level+5,50))/6); flag=1;     // bonus
+                    log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
         case 111:	log_char(cn,LOG_SYSTEM,0,"You hear a sinister laugh echo through the emptiness.");
-            teleport_char_driver(cn,72,52);
-            break;
+                    teleport_char_driver(cn,72,52);
+                    break;
 
-            // level 2
+        // level 2
         case 2:		teleport_char_driver(cn,175,4); break;      // teleport to next area
         case 22:	give_exp(cn,level_value(min(ch[cn].level+5,51))/6); flag=1;     // bonus
-            log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
+                    log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
         case 222:	log_char(cn,LOG_SYSTEM,0,"You hear a sinister laugh echo through the emptiness.");
-            teleport_char_driver(cn,105,40);
+                    teleport_char_driver(cn,105,40);
             break;
         case 212:	if (raise_value_exp(cn,V_ENDURANCE)) log_char(cn,LOG_SYSTEM,0,"You gained endurance.");
-            flag=1;
-            break;
+                    flag=1;
+                    break;
 
-            // level 3
+        // level 3
         case 3:		teleport_char_driver(cn,4,69); break;       // teleport to next area
         case 33:	give_exp(cn,level_value(min(ch[cn].level+5,52))/6); flag=1;     // bonus
-            log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
+                    log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
         case 333:	log_char(cn,LOG_SYSTEM,0,"You hear a sinister laugh echo through the emptiness.");
-            teleport_char_driver(cn,236,25);
-            break;
+                    teleport_char_driver(cn,236,25);
+                    break;
         case 231:	if (raise_value_exp(cn,V_HP)) log_char(cn,LOG_SYSTEM,0,"You gained hitpoints.");
-            flag=1;
-            break;
+                    flag=1;
+                    break;
         case 133:	if (raise_value_exp(cn,V_MANA)) log_char(cn,LOG_SYSTEM,0,"You gained mana.");
-            flag=1;
-            break;
+                    flag=1;
+                    break;
 
-            // level 4
+        // level 4
         case 4:		teleport_char_driver(cn,90,95); break;      // teleport to next area
         case 44:	give_exp(cn,level_value(min(ch[cn].level+5,54))/6); flag=1;     // bonus
-            log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
+                    log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
         case 444:	log_char(cn,LOG_SYSTEM,0,"You hear a sinister laugh echo through the emptiness.");
-            teleport_char_driver(cn,67,85);
-            break;
+                    teleport_char_driver(cn,67,85);
+                    break;
         case 143:	if (raise_value_exp(cn,V_PARRY)) log_char(cn,LOG_SYSTEM,0,"You gained parry.");
-            flag=1;
-            break;
+                    flag=1;
+                    break;
         case 442:	if (raise_value_exp(cn,V_MAGICSHIELD)) log_char(cn,LOG_SYSTEM,0,"You gained magic shield.");
-            flag=1;
-            break;
+                    flag=1;
+                    break;
         case 241:	if (raise_value_exp(cn,V_IMMUNITY)) log_char(cn,LOG_SYSTEM,0,"You gained immunity.");
-            flag=1;
-            break;
+                    flag=1;
+                    break;
 
-            // level 5
+        // level 5
         case 5:		teleport_char_driver(cn,176,110); break;        // teleport to next area
         case 55:	give_exp(cn,level_value(min(ch[cn].level+5,55))/6); flag=1;     // bonus
-            log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
+                    log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
         case 555:	log_char(cn,LOG_SYSTEM,0,"You hear a sinister laugh echo through the emptiness.");
-            teleport_char_driver(cn,107,105);
-            break;
+                    teleport_char_driver(cn,107,105);
+                    break;
 
-            // level 6
+        // level 6
         case 6:		teleport_char_driver(cn,4,146); break;      // teleport to next area
         case 66:	give_exp(cn,level_value(min(ch[cn].level+5,57))/6); flag=1;     // bonus
-            log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
+                    log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
         case 666:	log_char(cn,LOG_SYSTEM,0,"You hear a sinister laugh echo through the emptiness.");
-            teleport_char_driver(cn,216,115);
-            break;
+                    teleport_char_driver(cn,216,115);
+                    break;
 
-            // level 7
+        // level 7
         case 7:		teleport_char_driver(cn,91,171); break;     // teleport to next area
         case 77:	give_exp(cn,level_value(min(ch[cn].level+5,58))/6); flag=1;     // bonus
-            log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
+                    log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
         case 777:	log_char(cn,LOG_SYSTEM,0,"You hear a sinister laugh echo through the emptiness.");
-            teleport_char_driver(cn,9,172);
-            break;
+                    teleport_char_driver(cn,9,172);
+                    break;
 
-            // level 8
+        // level 8
         case 8:		teleport_char_driver(cn,187,152); break;        // teleport to next area
         case 88:	give_exp(cn,level_value(min(ch[cn].level+5,59))/6); flag=1;     // bonus
-            log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
+                    log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
         case 888:	log_char(cn,LOG_SYSTEM,0,"You hear a sinister laugh echo through the emptiness.");
-            teleport_char_driver(cn,91,133);
-            break;
+                    teleport_char_driver(cn,91,133);
+                    break;
 
-            // level 9
+        // level 9
         case 9:		teleport_char_driver(cn,137,222); break;    // teleport to next area
         case 99:	give_exp(cn,level_value(min(ch[cn].level+5,61))/6); flag=1;     // bonus
-            log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
+                    log_char(cn,LOG_SYSTEM,0,"You gained experience."); break;
         case 999:	log_char(cn,LOG_SYSTEM,0,"You hear a sinister laugh echo through the emptiness.");
-            teleport_char_driver(cn,235,152);
-            break;
+                    teleport_char_driver(cn,235,152);
+                    break;
 
-            // special execs and wrong combos
+        // special execs and wrong combos
         default:	for (n=0; n<25; n++) {
                 if (ppd->special_exec[n]==nr) {
                     switch (n) {
@@ -425,7 +425,8 @@ void exec_rune(int cn,int nr,int lastholder) {
                     break;
                 }
             }
-            if (n==25) log_char(cn,LOG_SYSTEM,0,"Nothing happened."); break;
+            if (n==25) log_char(cn,LOG_SYSTEM,0,"Nothing happened.");
+            break;
     }
     if (flag) rune_set(nr,ppd);
 }

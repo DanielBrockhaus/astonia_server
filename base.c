@@ -98,7 +98,7 @@ void lowerstrcpy(char *dst,char *src) {
 int analyse_text_driver(int cn,int type,char *text,int co) {
     char word[256];
     char wordlist[20][256];
-    int n,w,q,name=0;
+    int n,w,q;
 
     // ignore game messages
     if (type==LOG_SYSTEM || type==LOG_INFO) return 0;
@@ -131,7 +131,7 @@ int analyse_text_driver(int cn,int type,char *text,int co) {
             case '.':       if (n) {
                     word[n]=0;
                     lowerstrcpy(wordlist[w],word);
-                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; } else name=1;
+                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; }
                 }
                 n=0; text++;
                 break;
@@ -534,7 +534,7 @@ void double_door_driver(int in,int cn) {
 }
 
 void balltrap(int in,int cn) {
-    int dx,dy,power,fn,dxs,dys;
+    int dx,dy,power,dxs,dys;
 
     if (!cn) return;    // always make sure its not an automatic call if you don't handle it
 
@@ -552,7 +552,7 @@ void balltrap(int in,int cn) {
     else if (dy<0) dys=-1;
     else dys=0;
 
-    fn=create_ball(0,it[in].x+dxs,it[in].y+dys,it[in].x+dx,it[in].y+dy,power);
+    create_ball(0,it[in].x+dxs,it[in].y+dys,it[in].x+dx,it[in].y+dy,power);
 }
 
 struct treasure_chest_ppd {
@@ -3027,7 +3027,7 @@ void shrike_amulet_driver(int in,int cn) {
 }
 
 void minegatewaykey(int in,int cn) {
-    int bit1,bit2,in2;
+    int bit2,in2;
 
     if (!cn) return;
 
@@ -3041,7 +3041,6 @@ void minegatewaykey(int in,int cn) {
         return;
     }
 
-    bit1=it[in].drdata[0];
     bit2=it[in2].drdata[0];
 
     it[in].drdata[0]|=bit2;

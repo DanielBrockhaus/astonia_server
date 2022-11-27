@@ -261,7 +261,7 @@ int remove_party(int code,char *msg) {
             if (!teleport_char_driver(m,15,15) &&
                 !teleport_char_driver(m,20,15) &&
                 !teleport_char_driver(m,15,20)) teleport_char_driver(m,20,20);
-            if (msg) log_char(m,LOG_SYSTEM,0,msg);
+            if (msg) log_char(m,LOG_SYSTEM,0,"%s",msg);
         }
     }
 
@@ -620,7 +620,6 @@ int restplace(int cn,int m,struct strategy_data *dat) {
 
 void strategy_driver(int cn,int ret,int lastact) {
     struct strategy_data *dat;
-    struct strategy_ppd *ppd;
     int co,in,in2,me;
     struct msg *msg,*next;
     char *text;
@@ -652,7 +651,6 @@ void strategy_driver(int cn,int ret,int lastact) {
             tabunga(cn,co,(char *)(msg->dat2));
 
             if ((ch[co].flags&CF_PLAYER) && ch[co].ID==ch[cn].group && char_see_char(cn,co) && dat->order!=OR_ETERNALGUARD) {
-                ppd=set_data(co,DRD_STRATEGY_PPD,sizeof(struct strategy_ppd));
 
                 text=(char *)(msg->dat2);
 

@@ -206,7 +206,7 @@ void lowerstrcpy(char *dst,char *src) {
 int analyse_text_driver(int cn,int type,char *text,int co) {
     char word[256];
     char wordlist[20][256];
-    int n,w,q,name=0;
+    int n,w,q;
 
     // ignore game messages
     if (type==LOG_SYSTEM || type==LOG_INFO) return 0;
@@ -239,7 +239,7 @@ int analyse_text_driver(int cn,int type,char *text,int co) {
             case '.':       if (n) {
                     word[n]=0;
                     lowerstrcpy(wordlist[w],word);
-                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; } else name=1;
+                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; }
                 }
                 n=0; text++;
                 break;
@@ -1378,13 +1378,20 @@ void shrine_welding(int in,int cn,int nr,int level,struct shrine_ppd *ppd) {
     it[in1].mod_value[slot1]=it[in2].mod_value[slot2];
 
     set_item_requirements(in1);
-    if (!strstr(it[in1].description,"Christmas")) snprintf(it[in1].description,sizeof(it[in1].description)-1,"%s of Welding.",it[in1].name); it[in1].description[sizeof(it[in1].description)-1]=0;
+    if (!strstr(it[in1].description,"Christmas")) {
+        snprintf(it[in1].description,sizeof(it[in1].description)-1,"%s of Welding.",it[in1].name);
+        it[in1].description[sizeof(it[in1].description)-1]=0;
+    }
+
 
     it[in2].mod_index[slot2]=0;
     it[in2].mod_value[slot2]=0;
 
     set_item_requirements(in2);
-    if (!strstr(it[in2].description,"Christmas")) snprintf(it[in2].description,sizeof(it[in2].description)-1,"%s of Unwelding.",it[in2].name); it[in2].description[sizeof(it[in2].description)-1]=0;
+    if (!strstr(it[in2].description,"Christmas")) {
+        snprintf(it[in2].description,sizeof(it[in2].description)-1,"%s of Unwelding.",it[in2].name);
+        it[in2].description[sizeof(it[in2].description)-1]=0;
+    }
 
     ch[cn].flags|=CF_ITEMS;
 

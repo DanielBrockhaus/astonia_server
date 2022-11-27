@@ -1212,7 +1212,7 @@ static int task_cmp(const void *a,const void *b) {
 static int fight_driver_attack_enemy(int cn,int co,int nomove,int nobless,int noheal,int noflash,int nofireball,int noball,int noshield,int nowarcry,int nofreeze,int nopulse) {
     //static char *typename[]={"freeze","fireball","ball","flash","warcry","atttack","moveright","moveleft","moveup","movedown","regenerate","distance3","distance7","bless","earthrain","earthmud","heal","ms","pulse","attackback","flee","firering","max"};
     struct task task[maxtasktype];
-    int maxvalue=0,maxtask=0,n,ret,cdist,tdist,sdist,tmp;
+    int maxvalue=0,maxtask=0,n,ret,cdist,tdist,tmp;
     int sillyness=ch[cn].level/2+5,val;
     struct fight_driver_data *dat;
 
@@ -1220,7 +1220,6 @@ static int fight_driver_attack_enemy(int cn,int co,int nomove,int nobless,int no
 
     cdist=char_dist(cn,co);
     tdist=tile_char_dist(cn,co);
-    sdist=step_char_dist(cn,co);
 
     if (!nofreeze &&
         ch[cn].value[0][V_FREEZE]>1 &&
@@ -1445,35 +1444,34 @@ static int fight_driver_attack_enemy(int cn,int co,int nomove,int nobless,int no
         if (task[n].task==attackback && (n==maxtask-1 || task[n+1].task!=attack)) ret=0;
         else switch (task[n].task) {
                 case freeze:		ret=do_freeze(cn); break;
-                case bless:		ret=do_bless(cn,cn); break;
+                case bless:		    ret=do_bless(cn,cn); break;
                 case fireball:		ret=fireball_driver(cn,co,ch[co].serial); break;
                 case ball:			ret=do_ball(cn,ch[co].x-1+RANDOM(3),ch[co].y-1+RANDOM(3)); break;
-                case flash:		ret=do_flash(cn); break;
+                case flash:		    ret=do_flash(cn); break;
                 case warcry:		ret=do_warcry(cn); break;
                 case attack:		ret=attack_driver(cn,co); break;
                 case moveright:		ret=do_walk(cn,DX_RIGHT); break;
                 case moveleft:		ret=do_walk(cn,DX_LEFT); break;
                 case moveup:		ret=do_walk(cn,DX_UP); break;
                 case movedown:		ret=do_walk(cn,DX_DOWN); break;
-                case regenerate:		ret=do_idle(cn,TICKS/2); break;
+                case regenerate:	ret=do_idle(cn,TICKS/2); break;
                 case distance3:		ret=distance_driver(cn,co,3); if (!ret && error==ERR_ALREADY_THERE) ret=do_idle(cn,TICKS/4); break;
                 case distance7:		ret=distance_driver(cn,co,7); break;
                 case earthrain:		ret=earthrain_driver(cn,co,ch[cn].value[1][V_DEMON]); break;
                 case earthmud:		ret=earthmud_driver(cn,co,ch[cn].value[1][V_DEMON]); break;
                 case heal:			ret=do_heal(cn,cn); break;
                 case ms:			ret=do_magicshield(cn); break;
-                case pulse:		ret=do_pulse(cn); break;
-                case attackback:		ret=attack_back_driver(cn,co); break;
+                case pulse:		    ret=do_pulse(cn); break;
+                case attackback:	ret=attack_back_driver(cn,co); break;
                 case flee:			if (cdist<8) ret=distance_driver(cn,co,8);
-                    else { ret=0; error=ERR_ALREADY_THERE; }
-                    if (!ret && error==ERR_ALREADY_THERE) ret=do_idle(cn,TICKS/4); break;
+                                    else { ret=0; error=ERR_ALREADY_THERE; }
+                                    if (!ret && error==ERR_ALREADY_THERE) ret=do_idle(cn,TICKS/4);
+                                    break;
                 case firering:		ret=do_fireball(cn,ch[cn].x,ch[cn].y); break;
-
 
                 default:	ret=0; break;
             }
         if (ret) return 1;
-        //say(cn,"failed.");
     }
 
     // emergency solution... ????

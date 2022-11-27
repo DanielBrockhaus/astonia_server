@@ -19,6 +19,12 @@
 #include <sys/wait.h>
 #include "mail.h"
 
+// we cannot do anything about write() failing
+// so we don't have to check the return code
+// and we disable the warning about it
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
+
 int sendmail(char *to,char *subject,char *body,char *from,int do_copy) {
     int in[2],pid,sock;
     char tmp[256];
@@ -65,3 +71,6 @@ int sendmail(char *to,char *subject,char *body,char *from,int do_copy) {
 
     return 1;
 }
+
+#pragma GCC diagnostic pop
+

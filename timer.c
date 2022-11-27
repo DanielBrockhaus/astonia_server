@@ -78,17 +78,6 @@ int set_timer(int due,void (*func)(int,int,int,int,int),int dat1,int dat2,int da
     return 1;
 }
 
-// left from debugging. funny thing is: this one doesnt create a "unused" warning, even though it is unused.
-// it seems GNU-C doesnt notice this because it references itself. ts
-static void display_queue(int step,int dum2,int dum3,int dum4,int dum5) {
-    struct timer *t;
-    int n;
-
-    for (t=next_t,n=0; t; t=t->next,n++) xlog("%3d: %p %d (%d)",n,t->func,t->due,ticker);
-
-    set_timer(ticker+step,display_queue,step,0,0,0,0);
-}
-
 // called once per tick. fires due timers.
 void tick_timer(void) {
     struct timer *t,*last=NULL;

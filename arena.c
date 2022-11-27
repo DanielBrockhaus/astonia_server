@@ -85,7 +85,7 @@ void lowerstrcpy(char *dst,char *src) {
 int analyse_text_driver(int cn,int type,char *text,int co) {
     char word[256];
     char wordlist[20][256];
-    int n,w,q,name=0;
+    int n,w,q;
 
     // ignore game messages
     if (type==LOG_SYSTEM || type==LOG_INFO) return 0;
@@ -118,7 +118,7 @@ int analyse_text_driver(int cn,int type,char *text,int co) {
             case '.':       if (n) {
                     word[n]=0;
                     lowerstrcpy(wordlist[w],word);
-                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; } else name=1;
+                    if (strcasecmp(wordlist[w],ch[cn].name)) { if (w<20) w++; }
                 }
                 n=0; text++;
                 break;
@@ -638,7 +638,7 @@ void fighter_parse(int cn,struct fighter_data *dat) {
 void fighter_driver(int cn,int ret,int lastact) {
     struct fighter_data *dat;
     struct arena_ppd *ppd;
-    int co,res,size;
+    int res,size;
     struct msg *msg,*next;
     void *tmp;
 
@@ -662,21 +662,8 @@ void fighter_driver(int cn,int ret,int lastact) {
             }
         }
 
-        // did we see someone?
-        if (msg->type==NT_CHAR) {
-            co=msg->dat1;
-        }
-
-        // talk back
-        if (msg->type==NT_TEXT) {
-            co=msg->dat3;
-        }
-
         // got an item?
-        if (msg->type==NT_GIVE) {
-            co=msg->dat1;
-
-            // let it vanish, then
+        if (msg->type==NT_GIVE) { // let it vanish, then
             destroy_item(ch[cn].citem);
             ch[cn].citem=0;
         }
