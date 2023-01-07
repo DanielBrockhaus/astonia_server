@@ -175,7 +175,10 @@ void io_loop(void) {
     int panic=0;
     unsigned long long prof;
 
-    if (ticker%8) return;
+    // TODO: This appears to have been a speed optimization at the cost of
+    // client latency. Is removing it still too expensive for larger servers?
+
+    // if (ticker%8) return;
 
     while (panic++<100) {
         FD_ZERO(&in_fd); FD_ZERO(&out_fd); fmax=0;
