@@ -32,18 +32,18 @@
 static MYSQL mysql;
 static char mysqlpass[80];
 
-static void makemysqlpass(void)
-{
-        static char key1[]={117, 127, 98, 38, 118, 115, 100, 104,0};
-        static char key2[]={"qpc74a7v"};
-        static char key3[]={"bcoxsa1k"};
-        int n;
+static void makemysqlpass(void) {
+    static char key1[]={117,127,98,38,118,115,100,104,0};
+    static char key2[]={"fr5tgs23"};
+    static char key3[]={"gj56ffe3"};
+    int n;
 
-        for (n=0; key1[n]; n++) {
-                mysqlpass[n]=key1[n]^key2[n]^key3[n];
-                //printf("%d, ",mysqlpass[n]);
-        }
-        mysqlpass[n]=0;
+    for (n=0; key1[n]; n++) {
+        mysqlpass[n]=key1[n]^key2[n]^key3[n];
+        //printf("%d, ",mysqlpass[n]);
+    }
+    mysqlpass[n]=0;
+    //printf("\n%s\n",mysqlpass);
 }
   
 static void destroymysqlpass(void)
