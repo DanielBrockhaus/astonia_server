@@ -660,8 +660,6 @@ void show_prof(void) {
     bzero(prof,sizeof(prof));
     maxprof=0;
 #endif
-    //xcheck();
-
     xlog("serials: char=%d, item=%d",sercn,serin);
 }
 

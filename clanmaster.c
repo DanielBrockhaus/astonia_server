@@ -489,7 +489,7 @@ void clanclerk_driver(int cn,int ret,int lastact) {
 
                     ptr+=7;
 
-                    nr=atoi(ptr);
+                    nr=atoi(ptr)*100;
 
                     if (nr<1) {
                         say(cn,"You must name a positive amount.");
@@ -498,16 +498,16 @@ void clanclerk_driver(int cn,int ret,int lastact) {
                         continue;
                     }
 
-                    if (ch[co].gold<nr*100) {
+                    if (ch[co].gold<nr) {
                         say(cn,"You do not have that much money, %s.",ch[co].name);
                         remove_message(cn,msg);
                         continue;
                     }
-                    ch[co].gold-=nr*100;
+                    ch[co].gold-=nr;
                     ch[co].flags|=CF_ITEMS;
-                    clan_money_change(dat->clan,nr,co);
-                    say(cn,"You have deposited %dG.",nr);
-                    dlog(co,0,"deposited %dG to clan %d.",nr,dat->clan);
+                    clan_money_change(dat->clan,nr/100,co);
+                    say(cn,"You have deposited %dG.",nr/100);
+                    dlog(co,0,"deposited %dG to clan %d.",nr/100,dat->clan);
                 }
                 if ((ptr=strcasestr((char *)msg->dat2,"add potions"))) {
 

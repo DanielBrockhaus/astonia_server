@@ -1,0 +1,12 @@
+
+- test clan master deposit / withdraw
+
+- item duplication?
+
+- "Packet overflowing protection": Create mini-client that logs in and them starts to bombard
+... the server with random data.
+
+- remove special chars from cl_text (mostly °)
+
+
+

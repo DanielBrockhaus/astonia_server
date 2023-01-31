@@ -14,3 +14,6 @@ v3.*
 zones/
 *.e
 *.ex
+*.ilog
+*.elog
+*.log

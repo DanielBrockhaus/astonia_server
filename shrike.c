@@ -308,10 +308,17 @@ void shrike_driver(int in,int cn) {
 }
 
 void shr_werewolf_driver(int cn,int ret,int lastact) {
+    struct msg *msg,*next;
+
     if (is_fullnight()) {
         ch[cn].flags&=~CF_INVISIBLE;
         char_driver(CDR_SIMPLEBADDY,CDT_DRIVER,cn,ret,lastact);
         return;
+    }
+
+    for (msg=ch[cn].msg; msg; msg=next) {
+        next=msg->next;
+        remove_message(cn,msg);
     }
 
     ch[cn].flags|=CF_INVISIBLE;
