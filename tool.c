@@ -1117,6 +1117,8 @@ int look_item(int cn,struct item *in) {
         log_char(cn,LOG_SYSTEM,0,"This is part of an fire demon suit.");
     }
 
+    log_char(cn,LOG_SYSTEM,0,"°c5.");
+
     return 1;
 }
 
