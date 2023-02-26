@@ -86,7 +86,7 @@
 #define DT_PVPLIST		20
 #define DT_KARMALOG		21
 
-#define MAXAREA		40
+#define MAXAREA		50
 #define MAXMIRROR	27
 
 MYSQL mysql;

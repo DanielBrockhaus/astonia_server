@@ -211,7 +211,6 @@ static void read_login(int nr) {
     if (player[nr]->in_len<sizeof(ch[0].name)+MAXPASSWORD+4+12) return;
 
     vendor=*(unsigned int *)(player[nr]->inbuf+sizeof(ch[0].name)+MAXPASSWORD);
-    //if (version<CVERSION) { player_client_exit(nr,"client needs update"); return; }
 
     memcpy(name,player[nr]->inbuf,sizeof(ch[0].name)); name[sizeof(ch[0].name)-1]=0;
     memcpy(password,player[nr]->inbuf+sizeof(ch[0].name),MAXPASSWORD);
@@ -288,6 +287,9 @@ static void read_login(int nr) {
     player[nr]->login_time=realtime;
     player[nr]->ticker=ticker;
 
+    if ((vendor&0xffffff00)==0x8fd46100) player[nr]->client_version=vendor&0xff;
+    else player[nr]->client_version=0;
+
     //xlog("login: character %s (%d,%llu) got player %d",ch[cn].name,cn,ch[cn].flags,nr);
 
     ch[cn].flags|=CF_UPDATE|CF_ITEMS|CF_PROF;
@@ -323,6 +325,12 @@ static void read_login(int nr) {
         buf[0]=SV_UNIQUE;
         *(unsigned int *)(buf+1)=unique;
         psend(nr,buf,5);
+    }
+
+    if (player[nr]->client_version) {
+        buf[0]=SV_PROTOCOL;
+        buf[1]=1;
+        psend(nr,buf,2);
     }
 
     if (!(ch[cn].flags&CF_AREACHANGE)) {

@@ -56,6 +56,7 @@ struct player
 	// connection data
 	int sock;
 	unsigned int addr;
+	unsigned int client_version;
 
 	// idle ticker
 	int lastcmd;
