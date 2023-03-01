@@ -2537,6 +2537,12 @@ unsigned int get_player_addr(int nr) {
     return player[nr]->addr;
 }
 
+int get_player_protocol(int nr) {
+    if (!player) return 0;
+    if (!player[nr]) return 0;
+
+    return player[nr]->client_version;
+}
 
 
 

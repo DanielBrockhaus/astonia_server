@@ -164,6 +164,7 @@ void sanity_check(int cn);
 void player_reset_map_cache(int nr);
 void exit_char_player(int cn);
 unsigned int get_player_addr(int nr);
+int get_player_protocol(int nr);
 void sendquestlog(int cn,int nr);
 
 

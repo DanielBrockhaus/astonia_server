@@ -1027,7 +1027,7 @@ int add_spell(int cn,int driver,int duration,char *name) {
 }
 
 int look_item(int cn,struct item *in) {
-    int n,v,m=0,r=0,s;
+    int n,v,m=0,r=0,s,nr;
 
     if (!in->name[0]) return 1; // no name means we dont display anything
 
@@ -1117,7 +1117,10 @@ int look_item(int cn,struct item *in) {
         log_char(cn,LOG_SYSTEM,0,"This is part of an fire demon suit.");
     }
 
-    log_char(cn,LOG_SYSTEM,0,"°c5.");
+    if (ch[cn].flags&CF_PLAYER) {
+        nr=ch[cn].player;
+        if (get_player_protocol(nr)>0) log_char(cn,LOG_SYSTEM,0,"°c5.");
+    }
 
     return 1;
 }
