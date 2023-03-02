@@ -2431,12 +2431,12 @@ int command(int cn,char *ptr) {   // 1=ok, 0=repeat
         return cmd_clanlog(cn,ptr+len);
     }
 
-    if ((len=cmdcmp(ptr,"renclan",7))) {
+    if ((len=cmdcmp(ptr,"renclan",7)) && (ch[cn].flags&CF_GOD)) {
         cmd_renclan(cn,ptr+len);
 
         return 1;
     }
-    if ((len=cmdcmp(ptr,"renclub",7))) {
+    if ((len=cmdcmp(ptr,"renclub",7)) && (ch[cn].flags&CF_GOD)) {
         cmd_renclub(cn,ptr+len);
 
         return 1;
