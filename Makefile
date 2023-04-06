@@ -28,7 +28,7 @@ runtime/37/arkhata.dll create_account create_character
 
 CC=gcc
 DEBUG=-g
-CFLAGS=-Wall -Wshadow -Wno-pointer-sign -Wno-format-overflow -Wno-format-truncation -O3 $(DEBUG) -fno-strict-aliasing -m32 -DSTAFF
+CFLAGS=-Wall -Wshadow -Wno-format-truncation -Wno-pointer-sign -O3 $(DEBUG) -fno-strict-aliasing -m32 -DSTAFF
 LDFLAGS=-O $(DEBUG) -m32 -L/usr/lib/mysql
 LDRFLAGS=-O $(DEBUG) -m32 -rdynamic -L/usr/lib/mysql
 DDFLAGS=-O $(DEBUG) -m32 -fPIC -shared
@@ -635,5 +635,5 @@ create_character:	create_character.c
 # ------- Helper -----
 
 clean:
-	rm server .obj/*.o *~ zones/*/*~ runtime/*/* chatserver update_server create_weapons create_armor create_account create_character ; true
+	-rm server .obj/*.o *~ zones/*/*~ runtime/*/* chatserver update_server create_weapons create_armor create_account create_character
 

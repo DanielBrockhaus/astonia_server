@@ -105,7 +105,7 @@ static void add_lib(char *name) {
 int init_lib(void) {
     DIR *dir;
     struct dirent *de;
-    char dirname[NAME_MAX],name[NAME_MAX];
+    char dirname[NAME_MAX+50],name[NAME_MAX+50];
 
     libs=xcalloc(sizeof(struct lib)*MAXLIB,IM_BASE);
     if (!libs) return 0;
