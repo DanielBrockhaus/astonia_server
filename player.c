@@ -427,7 +427,7 @@ static void cl_look_item(int nr,char *buf) {
 
     if (!char_see_item(cn,in)) return;
 
-    look_item(cn,it+in);
+    look_item(cn,it+in,-1);
 }
 
 static void cl_look_inv(int nr,char *buf) {

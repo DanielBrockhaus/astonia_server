@@ -70,7 +70,7 @@ server:	$(OBJS)
 .obj/questlog.o:	questlog.c server.h log.h talk.h direction.h create.h skill.h player.h tool.h
 	$(CC) $(CFLAGS) -o .obj/questlog.o -c questlog.c
 
-.obj/depot.o:		depot.c server.h log.h talk.h direction.h create.h skill.h player.h depot.h
+.obj/depot.o:		depot.c server.h log.h talk.h direction.h create.h skill.h player.h depot.h tool.h
 	$(CC) $(CFLAGS) -o .obj/depot.o -c depot.c
 
 .obj/sleep.o:		sleep.c server.h log.h sleep.h

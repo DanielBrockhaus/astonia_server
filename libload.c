@@ -186,7 +186,7 @@ int item_driver(int nr,int in,int cn) {
     int n,tmp=0;
 
     if (nr==0) {
-        if (cn) look_item(cn,it+in);
+        if (cn) look_item(cn,it+in,-1);
         return 1;
     }
 

@@ -1743,7 +1743,7 @@ void enchant_item(int in,int cn) {
 
     set_item_requirements(in2);
 
-    look_item(cn,it+in2);
+    look_item(cn,it+in2,-1);
 }
 
 #define MAXORBSPAWN	100
@@ -2442,9 +2442,9 @@ void trader_driver(int cn,int ret,int lastact) {
                 }
 
                 log_char(co,LOG_SYSTEM,0,"Trading:");
-                for (n=0; n<dat->c1cnt; n++) look_item(co,it+dat->c1itm[n]);
+                for (n=0; n<dat->c1cnt; n++) look_item(co,it+dat->c1itm[n],-1);
                 log_char(co,LOG_SYSTEM,0,"For:");
-                for (n=0; n<dat->c2cnt; n++) look_item(co,it+dat->c2itm[n]);
+                for (n=0; n<dat->c2cnt; n++) look_item(co,it+dat->c2itm[n],-1);
             }
         }
 
@@ -2482,7 +2482,7 @@ void trader_driver(int cn,int ret,int lastact) {
                     c2=find_char_byID(dat->c2ID);
                     if (c2) {
                         log_char(c2,LOG_SYSTEM,0,"°c2%s gave me:",ch[co].name);
-                        look_item(c2,it+ch[cn].citem);
+                        look_item(c2,it+ch[cn].citem,-1);
                     }
                     ch[cn].citem=0;
                 }
@@ -2500,7 +2500,7 @@ void trader_driver(int cn,int ret,int lastact) {
                     c2=find_char_byID(dat->c1ID);
                     if (c2) {
                         log_char(c2,LOG_SYSTEM,0,"°c2%s gave me:",ch[co].name);
-                        look_item(c2,it+ch[cn].citem);
+                        look_item(c2,it+ch[cn].citem,-1);
                     }
                     ch[cn].citem=0;
                 }

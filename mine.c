@@ -365,7 +365,7 @@ int enhance_item(int in,int cn) {
     set_item_requirements(in2);
     ch[cn].flags|=CF_ITEMS;
 
-    look_item(cn,it+in2);
+    look_item(cn,it+in2,-1);
     log_char(cn,LOG_SYSTEM,0,"You used %d units to enhance your %s.",need,it[in2].name);
 
     return 1;

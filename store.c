@@ -257,7 +257,7 @@ void player_store(int cn,int nr,int flag,int fast) {
             return;
         }
         if (!store[s]->ware[nr].cnt) return;
-        look_item(cn,&store[s]->ware[nr].item);
+        look_item(cn,&store[s]->ware[nr].item,1000+nr);
     }
 }
 
