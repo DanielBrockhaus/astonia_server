@@ -91,6 +91,7 @@ rec_bytes=0;        // bytes sent
 
 
 struct character *ch;
+struct effect *ef;
 struct item *it;
 struct map *map;
 
