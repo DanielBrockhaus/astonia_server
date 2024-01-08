@@ -536,7 +536,9 @@ struct effect
 	int number_of_enemies;		// number of enemies hit by effect last tick
 
 	int base_sprite;		// for explosion: sprite number
-} *ef;
+};
+
+extern struct effect *ef;
 
 // *********** BASIC LIBRARY ******************
 unsigned long long prof_start(int task);
