@@ -876,7 +876,7 @@ int container(int cn,int pos,int flag,int fast) {
 
         ch[cn].flags|=CF_ITEMS;
     } else {
-        if ((in=con[ct].item[pos])) look_item(cn,it+in,-1);
+        if ((in=con[ct].item[pos])) look_item(cn,it+in,2000+pos);
     }
 
     return 1;
