@@ -4,6 +4,7 @@
 
 #define __USE_BSD_SIGNAL
 
+#include <arpa/inet.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -161,8 +162,15 @@ void show(char *ptr,int size) {
     }
 }
 
+unsigned long getServerAddr(char *optarg) {
+    struct sockaddr_in sa;
+    inet_pton(AF_INET, optarg, &(sa.sin_addr.s_addr));
+    return ntohl(sa.sin_addr.s_addr);
+}
+
 int main(int argc,char *args[]) {
     int n,c;
+    char *server_addr_presentation;
     unsigned long long prof,start,end;
 
     end_of_data_ptr=sbrk(0);
@@ -179,22 +187,31 @@ int main(int argc,char *args[]) {
     printf("   ********************************************\n");
     printf("\n");
 
+    server_addr_presentation = "127.0.0.1";
+    server_addr = getServerAddr("127.0.0.1");
+
     if (argc>1) {
         while (1) {
-            c=getopt(argc,args,"a:m:i:dhc");
+            c=getopt(argc,args,"a:b:m:i:p:dhc");
             if (c==-1) break;
 
             switch (c) {
                 case 'a': 	if (optarg) areaID=atoi(optarg); break;
                 case 'm': 	if (optarg) areaM=atoi(optarg); break;
                 case 'd': 	demon=1; break;
-                case 'h':	fprintf(stderr,"Usage: %s [-a <areaID>] [-m <mirror>] [-n <use this class A net>] [-d] [-c]\n\n-d Demonize\n-c Disable concurrent database access\n\n",args[0]); exit(0);
+                case 'h':	fprintf(stderr, "Usage: %s [-a <areaID>] [-m <mirror>] [-p <use this port>] [-d] [-c]\n\n-d Demonize\n-c Disable concurrent database access\n\n", args[0]); exit(0);
                 case 'c':	multi=0; break;
                     //case 'n':	if (optarg) server_net=atoi(optarg); break;
                 case 'i':	if (optarg) serverID=atoi(optarg); break;
+                case 'b':   if (optarg) {
+                    server_addr_presentation = xstrdup(optarg, IM_TEMP);
+                    server_addr = getServerAddr(server_addr_presentation);
+                }
+                case 'p':   if (optarg) server_port=atoi(optarg); break;
             }
         }
     }
+    printf("Advertising IP: %s\n", server_addr_presentation);
 
     if (!areaID) {
         printf("No areaID given, assuming areaID=1\n");
@@ -261,8 +278,8 @@ int main(int argc,char *args[]) {
     if (!maxitem) maxitem=max(maxchars*12+10240,20480);
     if (!maxeffect) maxeffect=max(maxchars*2,1024);
 
-    printf("serverID=%d, areaID=%d, areaM=%d, maxchars=%d, maxitem=%d, maxeffect=%d\n\n",
-           serverID,areaID,areaM,maxchars,maxitem,maxeffect);
+    printf("server_addr=%s, port=%d, areaID=%d, areaM=%d, maxchars=%d, maxitem=%d, maxeffect=%d\n\n",
+           server_addr_presentation,server_port,areaID,areaM,maxchars,maxitem,maxeffect);
 
     if (demon) {
         printf("Demonizing...\n\n");

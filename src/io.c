@@ -282,12 +282,23 @@ int init_io(void) {
     ioctl(sock,FIONBIO,(u_long *)&one);      // non-blocking mode
     setsockopt(sock,SOL_SOCKET,SO_REUSEADDR,(const char *)&one,sizeof(int));
 
-    for (port=5556; port<5600; port++) {
+    if (server_port) {
+        port = server_port;
+        addr.sin_family=AF_INET;
+        addr.sin_port=htons(port);
+        addr.sin_addr.s_addr=0;
+        bind(sock, (struct sockaddr *)&addr, sizeof(addr));
+    } else {
+        for (port=5556; port<5600; port++) {
         addr.sin_family=AF_INET;
         addr.sin_port=htons(port);
         addr.sin_addr.s_addr=0;
 
-        if (!bind(sock,(struct sockaddr *)&addr,sizeof(addr))) break;
+            if (!bind(sock,(struct sockaddr *)&addr,sizeof(addr))) {
+                server_port = port;
+                break;
+            }
+        }
     }
 
     if (listen(sock,50)) return 0;
@@ -298,9 +309,6 @@ int init_io(void) {
         elog("could not find interface (net=%d)",server_net);
         return 0;
     }*/
-    server_addr=((212<<24)|(202<<16)|(240<<8)|(67<<0))+serverID-1;
-
-    server_port=port;
 
     xlog("IO Init done: ID=%d (%d.%d.%d.%d:%d)",serverID,(server_addr>>24)&255,(server_addr>>16)&255,(server_addr>>8)&255,(server_addr>>0)&255,server_port);
 
