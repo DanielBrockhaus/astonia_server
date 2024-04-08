@@ -273,6 +273,7 @@ void mysql_set_realloc_proc(void* (*new_realloc_proc)(void *,size_t));*/
 // start connection to database and initialise database if needed
 int init_database(void) {
     char buf[1024];
+    char *databaseHostname;
 
     //mysql_set_malloc_proc(my_mysql_malloc);
     //mysql_set_free_proc(my_mysql_free);
@@ -286,7 +287,12 @@ int init_database(void) {
 
     // try to login as root with our password
     makemysqlpass();
-    if (!mysql_real_connect(&mysql,"localhost","root",mysqlpass,"mysql",0,NULL,0)) {
+    if (getenv("ASTONIA_3_DATABASE_HOSTNAME")) {
+        databaseHostname = getenv("ASTONIA_3_DATABASE_HOSTNAME");
+    } else {
+        databaseHostname = "localhost";
+    }
+    if (!mysql_real_connect(&mysql,databaseHostname,"root",mysqlpass,"mysql",0,NULL,0)) {
         destroymysqlpass();
         xlog("Connect to database failed.");
         exit(0);
@@ -1724,7 +1730,7 @@ void tick_login(void) {
 
         newbie=1;
 
-        sprintf(buf,"0000000000°c17%s°c18, a new player, has entered the game.",login.name);
+        sprintf(buf,"0000000000ï¿½c17%sï¿½c18, a new player, has entered the game.",login.name);
         server_chat(1,buf);
 
     } else {                        // existing account, retrieve items
