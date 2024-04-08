@@ -1,0 +1,492 @@
+version: "3.7"
+services:
+  db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: tgbdwf3h
+    volumes:
+      - './migrations/create_tables.sql:/docker-entrypoint-initdb.d/createtables.sql'
+      - './migrations/merc.sql:/docker-entrypoint-initdb.d/merc.sql'
+      - './migrations/storage.sql:/docker-entrypoint-initdb.d/storage.sql'
+    ports:
+      - 3306:3306
+    expose:
+      - "3306"
+    healthcheck:
+      interval: 30s
+      retries: 3
+      test:
+        [
+          "CMD",
+          "healthcheck.sh",
+          "--su-mysql",
+          "--connect",
+          "--innodb_initialized"
+        ]
+      timeout: 30s
+  cameron:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5556:5556"
+    expose:
+      - "5556"
+    command: ["-a 1"]
+  under_aston:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5557:5557"
+    expose:
+      - "5557"
+    command: ["-a 2"]
+  aston:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5558:5558"
+    expose:
+      - "5558"
+    command: ["-a 3"]
+  earth_pents:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5559:5559"
+    expose:
+      - "5559"
+    command: ["-a 4"]
+  sewers:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5560:5560"
+    expose:
+      - "5560"
+    command: ["-a 5"]
+  earth_underground:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5561:5561"
+    expose:
+      - "5561"
+    command: ["-a 6"]
+  fire_pents:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5562:5562"
+    expose:
+      - "5562"
+    command: ["-a 7"]
+  fire_underground:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5563:5563"
+    expose:
+      - "5563"
+    command: ["-a 8"]
+  ice_pents:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5564:5564"
+    expose:
+      - "5564"
+    command: ["-a 9"]
+  ice_underground:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5565:5565"
+    expose:
+      - "5565"
+    command: ["-a 10"]
+  ice_palace:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5566:5566"
+    expose:
+      - "5566"
+    command: ["-a 11"]
+  mines:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5567:5567"
+    expose:
+      - "5567"
+    command: ["-a 12"]
+  catacombs:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5568:5568"
+    expose:
+      - "5568"
+    command: ["-a 13"]
+  random_dungeons:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5569:5569"
+    expose:
+      - "5569"
+    command: ["-a 14"]
+  swamps:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5570:5570"
+    expose:
+      - "5570"
+    command: ["-a 15"]
+  exkordon_forest:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5571:5571"
+    expose:
+      - "5571"
+    command: ["-a 16"]
+  exkordon:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5572:5572"
+    expose:
+      - "5572"
+    command: ["-a 17"]
+  bone_tower:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5573:5573"
+    expose:
+      - "5573"
+    command: ["-a 18"]
+  nomad_plains:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5574:5574"
+    expose:
+      - "5574"
+    command: ["-a 19"]
+  live_quest:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5575:5575"
+    expose:
+      - "5575"
+    command: ["-a 20"]
+  test_pents:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5576:5576"
+    expose:
+      - "5576"
+    command: ["-a 21"]
+  labyrinth:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5577:5577"
+    expose:
+      - "5577"
+    command: ["-a 22"]
+  ice_army_cave:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5578:5578"
+    expose:
+      - "5578"
+    command: ["-a 23"]
+  more_ice_army_caves:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5579:5579"
+    expose:
+      - "5579"
+    command: ["-a 24"]
+  rodneys_warped_world:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5580:5580"
+    expose:
+      - "5580"
+    command: ["-a 25"]
+  below_aston_2:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5581:5581"
+    expose:
+      - "5581"
+    command: ["-a 26"]
+  brannington_forest:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5583:5583"
+    expose:
+      - "5583"
+    command: ["-a 28"]
+  brannington:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5584:5584"
+    expose:
+      - "5584"
+    command: ["-a 29"]
+  clan_spawners:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5585:5585"
+    expose:
+      - "5585"
+    command: ["-a 30"]
+  grimroot:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5586:5586"
+    expose:
+      - "5586"
+    command: ["-a 31"]
+  jobbington:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5587:5587"
+    expose:
+      - "5587"
+    command: ["-a 32"]
+  long_tunnel:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5588:5588"
+    expose:
+      - "5588"
+    command: ["-a 33"]
+  teufelheim:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5589:5589"
+    expose:
+      - "5589"
+    command: ["-a 34"]
+  caligar:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5591:5591"
+    expose:
+      - "5591"
+    command: ["-a 36"]
+  arkhata:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5592:5592"
+    expose:
+      - "5592"
+    command: ["-a 37"]
+  chat:
+    build:
+      context: .
+    environment:
+      ASTONIA_3_DATABASE_HOSTNAME: db
+    ports:
+      - "5554:5554"
+    expose:
+      - "5554"
+    entrypoint: ["/opt/var/astonia/chatserver"]
