@@ -6,9 +6,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: tgbdwf3h
     volumes:
-      - './migrations/create_tables.sql:/docker-entrypoint-initdb.d/createtables.sql'
-      - './migrations/merc.sql:/docker-entrypoint-initdb.d/merc.sql'
-      - './migrations/storage.sql:/docker-entrypoint-initdb.d/storage.sql'
+      - './migrations/create_tables.sql:/docker-entrypoint-initdb.d/01-createtables.sql'
+      - './migrations/merc.sql:/docker-entrypoint-initdb.d/02-merc.sql'
+      - './migrations/storage.sql:/docker-entrypoint-initdb.d/03-storage.sql'
     ports:
       - 3306:3306
     expose:
