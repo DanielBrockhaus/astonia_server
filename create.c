@@ -94,7 +94,7 @@ static char* load_zone(char *name) {
 static int load_zones(char *dirname,char *mask,int (*process)(char *)) {
     DIR *dir;
     struct dirent *de;
-    char name[NAME_MAX+50],*ptr;
+    char name[NAME_MAX+100],*ptr;
 
     dir=opendir(dirname);
     if (!dir) return 1;
@@ -601,7 +601,10 @@ else if (!strcasecmp(name,"mod_index")) {
 
 }
 if (gotname) {
-    elog("Error in line %d: Premature end of input (or syntax error) (%100.100s).",line,ptr);
+#pragma GCC diagnostic push       
+#pragma GCC diagnostic ignored "-Wformat-overflow"    
+elog("Error in line %d: Premature end of input (or syntax error) (%100.100s).",line,ptr);
+#pragma GCC diagnostic pop
     return 0;
 }
 return 1;
@@ -772,7 +775,10 @@ else if (!strcasecmp(name,"arg")) {
 
 }
 if (gotname) {
-    elog("Error in line %d: Premature end of input (or syntax error) (%100.100s).",line,ptr);
+#pragma GCC diagnostic push       
+#pragma GCC diagnostic ignored "-Wformat-overflow"    
+elog("Error in line %d: Premature end of input (or syntax error) (%100.100s).",line,ptr);
+#pragma GCC diagnostic pop
     return 0;
 }
 return 1;

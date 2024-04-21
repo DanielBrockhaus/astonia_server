@@ -10,10 +10,8 @@ runtime/
 server
 start
 update_server
-v3.*
-zones/
-*.e
-*.ex
+zones/generic/weapons.itm
+zones/generic/armor.itm
 *.ilog
 *.elog
 *.log

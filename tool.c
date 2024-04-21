@@ -2050,7 +2050,10 @@ void give_military_pts(int cn,int co,int pts,int exps) {
     rank=cbrt(ppd->military_pts);
     while (rank<25 &&rank>get_army_rank_int(co)) {
         set_army_rank(co,rank);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-overflow"
         say(cn,"You've been promoted to %s. Congratulations, %s!",get_army_rank_string(co),ch[co].name);
+#pragma GCC diagnostic pop        
         if (get_army_rank_int(co)>9) {
             sprintf(buf,"0000000000°c10Grats: %s is a %s now!",ch[co].name,get_army_rank_string(co));
             server_chat(6,buf);
