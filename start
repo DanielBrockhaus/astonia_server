@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Wait with starting the server until the system has settled
+sleep 25
+
+# Go to the correct folder
+cd ~/astonia3
+
+# Chatserver needs to run first
+echo chatserver
+./chatserver >/dev/null &
+sleep 1
+
+# Start all the areas
+./server -a 1 -d
+sleep 1
+./server -a 2 -d
+sleep 1
+./server -a 3 -d
+# ... add them all here for a full server
+
+echo Done
+
+# You can probably remove all the sleep commands, I prefer to stagger stuff to avoid
+# stutters on other services running on the same host
