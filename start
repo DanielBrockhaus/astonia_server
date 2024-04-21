@@ -1,11 +1,5 @@
 #!/bin/sh
 
-# Wait with starting the server until the system has settled
-sleep 25
-
-# Go to the correct folder
-cd ~/astonia3
-
 # Chatserver needs to run first
 echo chatserver
 ./chatserver >/dev/null &
