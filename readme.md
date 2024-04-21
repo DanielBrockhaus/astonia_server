@@ -1,5 +1,6 @@
 To run under Ubuntu (work in progress)
 
+```
 sudo apt install git
 git clone https://github.com/DanielBrockhaus/astonia_server.git
 
@@ -13,3 +14,4 @@ sudo mysql_secure_installation
 ./my <create_tables.sql 
 ./my merc <merc.sql 
 ./my merc <storage.sql 
+```
