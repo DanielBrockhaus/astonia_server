@@ -1,492 +1,821 @@
 version: "3.7"
 services:
   db:
-    image: mariadb:latest
+    image: mysql:5.7.40
     restart: always
+    secrets:
+      - database_password
     environment:
-      MYSQL_ROOT_PASSWORD: tgbdwf3h
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/database_password
+    ports:
+      - "${DATABASE_PORT}:3306"
     volumes:
       - './migrations/create_tables.sql:/docker-entrypoint-initdb.d/01-createtables.sql'
       - './migrations/merc.sql:/docker-entrypoint-initdb.d/02-merc.sql'
       - './migrations/storage.sql:/docker-entrypoint-initdb.d/03-storage.sql'
-    ports:
-      - 3306:3306
-    expose:
-      - "3306"
     healthcheck:
-      interval: 30s
-      retries: 3
       test:
-        [
-          "CMD",
-          "healthcheck.sh",
-          "--su-mysql",
-          "--connect",
-          "--innodb_initialized"
-        ]
-      timeout: 30s
+        - CMD-SHELL
+        - |
+          mysql merc --user=root --password='${DATABASE_PASSWORD}' -e "SHOW TABLES" | \
+          [ $$(wc -l) -gt 20 ]
+      timeout: 1.5s
+      start_period: 20s
+      start_interval: 5s
+      interval: 1.5s
+      retries: 3
   cameron:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_DATABASE_USER: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5556:5556"
-    expose:
-      - "5556"
-    command: ["-a 1"]
+      - "6656:6656"
+    command: ["-a 1", "-p6656", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - cameron_zone_data:/opt/var/astonia/zones/1
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   under_aston:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5557:5557"
-    expose:
-      - "5557"
-    command: ["-a 2"]
+      - "6657:6657"
+    command: ["-a 2", "-p6657", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - under_aston_zone_data:/opt/var/astonia/zones/2
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   aston:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5558:5558"
-    expose:
-      - "5558"
-    command: ["-a 3"]
+      - "6658:6658"
+    command: ["-a 3", "-p6658", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - aston_zone_data:/opt/var/astonia/zones/3
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   earth_pents:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5559:5559"
-    expose:
-      - "5559"
-    command: ["-a 4"]
+      - "6659:6659"
+    command: ["-a 4", "-p6659", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - earth_pents_zone_data:/opt/var/astonia/zones/4
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   sewers:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5560:5560"
-    expose:
-      - "5560"
-    command: ["-a 5"]
+      - "6660:6660"
+    command: ["-a 5", "-p6660", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - sewers_zone_data:/opt/var/astonia/zones/5
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   earth_underground:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5561:5561"
-    expose:
-      - "5561"
-    command: ["-a 6"]
+      - "6661:6661"
+    command: ["-a 6", "-p6661", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - earth_underground_zone_data:/opt/var/astonia/zones/6
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   fire_pents:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5562:5562"
-    expose:
-      - "5562"
-    command: ["-a 7"]
+      - "6662:6662"
+    command: ["-a 7", "-p6662", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - fire_pents_zone_data:/opt/var/astonia/zones/7
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   fire_underground:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5563:5563"
-    expose:
-      - "5563"
-    command: ["-a 8"]
+      - "6663:6663"
+    command: ["-a 8", "-p6663", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - fire_underground_zone_data:/opt/var/astonia/zones/8
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   ice_pents:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5564:5564"
-    expose:
-      - "5564"
-    command: ["-a 9"]
+      - "6664:6664"
+    command: ["-a 9", "-p6664", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - ice_pents_zone_data:/opt/var/astonia/zones/9
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   ice_underground:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5565:5565"
-    expose:
-      - "5565"
-    command: ["-a 10"]
+      - "6665:6665"
+    command: ["-a 10", "-p6665", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - ice_underground_zone_data:/opt/var/astonia/zones/10
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   ice_palace:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5566:5566"
-    expose:
-      - "5566"
-    command: ["-a 11"]
+      - "6666:6666"
+    command: ["-a 11", "-p6666", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - ice_palace_zone_data:/opt/var/astonia/zones/11
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   mines:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5567:5567"
-    expose:
-      - "5567"
-    command: ["-a 12"]
+      - "6667:6667"
+    command: ["-a 12", "-p6667", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - mines_zone_data:/opt/var/astonia/zones/12
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   catacombs:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5568:5568"
-    expose:
-      - "5568"
-    command: ["-a 13"]
+      - "6668:6668"
+    command: ["-a 13", "-p6668", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - catacombs_zone_data:/opt/var/astonia/zones/13
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   random_dungeons:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5569:5569"
-    expose:
-      - "5569"
-    command: ["-a 14"]
+      - "6669:6669"
+    command: ["-a 14", "-p6669", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - random_dungeons_zone_data:/opt/var/astonia/zones/14
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   swamps:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5570:5570"
-    expose:
-      - "5570"
-    command: ["-a 15"]
+      - "6670:6670"
+    command: ["-a 15", "-p6670", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - swamps_zone_data:/opt/var/astonia/zones/15
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   exkordon_forest:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5571:5571"
-    expose:
-      - "5571"
-    command: ["-a 16"]
+      - "6671:6671"
+    command: ["-a 16", "-p6671", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - exkordon_forest_zone_data:/opt/var/astonia/zones/16
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   exkordon:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5572:5572"
-    expose:
-      - "5572"
-    command: ["-a 17"]
+      - "6672:6672"
+    command: ["-a 17", "-p6672", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - exkordon_zone_data:/opt/var/astonia/zones/17
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   bone_tower:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5573:5573"
-    expose:
-      - "5573"
-    command: ["-a 18"]
+      - "6673:6673"
+    command: ["-a 18", "-p6673", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - bone_tower_zone_data:/opt/var/astonia/zones/18
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   nomad_plains:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5574:5574"
-    expose:
-      - "5574"
-    command: ["-a 19"]
+      - "6674:6674"
+    command: ["-a 19", "-p6674", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - nomad_plains_zone_data:/opt/var/astonia/zones/19
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   live_quest:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5575:5575"
-    expose:
-      - "5575"
-    command: ["-a 20"]
+      - "6675:6675"
+    command: ["-a 20", "-p6675", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - live_quest_zone_data:/opt/var/astonia/zones/20
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   test_pents:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5576:5576"
-    expose:
-      - "5576"
-    command: ["-a 21"]
+      - "6676:6676"
+    command: ["-a 21", "-p6676", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - test_pents_zone_data:/opt/var/astonia/zones/21
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   labyrinth:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5577:5577"
-    expose:
-      - "5577"
-    command: ["-a 22"]
+      - "6677:6677"
+    command: ["-a 22", "-p6677", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - labyrinth_zone_data:/opt/var/astonia/zones/22
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   ice_army_cave:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5578:5578"
-    expose:
-      - "5578"
-    command: ["-a 23"]
+      - "6678:6678"
+    command: ["-a 23", "-p6678", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - ice_army_cave_zone_data:/opt/var/astonia/zones/23
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   more_ice_army_caves:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5579:5579"
-    expose:
-      - "5579"
-    command: ["-a 24"]
+      - "6679:6679"
+    command: ["-a 24", "-p6679", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - more_ice_army_caves_zone_data:/opt/var/astonia/zones/24
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   rodneys_warped_world:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5580:5580"
-    expose:
-      - "5580"
-    command: ["-a 25"]
+      - "6680:6680"
+    command: ["-a 25", "-p6680", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - rodneys_warped_world_zone_data:/opt/var/astonia/zones/25
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   below_aston_2:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5581:5581"
-    expose:
-      - "5581"
-    command: ["-a 26"]
+      - "6681:6681"
+    command: ["-a 26", "-p6681", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - below_aston_2_zone_data:/opt/var/astonia/zones/26
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   brannington_forest:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5583:5583"
-    expose:
-      - "5583"
-    command: ["-a 28"]
+      - "6683:6683"
+    command: ["-a 28", "-p6683", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - brannington_forest_zone_data:/opt/var/astonia/zones/28
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   brannington:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5584:5584"
-    expose:
-      - "5584"
-    command: ["-a 29"]
+      - "6684:6684"
+    command: ["-a 29", "-p6684", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - brannington_zone_data:/opt/var/astonia/zones/29
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   clan_spawners:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5585:5585"
-    expose:
-      - "5585"
-    command: ["-a 30"]
+      - "6685:6685"
+    command: ["-a 30", "-p6685", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - clan_spawners_zone_data:/opt/var/astonia/zones/30
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   grimroot:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5586:5586"
-    expose:
-      - "5586"
-    command: ["-a 31"]
+      - "6686:6686"
+    command: ["-a 31", "-p6686", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - grimroot_zone_data:/opt/var/astonia/zones/31
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   jobbington:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5587:5587"
-    expose:
-      - "5587"
-    command: ["-a 32"]
+      - "6687:6687"
+    command: ["-a 32", "-p6687", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - jobbington_zone_data:/opt/var/astonia/zones/32
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   long_tunnel:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5588:5588"
-    expose:
-      - "5588"
-    command: ["-a 33"]
+      - "6688:6688"
+    command: ["-a 33", "-p6688", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - long_tunnel_zone_data:/opt/var/astonia/zones/33
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   teufelheim:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5589:5589"
-    expose:
-      - "5589"
-    command: ["-a 34"]
+      - "6689:6689"
+    command: ["-a 34", "-p6689", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - teufelheim_zone_data:/opt/var/astonia/zones/34
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   caligar:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5591:5591"
-    expose:
-      - "5591"
-    command: ["-a 36"]
+      - "6691:6691"
+    command: ["-a 36", "-p6691", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - caligar_zone_data:/opt/var/astonia/zones/36
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   arkhata:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
+      ASTONIA_USERNAME: ${DATABASE_USERNAME}
+      ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "5592:5592"
-    expose:
-      - "5592"
-    command: ["-a 37"]
+      - "6692:6692"
+    command: ["-a 37", "-p6692", "-b${ASTONIA_3_SERVER_ADDRESS}"]
+    volumes:
+      - arkhata_zone_data:/opt/var/astonia/zones/37
+      - generic_zone_data:/opt/var/astonia/zones/generic
+      - preset_zone_data:/opt/var/astonia/zones/preset
+    configs:
+      - source: message_of_the_day
+        target: /opt/var/astonia/motd.txt
   chat:
     build:
       context: .
     environment:
-      ASTONIA_3_DATABASE_HOSTNAME: db
+      ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
     ports:
-      - "5554:5554"
+      - "6654:6654"
     expose:
-      - "5554"
+      - "6654"
     entrypoint: ["/opt/var/astonia/chatserver"]
+
+configs:
+  message_of_the_day:
+    content: |
+      Using /punish or /shutup or /exterminate is strictly forbidden. You're here to test, not to fool around.
+
+secrets:
+  database_password:
+    environment: "DATABASE_PASSWORD"
+
+volumes:
+  cameron_zone_data:
+    external: true
+  under_aston_zone_data:
+    external: true
+  aston_zone_data:
+    external: true
+  earth_pents_zone_data:
+    external: true
+  sewers_zone_data:
+    external: true
+  earth_underground_zone_data:
+    external: true
+  fire_pents_zone_data:
+    external: true
+  fire_underground_zone_data:
+    external: true
+  ice_pents_zone_data:
+    external: true
+  ice_underground_zone_data:
+    external: true
+  ice_palace_zone_data:
+    external: true
+  mines_zone_data:
+    external: true
+  catacombs_zone_data:
+    external: true
+  random_dungeons_zone_data:
+    external: true
+  swamps_zone_data:
+    external: true
+  exkordon_forest_zone_data:
+    external: true
+  exkordon_zone_data:
+    external: true
+  bone_tower_zone_data:
+    external: true
+  nomad_plains_zone_data:
+    external: true
+  live_quest_zone_data:
+    external: true
+  test_pents_zone_data:
+    external: true
+  labyrinth_zone_data:
+    external: true
+  ice_army_cave_zone_data:
+    external: true
+  more_ice_army_caves_zone_data:
+    external: true
+  rodneys_warped_world_zone_data:
+    external: true
+  below_aston_2_zone_data:
+    external: true
+  brannington_forest_zone_data:
+    external: true
+  brannington_zone_data:
+    external: true
+  clan_spawners_zone_data:
+    external: true
+  grimroot_zone_data:
+    external: true
+  jobbington_zone_data:
+    external: true
+  long_tunnel_zone_data:
+    external: true
+  teufelheim_zone_data:
+    external: true
+  caligar_zone_data:
+    external: true
+  arkhata_zone_data:
+    external: true
+  generic_zone_data:
+    external: true
+  preset_zone_data:
+    external: true
