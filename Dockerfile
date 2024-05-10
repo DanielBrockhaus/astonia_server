@@ -14,7 +14,7 @@ RUN dpkg --add-architecture i386 && \
 COPY --link ./Makefile /opt/var/astonia/Makefile
 COPY --link ./src /opt/var/astonia/src
 WORKDIR /opt/var/astonia
-RUN make
+RUN ["make", "-j"]
 
 FROM debian:10 AS runner
 RUN dpkg --add-architecture i386 && \
