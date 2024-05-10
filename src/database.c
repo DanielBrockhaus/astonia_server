@@ -169,7 +169,7 @@ int mysql_query_con(MYSQL *my,const char *query) {
             mysql_close(my);
             sleep(1);
             makemysqlpass();
-            mysql_real_connect(my,"localhost","root",mysqlpass,"mysql",0,NULL,0);
+            mysql_real_connect(my,getDatabaseHostname(),getDatabaseUsername(),mysqlpass,"mysql",getDatabasePort(),NULL,0);
             destroymysqlpass();
         } else if (err==ER_NO_SUCH_TABLE) {
             elog("wrong database: %s",mysql_error(my));
@@ -195,6 +195,50 @@ int mysql_query_con(MYSQL *my,const char *query) {
 
 
     return ret;
+}
+
+int getDatabasePort()
+{
+   int databasePort = 0;
+   if (getenv("ASTONIA_DATABASE_PORT")) {
+        databasePort = atoi(getenv("ASTONIA_DATABASE_PORT"));
+   } 
+   return databasePort;
+}
+
+const char* getDatabaseHostname()
+{
+    const char *db_hostname = "localhost";
+    if (getenv("ASTONIA_DATABASE_HOSTNAME")) {
+        db_hostname = getenv("ASTONIA_DATABASE_HOSTNAME");
+    }
+    return db_hostname;
+}
+
+const char* getDatabaseUsername()
+{
+    const char *db_username = "root";
+    if (getenv("ASTONIA_DATABASE_USERNAME") || getenv("ASTONIA_DATABASE_USERNAME_FILE")) {
+            if (getenv("ASTONIA_DATABASE_USERNAME")) {
+                db_username = (const char *)getenv("ASTONIA_DATABASE_USERNAME");
+            } else {
+                FILE *fileHandle;
+                char buffer[1024];
+                fileHandle = fopen(getenv("ASTONIA_DATABASE_USERNAME_FILE"), "r");
+                if (fileHandle == NULL) {
+                    char* errorLog;
+                    sprintf("Error opening file '%s', defaulting to %s", getenv("ASTONIA_DATABASE_USERNAME_FILE"), db_username);
+                    perror(errorLog);
+                    elog("%s", errorLog);
+                } else {
+                    size_t bytesRead = fread(buffer, sizeof(char), 1024, fileHandle);
+                    buffer[bytesRead] = '\0';
+                    fclose(fileHandle);
+                    db_username = (const char *)buffer;
+                }
+            }
+    }
+    return db_username;
 }
 
 volatile int db_store=0;
@@ -273,8 +317,6 @@ void mysql_set_realloc_proc(void* (*new_realloc_proc)(void *,size_t));*/
 // start connection to database and initialise database if needed
 int init_database(void) {
     char buf[1024];
-    char *databaseHostname;
-
     //mysql_set_malloc_proc(my_mysql_malloc);
     //mysql_set_free_proc(my_mysql_free);
     //mysql_set_realloc_proc(my_mysql_realloc);
@@ -287,13 +329,11 @@ int init_database(void) {
 
     // try to login as root with our password
     makemysqlpass();
-    if (getenv("ASTONIA_3_DATABASE_HOSTNAME")) {
-        databaseHostname = getenv("ASTONIA_3_DATABASE_HOSTNAME");
-    } else {
-        databaseHostname = "localhost";
-    }
-    if (!mysql_real_connect(&mysql,databaseHostname,"root",mysqlpass,"mysql",0,NULL,0)) {
+    xlog("Connecting to database at %s:%i", getDatabaseHostname(), getDatabasePort());
+    if (!mysql_real_connect(&mysql,getDatabaseHostname(),getDatabaseUsername(),mysqlpass,"merc",getDatabasePort(),NULL,0)) {
         destroymysqlpass();
+        xlog("Failed to connect to database: Error: %s\n",
+          mysql_error(&mysql));
         xlog("Connect to database failed.");
         exit(0);
     } else {
