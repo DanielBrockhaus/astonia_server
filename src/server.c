@@ -170,7 +170,7 @@ unsigned long getServerAddr(char *optarg) {
 
 int main(int argc,char *args[]) {
     int n,c;
-    char *server_addr_presentation;
+    const char *server_addr_presentation;
     unsigned long long prof,start,end;
 
     end_of_data_ptr=sbrk(0);
@@ -204,13 +204,14 @@ int main(int argc,char *args[]) {
                     //case 'n':	if (optarg) server_net=atoi(optarg); break;
                 case 'i':	if (optarg) serverID=atoi(optarg); break;
                 case 'b':   if (optarg) {
-                    server_addr_presentation = xstrdup(optarg, IM_TEMP);
-                    server_addr = getServerAddr(server_addr_presentation);
+                    server_addr_presentation = (const char*)optarg;
+                    break;
                 }
                 case 'p':   if (optarg) server_port=atoi(optarg); break;
             }
         }
     }
+    server_addr = getServerAddr(server_addr_presentation);
     printf("Advertising IP: %s\n", server_addr_presentation);
 
     if (!areaID) {
