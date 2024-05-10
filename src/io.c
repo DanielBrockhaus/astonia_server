@@ -283,11 +283,11 @@ int init_io(void) {
     setsockopt(sock,SOL_SOCKET,SO_REUSEADDR,(const char *)&one,sizeof(int));
 
     if (server_port) {
-        port = server_port;
-        addr.sin_family=AF_INET;
-        addr.sin_port=htons(port);
-        addr.sin_addr.s_addr=0;
-        bind(sock, (struct sockaddr *)&addr, sizeof(addr));
+    port = server_port;
+    addr.sin_family=AF_INET;
+    addr.sin_port=htons(port);
+    addr.sin_addr.s_addr=0;
+    bind(sock, (struct sockaddr *)&addr, sizeof(addr));
     } else {
         for (port=5556; port<5600; port++) {
         addr.sin_family=AF_INET;
