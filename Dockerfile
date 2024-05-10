@@ -25,13 +25,14 @@ RUN dpkg --add-architecture i386 && \
 		gcc-multilib=4:8.3.0-1  && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
-RUN mkdir -p /opt/var/astonia/zones/generic
+RUN mkdir -p /opt/var/astonia/zones/generic \
+	&& mkdir -p /opt/var/astonia/runtime
 WORKDIR /opt/var/astonia
 COPY --from=builder /opt/var/astonia/update_server .
 COPY --from=builder /opt/var/astonia/chatserver .
 COPY --from=builder /opt/var/astonia/create_* .
 COPY --from=builder /opt/var/astonia/server .
-COPY --from=builder /opt/var/astonia/runtime .
+COPY --from=builder /opt/var/astonia/runtime /opt/var/astonia/runtime
 COPY --from=builder /opt/var/astonia/zones/generic /opt/var/astonia/zones/generic
 VOLUME /opt/var/astonia/zones
 ENTRYPOINT ["/opt/var/astonia/server"]
