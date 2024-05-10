@@ -46,7 +46,10 @@ void teufel_damage(int cn,int cc,int dam) {
         if (dat->cc[n]==0) {
             dat->cc[n]=cc;
             dat->dam[n]=dam;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
             strncpy(dat->name[n],ch[cc].name,15);
+#pragma GCC diagnostic pop            
             dat->name[n][15]=0;
             break;
         }

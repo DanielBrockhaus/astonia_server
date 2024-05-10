@@ -1023,9 +1023,11 @@ void clan_dungeon_chat(char *ptr) {
                 clan[cnr].treasure.debt+=cnt*1000+1000;
                 clan[onr].treasure.jewels+=cnt;
                 clan_changed=1;
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-overflow"
                 add_clanlog(cnr,clan_serial(cnr),cID,5,"Clan was raided by %s of %s (%d) for %d jewels",ptr+19,get_clan_name(onr),onr,cnt);
                 add_clanlog(onr,clan_serial(onr),cID,5,"%s raided clan %s (%d) for %d jewels",ptr+19,get_clan_name(cnr),cnr,cnt);
+#pragma GCC diagnostic pop                
             }
             break;
         case 's':   // %02d:s:%01d:%01d

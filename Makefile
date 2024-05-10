@@ -8,7 +8,7 @@ runtime/generic/pents.dll \
 runtime/generic/alchemy.dll \
 runtime/3/gatekeeper.dll runtime/6/edemon.dll \
 runtime/3/military.dll runtime/8/fdemon.dll \
-update_server runtime/10/ice.dll runtime/11/palace.dll \
+runtime/10/ice.dll runtime/11/palace.dll \
 runtime/generic/mine.dll runtime/3/arena.dll \
 runtime/13/dungeon.dll runtime/14/random.dll \
 runtime/15/swamp.dll runtime/generic/professor.dll \
@@ -28,7 +28,7 @@ runtime/37/arkhata.dll create_account create_character
 
 CC=gcc
 DEBUG=-g
-CFLAGS=-Wall -Wshadow -Wno-format-truncation -Wno-pointer-sign -O3 $(DEBUG) -fno-strict-aliasing -m32 -DSTAFF
+CFLAGS=-Wall -Wshadow -Werror -Wno-pointer-sign -fno-strict-aliasing -O3 $(DEBUG) -m32 -DSTAFF
 LDFLAGS=-O $(DEBUG) -m32 -L/usr/lib/mysql
 LDRFLAGS=-O $(DEBUG) -m32 -rdynamic -L/usr/lib/mysql
 DDFLAGS=-O $(DEBUG) -m32 -fPIC -shared
@@ -649,12 +649,6 @@ runtime/36/caligar.dll: .obj/caligar.o
 .obj/caligar.o:	src/caligar.c src/server.h src/log.h src/notify.h src/do.h src/direction.h src/path.h src/error.h src/drdata.h src/see.h src/drvlib.h src/death.h src/effect.h src/tool.h src/store.h src/area1.h
 	$(CC) $(DFLAGS) -o .obj/caligar.o -c src/caligar.c
 
-update_server:	.obj/update_server.o
-	$(CC) $(LDFLAGS) -lm -o update_server .obj/update_server.o
-
-.obj/update_server.o:	src/update_server.c
-	$(CC) $(CFLAGS) -o .obj/update_server.o -c src/update_server.c
-
 zones/generic/weapons.itm:	create_weapons
 	@./create_weapons >zones/generic/weapons.itm
 
@@ -689,5 +683,5 @@ create_character:	src/create_character.c
 # ------- Helper -----
 
 clean:
-	-rm server .obj/*.o *~ zones/*/*~ runtime/*/* chatserver update_server create_weapons create_armor create_account create_character
+	-rm server .obj/*.o *~ zones/*/*~ runtime/*/* chatserver create_weapons create_armor create_account create_character
 

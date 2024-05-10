@@ -99,7 +99,7 @@ void xlog(char *format,...) {
 // more than 200 bytes.
 void charlog(int cn,char *format,...) {
     va_list args;
-    char buf[1024],buf2[1024],*name,pbuf[80];
+    char buf[1024],buf2[2048],*name,pbuf[80];
     int addr,nr;
 
     if (cn<1 || cn>=MAXCHARS) name="ILLEGAL CN";

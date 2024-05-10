@@ -127,7 +127,10 @@ void showmem(void) {
     struct mallinfo mi;
     extern int db_store,used_queries;
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     mi=mallinfo();
+#pragma GCC diagnostic pop
 
     xlog("-------- Memory usage info: --------");
     xlog("Used characters: %5d/%5d (%4.1f%%)",used_chars,MAXCHARS,100.0/MAXCHARS*used_chars);

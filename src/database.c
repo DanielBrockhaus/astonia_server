@@ -377,7 +377,7 @@ int save_char(int cn,int area) {
 
     unsigned char cdata[sizeof(struct character)],idata[sizeof(struct item)*(INVENTORYSIZE+1)],ddata[MAXDRDATA];
     unsigned char cbuf[sizeof(cdata)*2],ibuf[sizeof(idata)*2],dbuf[sizeof(ddata)*2];
-    unsigned char buf[sizeof(cbuf)+sizeof(ibuf)+sizeof(dbuf)+80];
+    unsigned char buf[sizeof(cbuf)+sizeof(ibuf)+sizeof(dbuf)+1024];
     int n,in,ilen=0,dlen=0;
     struct item *itmp;
     struct data *dat;
@@ -599,7 +599,7 @@ int save_char_new(int cn,int area) {
 
     unsigned char cdata[sizeof(struct character)],idata[sizeof(struct item)*(INVENTORYSIZE+1)],ddata[MAXDRDATA];
     unsigned char cbuf[sizeof(cdata)*2],ibuf[sizeof(idata)*2],dbuf[sizeof(ddata)*2];
-    unsigned char buf[sizeof(cbuf)+sizeof(ibuf)+sizeof(dbuf)+80];
+    unsigned char buf[sizeof(cbuf)+sizeof(ibuf)+sizeof(dbuf)+256];
     int n,in,ilen=0,dlen=0,clen=0;
     struct item *itmp;
     struct data *dat;
@@ -2519,7 +2519,7 @@ int get_area(int ID,int mirror,int *pserver,int *pport) {
 }
 
 static void db_create_storage(void) {
-    char buf[1024*64*2],data[1024*64*2];
+    char buf[1024*64*2+256],data[1024*64*2];
 
     pthread_mutex_lock(&data_mutex);
     if (cs.state!=CSS_CREATE) {
@@ -2547,7 +2547,7 @@ static void db_create_storage(void) {
 }
 
 static void db_update_storage(void) {
-    char buf[1024*64*2],data[1024*64*2];
+    char buf[1024*64*2+256],data[1024*64*2];
 
     pthread_mutex_lock(&data_mutex);
     if (us.state!=USS_CREATE) {
