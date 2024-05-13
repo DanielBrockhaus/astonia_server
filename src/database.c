@@ -1775,7 +1775,7 @@ void tick_login(void) {
 
         newbie=1;
 
-        sprintf(buf,"0000000000°c17%s°c18, a new player, has entered the game.",login.name);
+        sprintf(buf,"0000000000Â°c17%sÂ°c18, a new player, has entered the game.",login.name);
         server_chat(1,buf);
 
     } else {                        // existing account, retrieve items
@@ -3122,11 +3122,18 @@ void db_exterminate(char *name,char *master) {
 }
 
 void db_rename(char *name,char *master_to) {
-    int masterID,nr,len;
-    char query[256],to[256],*ptr;
+    int masterID,nr,len,requestIdOffset;
+    char query[1024],to[256],*ptr;
 
     masterID=atoi(master_to);
-    strcpy(to,master_to+11);
+    requestIdOffset = 11;
+    for (int i = 0; i < strlen(master_to); i++) {
+        if (master_to[i] == ':') {
+            requestIdOffset = i + 1;
+            break;
+        }
+    }
+    strcpy(to,master_to+requestIdOffset);
 
     for (ptr=to,len=0; *ptr; ptr++,len++) {
         if (len==0) *ptr=toupper(*ptr);
