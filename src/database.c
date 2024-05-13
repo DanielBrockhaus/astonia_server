@@ -133,6 +133,23 @@ unsigned int query_stat[20];
 static char mysqlpass[80];
 
 static void makemysqlpass(void) {
+    if (getenv("ASTONIA_DATABASE_PASSWORD_FILE")) {
+        FILE *fileHandle;
+        char buffer[80];
+        fileHandle = fopen(getenv("ASTONIA_DATABASE_PASSWORD_FILE"), "r");
+        if (fileHandle == NULL) {
+            char* errorLog = "makemysqlpass";
+            perror(errorLog);
+            elog("Error opening file database password file. Using default.");
+            elog("%s", errorLog);
+        } else {
+            size_t bytesRead = fread(buffer, sizeof(char), 80, fileHandle);
+            buffer[bytesRead] = '\0';
+            fclose(fileHandle);
+            strcpy(mysqlpass, buffer);
+            return;
+        }
+    }
     static char key1[]={117,127,98,38,118,115,100,104,0};
     static char key2[]={"fr5tgs23"};
     static char key3[]={"gj56ffe3"};
@@ -1775,7 +1792,7 @@ void tick_login(void) {
 
         newbie=1;
 
-        sprintf(buf,"0000000000°c17%s°c18, a new player, has entered the game.",login.name);
+        sprintf(buf,"0000000000Â°c17%sÂ°c18, a new player, has entered the game.",login.name);
         server_chat(1,buf);
 
     } else {                        // existing account, retrieve items

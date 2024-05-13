@@ -36,6 +36,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_DATABASE_USER: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -45,6 +46,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   under_aston:
     build:
       context: .
@@ -52,6 +55,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -61,6 +65,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   aston:
     build:
       context: .
@@ -68,6 +74,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -77,6 +84,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   earth_pents:
     build:
       context: .
@@ -84,6 +93,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -93,6 +103,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   sewers:
     build:
       context: .
@@ -100,6 +112,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -109,6 +122,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   earth_underground:
     build:
       context: .
@@ -116,6 +131,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -125,6 +141,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   fire_pents:
     build:
       context: .
@@ -132,6 +150,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -141,6 +160,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   fire_underground:
     build:
       context: .
@@ -148,6 +169,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -157,6 +179,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   ice_pents:
     build:
       context: .
@@ -164,6 +188,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -173,6 +198,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   ice_underground:
     build:
       context: .
@@ -180,6 +207,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -189,6 +217,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   ice_palace:
     build:
       context: .
@@ -196,6 +226,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -205,6 +236,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   mines:
     build:
       context: .
@@ -212,6 +245,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -221,6 +255,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   catacombs:
     build:
       context: .
@@ -228,6 +264,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -237,6 +274,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   random_dungeons:
     build:
       context: .
@@ -244,6 +283,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -253,6 +293,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   swamps:
     build:
       context: .
@@ -260,6 +302,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -269,6 +312,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   exkordon_forest:
     build:
       context: .
@@ -276,6 +321,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -285,6 +331,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   exkordon:
     build:
       context: .
@@ -292,6 +340,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -301,6 +350,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   bone_tower:
     build:
       context: .
@@ -308,6 +359,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -317,6 +369,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   nomad_plains:
     build:
       context: .
@@ -324,6 +378,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -333,6 +388,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   live_quest:
     build:
       context: .
@@ -340,6 +397,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -349,6 +407,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   test_pents:
     build:
       context: .
@@ -356,6 +416,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -365,6 +426,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   labyrinth:
     build:
       context: .
@@ -372,6 +435,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -381,6 +445,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   ice_army_cave:
     build:
       context: .
@@ -388,6 +454,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -397,6 +464,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   more_ice_army_caves:
     build:
       context: .
@@ -404,6 +473,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -413,6 +483,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   rodneys_warped_world:
     build:
       context: .
@@ -420,6 +492,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -429,6 +502,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   below_aston_2:
     build:
       context: .
@@ -436,6 +511,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -445,6 +521,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   brannington_forest:
     build:
       context: .
@@ -452,6 +530,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -461,6 +540,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   brannington:
     build:
       context: .
@@ -468,6 +549,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -477,6 +559,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   clan_spawners:
     build:
       context: .
@@ -484,6 +568,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -493,6 +578,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   grimroot:
     build:
       context: .
@@ -500,6 +587,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -509,6 +597,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   jobbington:
     build:
       context: .
@@ -516,6 +606,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -525,6 +616,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   long_tunnel:
     build:
       context: .
@@ -532,6 +625,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -541,6 +635,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   teufelheim:
     build:
       context: .
@@ -548,6 +644,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -557,6 +654,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   caligar:
     build:
       context: .
@@ -564,6 +663,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -573,6 +673,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   arkhata:
     build:
       context: .
@@ -580,6 +682,7 @@ services:
       ASTONIA_DATABASE_HOSTNAME: ${DATABASE_HOSTNAME}
       ASTONIA_USERNAME: ${DATABASE_USERNAME}
       ASTONIA_DATABASE_PORT: ${DATABASE_PORT}
+      ASTONIA_DATABASE_PASSWORD_FILE: /run/secrets/database_password
     depends_on:
       db:
         condition: service_healthy
@@ -589,6 +692,8 @@ services:
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
+    secrets:
+      - database_password
   chat:
     build:
       context: .
