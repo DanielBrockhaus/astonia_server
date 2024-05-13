@@ -165,7 +165,7 @@ void show(char *ptr,int size) {
     }
 }
 
-unsigned long getServerAddr(char *optarg) {
+unsigned long getServerAddr(const char *optarg) {
     struct sockaddr_in sa;
     inet_pton(AF_INET, optarg, &(sa.sin_addr.s_addr));
     return ntohl(sa.sin_addr.s_addr);
