@@ -80,9 +80,7 @@ const char* getDatabaseUsername()
                 char buffer[1024];
                 fileHandle = fopen(getenv("ASTONIA_DATABASE_USERNAME_FILE"), "r");
                 if (fileHandle == NULL) {
-                    char* errorLog;
                     fprintf(stderr, "Error opening file '%s', defaulting to %s", getenv("ASTONIA_DATABASE_USERNAME_FILE"), db_username);
-                    perror(errorLog);
                 } else {
                     size_t bytesRead = fread(buffer, sizeof(char), 1024, fileHandle);
                     buffer[bytesRead] = '\0';

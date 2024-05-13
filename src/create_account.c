@@ -60,38 +60,37 @@ int getDatabasePort()
    return databasePort;
 }
 
-const char* getDatabaseHostname()
+char* getDatabaseHostname()
 {
-    const char *db_hostname = "localhost";
+    char db_hostname[60] = "localhost";
     if (getenv("ASTONIA_DATABASE_HOSTNAME")) {
-        db_hostname = getenv("ASTONIA_DATABASE_HOSTNAME");
+        strncpy(db_hostname, getenv("ASTONIA_DATABASE_HOSTNAME"), sizeof(db_hostname) - 1);
+        db_hostname[sizeof(db_hostname) - 1] = '\0'; // Ensure null-termination
     }
-    return db_hostname;
+    return strdup(db_hostname);
 }
 
-const char* getDatabaseUsername()
+char* getDatabaseUsername()
 {
-    const char *db_username = "root";
+    char *db_username = "root";
     if (getenv("ASTONIA_DATABASE_USERNAME") || getenv("ASTONIA_DATABASE_USERNAME_FILE")) {
             if (getenv("ASTONIA_DATABASE_USERNAME")) {
-                db_username = (const char *)getenv("ASTONIA_DATABASE_USERNAME");
+                db_username = getenv("ASTONIA_DATABASE_USERNAME");
             } else {
                 FILE *fileHandle;
                 char buffer[1024];
                 fileHandle = fopen(getenv("ASTONIA_DATABASE_USERNAME_FILE"), "r");
                 if (fileHandle == NULL) {
-                    char* errorLog;
                     fprintf(stderr, "Error opening file '%s', defaulting to %s", getenv("ASTONIA_DATABASE_USERNAME_FILE"), db_username);
-                    perror(errorLog);
                 } else {
                     size_t bytesRead = fread(buffer, sizeof(char), 1024, fileHandle);
                     buffer[bytesRead] = '\0';
                     fclose(fileHandle);
-                    db_username = (const char *)buffer;
+                    db_username = buffer;
                 }
             }
     }
-    return db_username;
+    return strdup(db_username);
 }
 
 
@@ -102,10 +101,12 @@ int init_database(void)
         
         // try to login as root with our password
         makemysqlpass();
+        char* databaseHostname = getDatabaseHostname();
+        char* databaseUsername = getDatabaseUsername();
         if (!mysql_real_connect(
                 &mysql,
-                getDatabaseHostname(),
-                getDatabaseUsername(),
+                databaseHostname,
+                databaseUsername,
                 mysqlpass,
                 "mysql",
                 getDatabasePort(),
@@ -117,6 +118,8 @@ int init_database(void)
                 return 0;
         }
         destroymysqlpass();
+        free(databaseHostname);
+        free(databaseUsername);
 
         if (mysql_query(&mysql,"use merc")) {
                 fprintf(stderr,"MySQL error: %s (%d)\n",mysql_error(&mysql),mysql_errno(&mysql));

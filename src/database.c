@@ -169,7 +169,11 @@ int mysql_query_con(MYSQL *my,const char *query) {
             mysql_close(my);
             sleep(1);
             makemysqlpass();
-            mysql_real_connect(my,getDatabaseHostname(),getDatabaseUsername(),mysqlpass,"mysql",getDatabasePort(),NULL,0);
+            char* databaseHostname = getDatabaseHostname();
+            char* databaseUsername = getDatabaseUsername();
+            mysql_real_connect(my,databaseHostname,databaseUsername,mysqlpass,"mysql",getDatabasePort(),NULL,0);
+            xfree(databaseHostname);
+            xfree(databaseUsername);
             destroymysqlpass();
         } else if (err==ER_NO_SUCH_TABLE) {
             elog("wrong database: %s",mysql_error(my));
@@ -206,39 +210,40 @@ int getDatabasePort()
    return databasePort;
 }
 
-const char* getDatabaseHostname()
+char* getDatabaseHostname()
 {
-    const char *db_hostname = "localhost";
+    char db_hostname[60] = "localhost";
     if (getenv("ASTONIA_DATABASE_HOSTNAME")) {
-        db_hostname = getenv("ASTONIA_DATABASE_HOSTNAME");
+        strncpy(db_hostname, getenv("ASTONIA_DATABASE_HOSTNAME"), sizeof(db_hostname) - 1);
+        db_hostname[sizeof(db_hostname) - 1] = '\0'; // Ensure null-termination
     }
-    return db_hostname;
+    return xstrdup(db_hostname, IM_DATABASE);
 }
 
-const char* getDatabaseUsername()
+char* getDatabaseUsername()
 {
-    const char *db_username = "root";
+    char* db_username = "root";
     if (getenv("ASTONIA_DATABASE_USERNAME") || getenv("ASTONIA_DATABASE_USERNAME_FILE")) {
             if (getenv("ASTONIA_DATABASE_USERNAME")) {
-                db_username = (const char *)getenv("ASTONIA_DATABASE_USERNAME");
+                db_username = getenv("ASTONIA_DATABASE_USERNAME");
             } else {
                 FILE *fileHandle;
                 char buffer[1024];
                 fileHandle = fopen(getenv("ASTONIA_DATABASE_USERNAME_FILE"), "r");
                 if (fileHandle == NULL) {
-                    char* errorLog;
-                    sprintf("Error opening file '%s', defaulting to %s", getenv("ASTONIA_DATABASE_USERNAME_FILE"), db_username);
+                    char* errorLog = "getDatabaseUsername";
                     perror(errorLog);
+                    sprintf("Error opening file '%s', defaulting to %s", getenv("ASTONIA_DATABASE_USERNAME_FILE"), db_username);
                     elog("%s", errorLog);
                 } else {
                     size_t bytesRead = fread(buffer, sizeof(char), 1024, fileHandle);
                     buffer[bytesRead] = '\0';
                     fclose(fileHandle);
-                    db_username = (const char *)buffer;
+                    db_username = buffer;
                 }
             }
     }
-    return db_username;
+    return xstrdup(db_username, IM_DATABASE);
 }
 
 volatile int db_store=0;
@@ -1770,7 +1775,7 @@ void tick_login(void) {
 
         newbie=1;
 
-        sprintf(buf,"0000000000°c17%s°c18, a new player, has entered the game.",login.name);
+        sprintf(buf,"0000000000Â°c17%sÂ°c18, a new player, has entered the game.",login.name);
         server_chat(1,buf);
 
     } else {                        // existing account, retrieve items

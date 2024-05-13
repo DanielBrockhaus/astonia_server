@@ -58,5 +58,5 @@ void db_new_pvp(void);
 void db_add_pvp(char *killer,char *victim,char *what,int damage);
 int karmalog(int rID);
 int getDatabasePort();
-const char* getDatabaseHostname();
-const char* getDatabaseUsername();
+char* getDatabaseHostname();
+char* getDatabaseUsername();
