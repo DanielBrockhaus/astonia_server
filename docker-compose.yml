@@ -37,10 +37,6 @@ services:
     ports:
       - "6656:6656"
     command: ["-a 1", "-p6656", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - cameron_zone_data:/opt/var/astonia/zones/1
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -57,10 +53,6 @@ services:
     ports:
       - "6657:6657"
     command: ["-a 2", "-p6657", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - under_aston_zone_data:/opt/var/astonia/zones/2
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -77,10 +69,6 @@ services:
     ports:
       - "6658:6658"
     command: ["-a 3", "-p6658", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - aston_zone_data:/opt/var/astonia/zones/3
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -97,10 +85,6 @@ services:
     ports:
       - "6659:6659"
     command: ["-a 4", "-p6659", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - earth_pents_zone_data:/opt/var/astonia/zones/4
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -117,10 +101,6 @@ services:
     ports:
       - "6660:6660"
     command: ["-a 5", "-p6660", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - sewers_zone_data:/opt/var/astonia/zones/5
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -137,10 +117,6 @@ services:
     ports:
       - "6661:6661"
     command: ["-a 6", "-p6661", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - earth_underground_zone_data:/opt/var/astonia/zones/6
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -157,10 +133,6 @@ services:
     ports:
       - "6662:6662"
     command: ["-a 7", "-p6662", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - fire_pents_zone_data:/opt/var/astonia/zones/7
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -177,10 +149,6 @@ services:
     ports:
       - "6663:6663"
     command: ["-a 8", "-p6663", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - fire_underground_zone_data:/opt/var/astonia/zones/8
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -197,10 +165,6 @@ services:
     ports:
       - "6664:6664"
     command: ["-a 9", "-p6664", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - ice_pents_zone_data:/opt/var/astonia/zones/9
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -217,10 +181,6 @@ services:
     ports:
       - "6665:6665"
     command: ["-a 10", "-p6665", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - ice_underground_zone_data:/opt/var/astonia/zones/10
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -237,10 +197,6 @@ services:
     ports:
       - "6666:6666"
     command: ["-a 11", "-p6666", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - ice_palace_zone_data:/opt/var/astonia/zones/11
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -257,10 +213,6 @@ services:
     ports:
       - "6667:6667"
     command: ["-a 12", "-p6667", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - mines_zone_data:/opt/var/astonia/zones/12
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -277,10 +229,6 @@ services:
     ports:
       - "6668:6668"
     command: ["-a 13", "-p6668", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - catacombs_zone_data:/opt/var/astonia/zones/13
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -297,10 +245,6 @@ services:
     ports:
       - "6669:6669"
     command: ["-a 14", "-p6669", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - random_dungeons_zone_data:/opt/var/astonia/zones/14
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -317,10 +261,6 @@ services:
     ports:
       - "6670:6670"
     command: ["-a 15", "-p6670", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - swamps_zone_data:/opt/var/astonia/zones/15
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -337,10 +277,6 @@ services:
     ports:
       - "6671:6671"
     command: ["-a 16", "-p6671", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - exkordon_forest_zone_data:/opt/var/astonia/zones/16
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -357,10 +293,6 @@ services:
     ports:
       - "6672:6672"
     command: ["-a 17", "-p6672", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - exkordon_zone_data:/opt/var/astonia/zones/17
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -377,10 +309,6 @@ services:
     ports:
       - "6673:6673"
     command: ["-a 18", "-p6673", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - bone_tower_zone_data:/opt/var/astonia/zones/18
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -397,10 +325,6 @@ services:
     ports:
       - "6674:6674"
     command: ["-a 19", "-p6674", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - nomad_plains_zone_data:/opt/var/astonia/zones/19
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -417,10 +341,6 @@ services:
     ports:
       - "6675:6675"
     command: ["-a 20", "-p6675", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - live_quest_zone_data:/opt/var/astonia/zones/20
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -437,10 +357,6 @@ services:
     ports:
       - "6676:6676"
     command: ["-a 21", "-p6676", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - test_pents_zone_data:/opt/var/astonia/zones/21
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -457,10 +373,6 @@ services:
     ports:
       - "6677:6677"
     command: ["-a 22", "-p6677", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - labyrinth_zone_data:/opt/var/astonia/zones/22
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -477,10 +389,6 @@ services:
     ports:
       - "6678:6678"
     command: ["-a 23", "-p6678", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - ice_army_cave_zone_data:/opt/var/astonia/zones/23
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -497,10 +405,6 @@ services:
     ports:
       - "6679:6679"
     command: ["-a 24", "-p6679", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - more_ice_army_caves_zone_data:/opt/var/astonia/zones/24
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -517,10 +421,6 @@ services:
     ports:
       - "6680:6680"
     command: ["-a 25", "-p6680", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - rodneys_warped_world_zone_data:/opt/var/astonia/zones/25
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -537,10 +437,6 @@ services:
     ports:
       - "6681:6681"
     command: ["-a 26", "-p6681", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - below_aston_2_zone_data:/opt/var/astonia/zones/26
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -557,10 +453,6 @@ services:
     ports:
       - "6683:6683"
     command: ["-a 28", "-p6683", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - brannington_forest_zone_data:/opt/var/astonia/zones/28
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -577,10 +469,6 @@ services:
     ports:
       - "6684:6684"
     command: ["-a 29", "-p6684", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - brannington_zone_data:/opt/var/astonia/zones/29
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -597,10 +485,6 @@ services:
     ports:
       - "6685:6685"
     command: ["-a 30", "-p6685", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - clan_spawners_zone_data:/opt/var/astonia/zones/30
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -617,10 +501,6 @@ services:
     ports:
       - "6686:6686"
     command: ["-a 31", "-p6686", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - grimroot_zone_data:/opt/var/astonia/zones/31
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -637,10 +517,6 @@ services:
     ports:
       - "6687:6687"
     command: ["-a 32", "-p6687", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - jobbington_zone_data:/opt/var/astonia/zones/32
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -657,10 +533,6 @@ services:
     ports:
       - "6688:6688"
     command: ["-a 33", "-p6688", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - long_tunnel_zone_data:/opt/var/astonia/zones/33
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -677,10 +549,6 @@ services:
     ports:
       - "6689:6689"
     command: ["-a 34", "-p6689", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - teufelheim_zone_data:/opt/var/astonia/zones/34
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -697,10 +565,6 @@ services:
     ports:
       - "6691:6691"
     command: ["-a 36", "-p6691", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - caligar_zone_data:/opt/var/astonia/zones/36
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -717,10 +581,6 @@ services:
     ports:
       - "6692:6692"
     command: ["-a 37", "-p6692", "-b${ASTONIA_3_SERVER_ADDRESS}"]
-    volumes:
-      - arkhata_zone_data:/opt/var/astonia/zones/37
-      - generic_zone_data:/opt/var/astonia/zones/generic
-      - preset_zone_data:/opt/var/astonia/zones/preset
     configs:
       - source: message_of_the_day
         target: /opt/var/astonia/motd.txt
@@ -743,79 +603,3 @@ configs:
 secrets:
   database_password:
     environment: "DATABASE_PASSWORD"
-
-volumes:
-  cameron_zone_data:
-    external: true
-  under_aston_zone_data:
-    external: true
-  aston_zone_data:
-    external: true
-  earth_pents_zone_data:
-    external: true
-  sewers_zone_data:
-    external: true
-  earth_underground_zone_data:
-    external: true
-  fire_pents_zone_data:
-    external: true
-  fire_underground_zone_data:
-    external: true
-  ice_pents_zone_data:
-    external: true
-  ice_underground_zone_data:
-    external: true
-  ice_palace_zone_data:
-    external: true
-  mines_zone_data:
-    external: true
-  catacombs_zone_data:
-    external: true
-  random_dungeons_zone_data:
-    external: true
-  swamps_zone_data:
-    external: true
-  exkordon_forest_zone_data:
-    external: true
-  exkordon_zone_data:
-    external: true
-  bone_tower_zone_data:
-    external: true
-  nomad_plains_zone_data:
-    external: true
-  live_quest_zone_data:
-    external: true
-  test_pents_zone_data:
-    external: true
-  labyrinth_zone_data:
-    external: true
-  ice_army_cave_zone_data:
-    external: true
-  more_ice_army_caves_zone_data:
-    external: true
-  rodneys_warped_world_zone_data:
-    external: true
-  below_aston_2_zone_data:
-    external: true
-  brannington_forest_zone_data:
-    external: true
-  brannington_zone_data:
-    external: true
-  clan_spawners_zone_data:
-    external: true
-  grimroot_zone_data:
-    external: true
-  jobbington_zone_data:
-    external: true
-  long_tunnel_zone_data:
-    external: true
-  teufelheim_zone_data:
-    external: true
-  caligar_zone_data:
-    external: true
-  arkhata_zone_data:
-    external: true
-  generic_zone_data:
-    external: true
-  preset_zone_data:
-    external: true
