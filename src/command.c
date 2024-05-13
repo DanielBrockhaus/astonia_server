@@ -211,7 +211,7 @@ static int cmd_complain(int cn,char *ptr) {
 }
 
 static int cmd_punish(int cn,char *ptr) {     // 1=OK, 0=repeat
-    char name[80],reason[80],buf[256];
+    char name[80],reason[80],buf[294];
     int level,n,uID;
 
     for (n=0; isalpha(*ptr) && n<79; name[n++]=*ptr++);
