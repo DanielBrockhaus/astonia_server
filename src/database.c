@@ -1770,7 +1770,7 @@ void tick_login(void) {
 
         newbie=1;
 
-        sprintf(buf,"0000000000ï¿½c17%sï¿½c18, a new player, has entered the game.",login.name);
+        sprintf(buf,"0000000000°c17%s°c18, a new player, has entered the game.",login.name);
         server_chat(1,buf);
 
     } else {                        // existing account, retrieve items
