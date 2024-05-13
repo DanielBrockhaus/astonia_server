@@ -191,8 +191,6 @@ int main(int argc,char *args[]) {
     printf("\n");
 
     server_addr_presentation = "127.0.0.1";
-    server_addr = getServerAddr("127.0.0.1");
-
     if (argc>1) {
         while (1) {
             c=getopt(argc,args,"a:b:m:i:p:dhc");
