@@ -14,3 +14,7 @@ zones/generic/armor.itm
 *.ilog
 *.elog
 *.log
+*.vpj
+*.vpw
+*.vpwhist
+*.vtg

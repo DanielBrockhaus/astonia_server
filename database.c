@@ -3571,7 +3571,7 @@ int isbanned_iplog(int ip) {
     int flag=0;
     char buf[256];
 
-    sprintf(buf,"select ID from ipban where ip=%u limit 1",ip&0xffffff00);
+    sprintf(buf,"select ID from ipban where ip=%u and valid>%d limit 1",ip&0xffffff00,time_now);
 
     if (mysql_query(&mysql,buf)) {
         elog("<p>select: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
