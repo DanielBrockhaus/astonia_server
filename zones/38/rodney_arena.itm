@@ -1,0 +1,12 @@
+link_aston:
+name="Door"
+description="A steel door."
+sprite=20124
+flag=IF_USE
+flag=IF_MOVEBLOCK
+flag=IF_SIGHTBLOCK
+flag=IF_SOUNDBLOCK
+driver=10
+arg="7500D100030001"   # x=123, y=188, a=3, quiet=1
+;
+

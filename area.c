@@ -209,6 +209,8 @@ static struct section section[]=
     {"Palace Level 4",60},          //152
     {"Amazon Den",60},          //153
     {"Underground Passage",60},     //154
+    {"Arkhata",0},                  //155
+    {"Rodney's Arena",0},           //156
 };
 
 static struct sector sector1[]={
@@ -592,6 +594,16 @@ static struct sector sector36[]={
     {0,0,0,0}
 };
 
+static struct sector sector37[]={
+    {1,1,255,255,155},   // arkhata
+    {0,0,0,0}
+};
+
+static struct sector sector38[]={
+    {1,1,255,255,156},   // rodney's arena
+    {0,0,0,0}
+};
+
 struct sector *area_sector[]={
     NULL,
     sector1,
@@ -629,7 +641,9 @@ struct sector *area_sector[]={
     sector33,
     sector34,
     sector35,
-    sector36
+    sector36,
+    sector37,
+    sector38
 };
 
 static short npc_in_section[TOTAL_MAXCHARS];

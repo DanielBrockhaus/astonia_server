@@ -24,7 +24,8 @@ runtime/29/staffer2.dll runtime/28/staffer3.dll \
 runtime/31/warrmines.dll runtime/36/caligar.dll \
 runtime/32/missions.dll runtime/generic/clubmaster.dll \
 runtime/33/tunnel.dll runtime/34/teufel.dll \
-runtime/37/arkhata.dll create_account create_character
+runtime/37/arkhata.dll create_account create_character \
+runtime/38/rodney_arena.dll
 
 CC=gcc
 DEBUG=-g
@@ -47,7 +48,7 @@ OBJS=.obj/server.o .obj/io.o .obj/libload.o .obj/tool.o .obj/sleep.o \
 .obj/prof.o .obj/motd.o .obj/ignore.o .obj/tell.o .obj/clanlog.o \
 .obj/respawn.o .obj/poison.o .obj/swear.o .obj/lab.o \
 .obj/consistency.o .obj/btrace.o .obj/club.o .obj/teufel_pk.o \
-.obj/questlog.o .obj/badip.o
+.obj/questlog.o .obj/badip.o .obj/rodar_helper.o
 
 
 # ------- Server -----
@@ -229,6 +230,10 @@ server:	$(OBJS)
 .obj/badip.o:		badip.c badip.h log.h talk.h server.h mem.h
 	$(CC) $(CFLAGS) -o .obj/badip.o -c badip.c
 
+.obj/rodar_helper.o:	rodar_helper.c rodar_helper.h log.h server.h mem.h
+	$(CC) $(CFLAGS) -o .obj/rodar_helper.o -c rodar_helper.c
+
+
 # ------- DLLs -------
 
 runtime/generic/base.dll:	.obj/base.o
@@ -374,6 +379,14 @@ runtime/37/arkhata.dll:	.obj/arkhata.o
 
 .obj/arkhata.o:	arkhata.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
 	$(CC) $(DFLAGS) -o .obj/arkhata.o -c arkhata.c
+
+runtime/38/rodney_arena.dll:	.obj/rodney_arena.o
+	$(CC) $(DDFLAGS) -o rodney_arena.tmp .obj/rodney_arena.o
+	@mkdir -p runtime/38
+	@mv rodney_arena.tmp runtime/38/rodney_arena.dll
+
+.obj/rodney_arena.o:	rodney_arena.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
+	$(CC) $(DFLAGS) -o .obj/rodney_arena.o -c rodney_arena.c
 
 runtime/22/lab2.dll:	.obj/lab2.o
 	$(CC) $(DDFLAGS) -o lab2.tmp .obj/lab2.o

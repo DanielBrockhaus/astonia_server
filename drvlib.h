@@ -165,6 +165,8 @@
 #define CDR_CALIGARGUARD2	123
 #define CDR_CALIGARSKELLY	124
 
+#define CDR_RODAR_MASTER    125 // rodney's arena: master
+
 #define CDR_ROUVEN		130	// imperial vault
 #define CDR_RAMMY		131	// arkhata
 #define CDR_JAZ			132	// arkhata
