@@ -15,12 +15,15 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 #include "direction.h"
 #include "do.h"
 #include "log.h"
+#include "talk.h"
+#include "command.h"
 
 // library helper functions needed for init
 int ch_driver(int nr,int cn,int ret,int lastact);           // character driver (decides next action)
 int it_driver(int nr,int in,int cn);                    // item driver (special cases for use)
 int ch_died_driver(int nr,int cn,int co);               // called when a character dies
 int ch_respawn_driver(int nr,int cn);                   // called when an NPC is about to respawn
+int special_driver(int nr,int obj,int ret,int lastact);
 
 // EXPORTED - character/item driver
 int driver(int type,int nr,int obj,int ret,int lastact) {
@@ -29,6 +32,7 @@ int driver(int type,int nr,int obj,int ret,int lastact) {
         case CDT_ITEM: 		return it_driver(nr,obj,ret);
         case CDT_DEAD:		return ch_died_driver(nr,obj,ret);
         case CDT_RESPAWN:	return ch_respawn_driver(nr,obj);
+        case CDT_SPECIAL:	return special_driver(nr,obj,ret,lastact);
         default: 	return 0;
     }
 }
@@ -51,6 +55,32 @@ void rodarmaster(int cn,int ret,int lastact) {
 
     do_idle(cn,TICKS);
 }
+
+static void cmd_rodar(int cn) {
+    log_char(cn,LOG_SYSTEM,0,"Rodar Help");
+}
+
+int rodar_parser(int cn,char *ptr) {
+
+    if (*ptr=='#' || *ptr=='/') {
+        ptr++;
+
+        if (cmdcmp(ptr,"rodar",4)) { cmd_rodar(cn); return 2; }
+    }
+
+    return 1;
+}
+
+int rodar_canattack(int cn,int co) {
+    xlog("can attack %d %d",cn,co);
+    return 1;   // 1 = use default, 2 = yes, 3 = no
+}
+
+int rodar_canhelp(int cn,int co) {
+    xlog("can help %d %d",cn,co);
+    return 1;   // 1 = use default, 2 = yes, 3 = no
+}
+
 
 void immortal_dead(int cn,int co) {
     charlog(cn,"I JUST DIED! I'M SUPPOSED TO BE IMMORTAL!");
@@ -80,6 +110,16 @@ int ch_died_driver(int nr,int cn,int co) {
 
 int ch_respawn_driver(int nr,int cn) {
     switch (nr) {
+        default:		return 0;
+    }
+}
+
+int special_driver(int nr,int obj,int ret,int lastact) {
+    switch (nr) {
+        case CDR_RODAR_PARSER:	    return rodar_parser(obj,(void *)(ret));
+        case CDR_RODAR_CANATTACK:   return rodar_canattack(obj,ret);
+        case CDR_RODAR_CANHELP:     return rodar_canhelp(obj,ret);
+
         default:		return 0;
     }
 }
