@@ -6,6 +6,7 @@
 
 insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 */
+
 #include <stdlib.h>
 
 #include "server.h"
