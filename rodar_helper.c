@@ -11,8 +11,9 @@ founderID = player ID of the founder. might come in handy.
 create table rodar_team (
     ID int not null auto_increment,
     name char(80) not null,
-    founderID int not null,
+    founderID int,
     type enum ('2','3','5','7','12','any') not null default 'any',
+    status enum ('active','banned','retired'),
     wins int not null default 0,
     losses int not null default 0,
     kills int not null default 0,
@@ -20,19 +21,21 @@ create table rodar_team (
     score int not null default 0,
     primary key(ID),
     unique key(name),
-    key(score)
+    key(score),
+    foreign key(founderID) references chars(ID) on delete set null
 );
 
 Team Members:
-tID = Team ID, ID from rodar_teams
-pID = player ID
+teamID = Team ID, ID from rodar_teams
+charID = character ID, ID from chars
 
 create table rodar_member (
-    tID int not null,
-    pID int not null,
-    type enum ('member','admin','owner'),
-    primary key(tID,pID),
-    key(pID)
+    teamID int not null,
+    charID int not null,
+    type enum ('member','admin','owner') not null,
+    primary key(teamID,charID),
+    key(charID),
+    foreign key(charID) references chars(ID) on delete cascade
 );
 
 Events Schedule:
@@ -41,6 +44,8 @@ t = date/time the event starts
 winnerID = winning team ID from rodar_team
 
 Events will be created one week in advance.
+
+winnerID = ID from rodar_teams
 
 create table rodar_schedule (
     ID int not null auto_increment,
