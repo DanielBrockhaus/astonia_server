@@ -18,6 +18,8 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 #include "log.h"
 #include "talk.h"
 #include "command.h"
+#include "rodar_helper.h"
+#include "database.h"
 
 // library helper functions needed for init
 int ch_driver(int nr,int cn,int ret,int lastact);           // character driver (decides next action)
@@ -62,11 +64,17 @@ static void cmd_rodar(int cn) {
 }
 
 int rodar_parser(int cn,char *ptr) {
+    static struct rodar_team team;
 
     if (*ptr=='#' || *ptr=='/') {
         ptr++;
 
         if (cmdcmp(ptr,"rodar",4)) { cmd_rodar(cn); return 2; }
+        if (cmdcmp(ptr,"found",4)) { db_create_team("Godlike",ch[cn].ID); return 2; }
+        if (cmdcmp(ptr,"read",4)) { db_read_team("Godlike"); return 2; }
+        if (cmdcmp(ptr,"show",4)) { rodar_team_byname("Godlike",&team); log_char(cn,LOG_SYSTEM,0,"ID=%d, name=%s, founder=%d",team.ID,team.name,team.founderID); return 2; }
+        if (cmdcmp(ptr,"write",4)) { team.type=TEAM2; db_write_team(&team); return 2; }
+        if (cmdcmp(ptr,"add",3)) { db_add_team_member(1,3,MEMBER); return 2; }
     }
 
     return 1;

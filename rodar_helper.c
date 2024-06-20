@@ -2,6 +2,102 @@
  * Part of Astonia Server (c) Daniel Brockhaus. Please read license.txt.
  */
 
+#include <stdlib.h>
+#include <string.h>
+#include "rodar_helper.h"
+
+enum teamtype rodar_teamtype(char *val) {
+    switch (val[0]) {
+        case '2':   return TEAM2;
+        case '3':   return TEAM3;
+        case '5':   return TEAM5;
+        case '7':   return TEAM7;
+        case '1':   return TEAM12;
+        default:    return TEAM_ANY;
+    }
+}
+
+enum teamstatus rodar_teamstatus(char *val) {
+    switch (val[0]) {
+        case 'a':   return TEAM_ACTIVE;
+        case 'b':   return TEAM_BANNED;
+        default:    return TEAM_RETIRED;
+    }
+}
+
+char *rodar_teamtype2(enum teamtype type) {
+    switch (type) {
+        case TEAM2:     return "2";
+        case TEAM3:     return "3";
+        case TEAM5:     return "5";
+        case TEAM7:     return "7";
+        case TEAM12:    return "12";
+        default:        return "any";
+    }
+}
+
+char *rodar_teamstatus2(enum teamstatus status) {
+    switch (status) {
+        case TEAM_ACTIVE:   return "active";
+        case TEAM_BANNED:   return "banned";
+        default:            return "retired";
+    }
+}
+
+enum membertype rodar_membertype(char *val) {
+    switch (val[0]) {
+        case 'o':   return MEMBER_OWNER;
+        case 'a':   return MEMBER_ADMIN;
+        default:    return MEMBER;
+    }
+}
+
+char *rodar_membertype2(enum membertype type) {
+    switch (type) {
+        case MEMBER_OWNER:  return "owner";
+        case MEMBER_ADMIN:  return "admin";
+        default:            return "member";
+    }
+}
+
+#define MAXTEAM     64
+
+static struct rodar_team team_cache[MAXTEAM]={0};
+static int team_idx=0;
+
+void rodar_cache_team(char *name_or_ID,struct rodar_team *team) {
+    int n;
+    int tID=atoi(name_or_ID);
+
+    for (n=0; n<MAXTEAM; n++) {
+        if (tID) {
+            if (team_cache[n].ID==tID) break;
+        } else {
+            if (!strcmp(team_cache[n].name,name_or_ID)) break;
+        }
+    }
+    if (n==MAXTEAM) n=(team_idx+1)%MAXTEAM;
+
+    if (team) {
+        team_cache[n]=*team;
+    } else { // negative cache
+        bzero(&team_cache[n],sizeof(team_cache[n]));
+        strcpy(team_cache[n].name,name_or_ID);
+    }
+}
+
+int rodar_team_byname(char *name,struct rodar_team *team) {
+    int n;
+
+    for (n=0; n<MAXTEAM; n++)
+        if (!strcmp(team_cache[n].name,name)) break;
+    if (n==MAXTEAM) return 0;
+
+    if (team) *team=team_cache[n];
+
+    return team_cache[n].ID;
+}
+
 /*
 Tables
 
@@ -13,7 +109,7 @@ create table rodar_team (
     name char(80) not null,
     founderID int,
     type enum ('2','3','5','7','12','any') not null default 'any',
-    status enum ('active','banned','retired'),
+    status enum ('active','banned','retired') not null default 'active',
     wins int not null default 0,
     losses int not null default 0,
     kills int not null default 0,

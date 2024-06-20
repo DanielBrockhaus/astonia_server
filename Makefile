@@ -140,7 +140,7 @@ server:	$(OBJS)
 .obj/death.o:		death.c server.h log.h timer.h map.h notify.h create.h drdata.h libload.h direction.h error.h act.h talk.h expire.h effect.h database.h tool.h container.h player.h sector.h death.h
 	$(CC) $(CFLAGS) -o .obj/death.o -c death.c
 
-.obj/database.o:	database.c server.h log.h create.h player.h sleep.h tool.h drdata.h drvlib.h timer.h direction.h map.h mem.h database.h misc_ppd.h badip.h
+.obj/database.o:	database.c server.h log.h create.h player.h sleep.h tool.h drdata.h drvlib.h timer.h direction.h map.h mem.h database.h misc_ppd.h badip.h rodar_helper.h
 	$(CC) $(CFLAGS) -o .obj/database.o -c database.c
 
 .obj/lookup.o:	lookup.c server.h lookup.h log.h create.h player.h sleep.h tool.h drdata.h drvlib.h timer.h direction.h map.h mem.h database.h
@@ -230,7 +230,7 @@ server:	$(OBJS)
 .obj/badip.o:		badip.c badip.h log.h talk.h server.h mem.h
 	$(CC) $(CFLAGS) -o .obj/badip.o -c badip.c
 
-.obj/rodar_helper.o:	rodar_helper.c rodar_helper.h log.h server.h mem.h
+.obj/rodar_helper.o:	rodar_helper.c rodar_helper.h log.h server.h mem.h database.h
 	$(CC) $(CFLAGS) -o .obj/rodar_helper.o -c rodar_helper.c
 
 
@@ -385,7 +385,7 @@ runtime/38/rodney_arena.dll:	.obj/rodney_arena.o
 	@mkdir -p runtime/38
 	@mv rodney_arena.tmp runtime/38/rodney_arena.dll
 
-.obj/rodney_arena.o:	rodney_arena.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h
+.obj/rodney_arena.o:	rodney_arena.c server.h log.h notify.h do.h direction.h path.h error.h drdata.h see.h drvlib.h death.h effect.h tool.h store.h area1.h rodar_helper.h database.h
 	$(CC) $(DFLAGS) -o .obj/rodney_arena.o -c rodney_arena.c
 
 runtime/22/lab2.dll:	.obj/lab2.o
