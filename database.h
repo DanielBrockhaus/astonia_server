@@ -64,6 +64,7 @@ enum membertype;
 void db_create_team(char *name,int founderID);
 void db_add_team_member(int teamID,int charID,enum membertype type);
 void db_del_team_member(int teamID,int charID);
+void db_upd_team_member(int teamID,int charID,enum membertype type);
 void db_read_member(int teamID,int charID);
 void db_read_team(char *name);
 void db_read_team_byID(int ID);

@@ -72,6 +72,8 @@ static int cmd_rodar(int cn) {
     log_char(cn,LOG_SYSTEM,0,"/activate <team name> - activate team membership");
     log_char(cn,LOG_SYSTEM,0,"/hire <char name> - hire player to active team");
     log_char(cn,LOG_SYSTEM,0,"/fire <char name> - fire player from active team");
+    log_char(cn,LOG_SYSTEM,0,"/promote <char name> - promote player to admin in the active team");
+    log_char(cn,LOG_SYSTEM,0,"/demote <char name> - demote player from admin to member");
     log_char(cn,LOG_SYSTEM,0,"/found <team name> - found a new team (1000G)");
 
     return 2;
@@ -167,6 +169,57 @@ static int cmd_join(int cn,char *ptr) {
     dat->joinID=team.ID;
 
     log_char(cn,LOG_SYSTEM,0,"Team %s membership requested. An admin or the owner must now hire you.",team.name);
+
+    return 2;
+}
+
+static int cmd_leave(int cn,char *ptr) {
+    char *tmp;
+    struct rodar_team team;
+    struct rodar_drd *dat;
+    enum membertype type;
+
+    while (*ptr==' ') ptr++;
+
+    for (tmp=ptr; *tmp; tmp++) {
+        if (!isalpha(*tmp) && *tmp!=' ') {
+            log_char(cn,LOG_SYSTEM,0,"Syntax: /leave <name>. The name must be letters and spaces only.");
+            return 2;
+        }
+    }
+
+    // team not found
+    if (rodar_team_byname(ptr,&team)==-1) {
+        db_read_team(ptr);
+        return 3;
+    }
+
+    // load team
+    if (!team.ID) {
+        log_char(cn,LOG_SYSTEM,0,"No team by that name.");
+        return 2;
+    }
+
+    if ((type=rodar_member(team.ID,ch[cn].ID))==-1) {
+        db_read_member(team.ID,ch[cn].ID);
+        return 3;
+    }
+
+    if (type==MEMBER_NONE) {
+        log_char(cn,LOG_SYSTEM,0,"You are not member of team %s.",team.name);
+        return 2;
+    }
+
+    db_del_team_member(team.ID,ch[cn].ID);
+    db_read_member(team.ID,ch[cn].ID);
+
+    dat=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (dat && dat->teamID==team.ID) {
+        dat->teamID=0;
+        dat->memtype=0;
+    }
+
+    log_char(cn,LOG_SYSTEM,0,"You left team %s.",team.name);
 
     return 2;
 }
@@ -366,6 +419,89 @@ static int cmd_fire(int cn,char *ptr) {
     return 2;
 }
 
+static int cmd_admin(int cn,char *ptr,int promote) {
+    char *tmp,name[80];
+    struct rodar_drd *dat1,*dat2;
+    int co,coID;
+    enum membertype type;
+
+    while (*ptr==' ') ptr++;
+
+    for (tmp=ptr; *tmp; tmp++) {
+        if (!isalpha(*tmp)) {
+            log_char(cn,LOG_SYSTEM,0,"Syntax: /admin <name>. The name must be letters only.");
+            return 2;
+        }
+    }
+
+    dat1=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat1) return 2;
+
+    if (!dat1->teamID) {
+        log_char(cn,LOG_SYSTEM,0,"You have not activated your team membership.");
+        return 2;
+    }
+    if (dat1->memtype!=MEMBER_OWNER) {
+        log_char(cn,LOG_SYSTEM,0,"Only the owner can make new admins.");
+        return 2;
+    }
+
+    coID=lookup_name(ptr,name);
+    if (!coID) return 3;    // waiting for database
+
+    if (coID==-1) {
+        log_char(cn,LOG_SYSTEM,0,"No player by that name.");
+        return 2;
+    }
+
+    if ((type=rodar_member(dat1->teamID,coID))==-1) {
+        db_read_member(dat1->teamID,coID);
+        return 3;
+    }
+
+    if (type==MEMBER_NONE) {
+        log_char(cn,LOG_SYSTEM,0,"%s is not a member of your team.",name);
+        return 2;
+    }
+
+    if (type==MEMBER_OWNER) {
+        log_char(cn,LOG_SYSTEM,0,"You cannot change the rank of the owner.");
+        return 2;
+    }
+
+    if (promote && type==MEMBER_ADMIN) {
+        log_char(cn,LOG_SYSTEM,0,"%s is already an admin.",name);
+        return 2;
+    }
+    if (!promote && type==MEMBER) {
+        log_char(cn,LOG_SYSTEM,0,"%s is already a normal member.",name);
+        return 2;
+    }
+
+    db_upd_team_member(dat1->teamID,coID,promote?MEMBER_ADMIN:MEMBER);
+    db_read_member(dat1->teamID,coID);
+
+    co=find_char_byname(ptr);
+    if (co) {
+        dat2=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
+        if (dat2) {
+            if (dat2->teamID==dat1->teamID) {
+                if (promote) {
+                    dat2->memtype=MEMBER_ADMIN;
+                    log_char(co,LOG_SYSTEM,0,"You have been promoted to admin.");
+                } else {
+                    dat2->memtype=MEMBER;
+                    log_char(co,LOG_SYSTEM,0,"You have been demoted to member.");
+                }
+            }
+        }
+    }
+
+    log_char(cn,LOG_SYSTEM,0,"%s has been %s.",name,promote?"promoted":"demoted");
+
+    return 2;
+}
+
 int rodar_parser(int cn,char *ptr) {
     int len;
 
@@ -376,8 +512,11 @@ int rodar_parser(int cn,char *ptr) {
         if ((len=cmdcmp(ptr,"found",4))) return cmd_found(cn,ptr+len);
         if ((len=cmdcmp(ptr,"join",4))) return cmd_join(cn,ptr+len);
         if ((len=cmdcmp(ptr,"activate",4))) return cmd_activate(cn,ptr+len);
+        if ((len=cmdcmp(ptr,"leave",4))) return cmd_leave(cn,ptr+len);
         if ((len=cmdcmp(ptr,"hire",4))) return cmd_hire(cn,ptr+len);
         if ((len=cmdcmp(ptr,"fire",4))) return cmd_fire(cn,ptr+len);
+        if ((len=cmdcmp(ptr,"promote",4))) return cmd_admin(cn,ptr+len,1);
+        if ((len=cmdcmp(ptr,"demote",4))) return cmd_admin(cn,ptr+len,0);
     }
 
     return 1;

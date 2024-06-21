@@ -3632,6 +3632,13 @@ void db_del_team_member(int teamID,int charID) {
     add_query(DT_QUERY,buf,"del rodar team member",0);
 }
 
+void db_upd_team_member(int teamID,int charID,enum membertype type) {
+    char buf[256];
+
+    sprintf(buf,"update rodar_member set type='%s' where teamID=%d and charID=%d",rodar_membertype2(type),teamID,charID);
+    add_query(DT_QUERY,buf,"upd rodar team member",0);
+}
+
 void db_read_member(int teamID,int charID) {
     char buf1[80],buf2[80];
 
