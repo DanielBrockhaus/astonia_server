@@ -61,9 +61,11 @@ int karmalog(int rID);
 
 struct rodar_team;
 enum membertype;
-int db_create_team(char *name,int founderID);
-int db_add_team_member(int teamID,int charID,enum membertype type);
-int db_read_team(char *name);
-int db_read_team_byID(int ID);
-int db_write_team(struct rodar_team *team);
+void db_create_team(char *name,int founderID);
+void db_add_team_member(int teamID,int charID,enum membertype type);
+void db_del_team_member(int teamID,int charID);
+void db_read_member(int teamID,int charID);
+void db_read_team(char *name);
+void db_read_team_byID(int ID);
+void db_write_team(struct rodar_team *team);
 

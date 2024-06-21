@@ -73,7 +73,7 @@ void rodar_cache_team(char *name_or_ID,struct rodar_team *team) {
         if (tID) {
             if (team_cache[n].ID==tID) break;
         } else {
-            if (!strcmp(team_cache[n].name,name_or_ID)) break;
+            if (!strcasecmp(team_cache[n].name,name_or_ID)) break;
         }
     }
     if (n==MAXTEAM) n=(team_idx+1)%MAXTEAM;
@@ -90,12 +90,43 @@ int rodar_team_byname(char *name,struct rodar_team *team) {
     int n;
 
     for (n=0; n<MAXTEAM; n++)
-        if (!strcmp(team_cache[n].name,name)) break;
-    if (n==MAXTEAM) return 0;
+        if (!strcasecmp(team_cache[n].name,name)) break;
+    if (n==MAXTEAM) {
+        if (team) bzero(team,sizeof(struct rodar_team));
+        return -1;
+    }
 
     if (team) *team=team_cache[n];
 
     return team_cache[n].ID;
+}
+
+#define MAXMEMBER   256
+
+static struct rodar_member member_cache[MAXMEMBER]={0};
+static int member_idx=0;
+
+void rodar_cache_member(int teamID,int charID,int type) {
+    int n;
+
+    for (n=0; n<MAXMEMBER; n++) {
+        if (member_cache[n].teamID==teamID && member_cache[n].charID==charID) break;
+    }
+    if (n==MAXMEMBER) n=(member_idx+1)%MAXMEMBER;
+
+    member_cache[n].teamID=teamID;
+    member_cache[n].charID=charID;
+    member_cache[n].type=type;
+}
+
+int rodar_member(int teamID,int charID) {
+    int n;
+
+    for (n=0; n<MAXMEMBER; n++)
+        if (member_cache[n].teamID==teamID && member_cache[n].charID==charID) break;
+    if (n==MAXMEMBER) return -1;
+
+    return member_cache[n].type;
 }
 
 /*
@@ -108,6 +139,7 @@ create table rodar_team (
     ID int not null auto_increment,
     name char(80) not null,
     founderID int,
+    founded timestamp not null default now(),
     type enum ('2','3','5','7','12','any') not null default 'any',
     status enum ('active','banned','retired') not null default 'active',
     wins int not null default 0,

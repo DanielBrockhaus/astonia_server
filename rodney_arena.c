@@ -8,6 +8,7 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 */
 
 #include <stdlib.h>
+#include <ctype.h>
 
 #include "server.h"
 #include "libload.h"
@@ -59,22 +60,166 @@ void rodarmaster(int cn,int ret,int lastact) {
     do_idle(cn,TICKS);
 }
 
-static void cmd_rodar(int cn) {
+static int cmd_rodar(int cn) {
     log_char(cn,LOG_SYSTEM,0,"Rodar Help");
+    log_char(cn,LOG_SYSTEM,0,"%s","");
+    log_char(cn,LOG_SYSTEM,0,"/join <team name> - join team");
+    log_char(cn,LOG_SYSTEM,0,"/leave <team name> - leave team");
+    log_char(cn,LOG_SYSTEM,0,"/activate <team name> - activate team membership");
+    log_char(cn,LOG_SYSTEM,0,"/hire <char name> - hire player to active team");
+    log_char(cn,LOG_SYSTEM,0,"/fire <char name> - fire player from active team");
+    log_char(cn,LOG_SYSTEM,0,"/found <team name> - found a new team (1000G)");
+
+    return 2;
+}
+
+static int cmd_found(int cn,char *ptr) {
+    char *tmp;
+    struct rodar_team team;
+
+    while (*ptr==' ') ptr++;
+
+    for (tmp=ptr; *tmp; tmp++) {
+        if (!isalpha(*tmp) && *tmp!=' ') {
+            log_char(cn,LOG_SYSTEM,0,"Syntax: /found <name>. The name must be letters and spaces only.");
+            return 2;
+        }
+    }
+
+    // eat trailing spaces
+    while (tmp[-1]==' ') tmp--;
+    tmp[0]=0;
+
+    if (tmp-ptr<3) {
+        log_char(cn,LOG_SYSTEM,0,"Team name must be at least three letters.");
+        return 2;
+    }
+    if (tmp-ptr>42) {
+        log_char(cn,LOG_SYSTEM,0,"Team name must be at most 42 letters.");
+        return 2;
+    }
+
+    if (ch[cn].gold<1000*100) {
+        log_char(cn,LOG_SYSTEM,0,"You cannot afford to found a team. The fee is 1000G.");
+        return 2;
+    }
+
+    // check if the team already exists. asynchronous database access is a pain.
+    if (rodar_team_byname(ptr,&team)==0) {
+        // team doesn't exist yet, create it
+        db_create_team(ptr,ch[cn].ID);
+        db_read_team(ptr);
+        return 3;
+    }
+
+    // team was loaded and founder is cn
+    if (team.ID && team.founderID==ch[cn].ID) {
+        log_char(cn,LOG_SYSTEM,0,"Success. You've founded the team '%s'!",team.name);
+        // TODO: we waive the fee if the team is older than 3 seconds. this is a hack and should be fixed eventually.
+        if (time_now-team.founded<3) {
+            ch[cn].gold-=1000*100;
+            ch[cn].flags|=CF_ITEMS;
+        }
+        db_add_team_member(team.ID,ch[cn].ID,MEMBER_OWNER);
+        return 2;
+    } else if (team.ID) {   // team was loaded and founder is not cn
+        log_char(cn,LOG_SYSTEM,0,"Failure. There is already a team called '%s'!",team.name);
+        return 2;
+    } else {    // team wasn't loaded
+        db_read_team(ptr);
+        return 3;
+    }
+}
+
+static int cmd_join(int cn,char *ptr) {
+    char *tmp;
+    struct rodar_team team;
+    int type;
+
+    while (*ptr==' ') ptr++;
+
+    for (tmp=ptr; *tmp; tmp++) {
+        if (!isalpha(*tmp) && *tmp!=' ') {
+            log_char(cn,LOG_SYSTEM,0,"Syntax: /join <name>. The name must be letters and spaces only.");
+            return 2;
+        }
+    }
+
+    // team not found
+    if (rodar_team_byname(ptr,&team)==-1) {
+        db_read_team(ptr);
+        return 3;
+    }
+
+    // load team
+    if (!team.ID) {
+        log_char(cn,LOG_SYSTEM,0,"No team by that name.");
+        return 2;
+    }
+
+    if ((type=rodar_member(team.ID,ch[cn].ID))==-1) {
+        db_read_member(team.ID,ch[cn].ID);
+        return 3;
+    }
+
+    log_char(cn,LOG_SYSTEM,0,"Type %d found.",type);
+
+    return 2;
+}
+
+static int cmd_activate(int cn,char *ptr) {
+    char *tmp;
+    struct rodar_team team;
+    int type;
+
+    while (*ptr==' ') ptr++;
+
+    for (tmp=ptr; *tmp; tmp++) {
+        if (!isalpha(*tmp) && *tmp!=' ') {
+            log_char(cn,LOG_SYSTEM,0,"Syntax: /activate <name>. The name must be letters and spaces only.");
+            return 2;
+        }
+    }
+
+    // team not found
+    if (rodar_team_byname(ptr,&team)==-1) {
+        db_read_team(ptr);
+        return 3;
+    }
+
+    // load team
+    if (!team.ID) {
+        log_char(cn,LOG_SYSTEM,0,"No team by that name.");
+        return 2;
+    }
+
+    if ((type=rodar_member(team.ID,ch[cn].ID))==-1) {
+        db_read_member(team.ID,ch[cn].ID);
+        return 3;
+    }
+
+    if (type==MEMBER_NONE) {
+        log_char(cn,LOG_SYSTEM,0,"You are not member of team %s.",team.name);
+        return 2;
+    }
+
+    log_char(cn,LOG_SYSTEM,0,"Team %s membership of rank %s activated.",team.name,rodar_membertype2(type));
+
+    return 2;
 }
 
 int rodar_parser(int cn,char *ptr) {
-    static struct rodar_team team;
+    int len;
 
     if (*ptr=='#' || *ptr=='/') {
         ptr++;
 
-        if (cmdcmp(ptr,"rodar",4)) { cmd_rodar(cn); return 2; }
-        if (cmdcmp(ptr,"found",4)) { db_create_team("Godlike",ch[cn].ID); return 2; }
-        if (cmdcmp(ptr,"read",4)) { db_read_team("Godlike"); return 2; }
-        if (cmdcmp(ptr,"show",4)) { rodar_team_byname("Godlike",&team); log_char(cn,LOG_SYSTEM,0,"ID=%d, name=%s, founder=%d",team.ID,team.name,team.founderID); return 2; }
-        if (cmdcmp(ptr,"write",4)) { team.type=TEAM2; db_write_team(&team); return 2; }
-        if (cmdcmp(ptr,"add",3)) { db_add_team_member(1,3,MEMBER); return 2; }
+        if (cmdcmp(ptr,"rodar",4)) return cmd_rodar(cn);
+        if ((len=cmdcmp(ptr,"found",4))) return cmd_found(cn,ptr+len);
+        if ((len=cmdcmp(ptr,"join",4))) return cmd_join(cn,ptr+len);
+        if ((len=cmdcmp(ptr,"activate",4))) return cmd_activate(cn,ptr+len);
+        //if ((len=cmdcmp(ptr,"hire",4))) return cmd_hire(cn,ptr+len);
+        //if ((len=cmdcmp(ptr,"fire",4))) return cmd_fire(cn,ptr+len);
     }
 
     return 1;

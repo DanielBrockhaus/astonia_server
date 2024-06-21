@@ -86,6 +86,7 @@
 #define DT_PVPLIST		20
 #define DT_KARMALOG		21
 #define DT_LOAD_TEAM    22
+#define DT_LOAD_MEMBER  23
 
 #define MAXAREA		50
 #define MAXMIRROR	27
@@ -116,6 +117,7 @@ void db_pvplist(char *killer,char *victim);
 int isbanned_iplog(int ip);
 void add_iplog(int ID,unsigned int ip);
 static void db_load_team(char *team);
+static void db_load_member(char *team,char *member);
 
 static pthread_t db_tid;
 static pthread_mutex_t data_mutex;
@@ -1241,6 +1243,7 @@ void list_queries(int cn) {
         if (q->type==DT_LOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: lock name %s",q->nr,q->opt1);
         if (q->type==DT_UNLOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: unlock name %s",q->nr,q->opt1);
         if (q->type==DT_LOAD_TEAM) log_char(cn,LOG_SYSTEM,0,"%d: query: load team %s",q->nr,q->opt1);
+        if (q->type==DT_LOAD_MEMBER) log_char(cn,LOG_SYSTEM,0,"%d: query: load member %s",q->nr,q->opt1);
     }
     pthread_mutex_unlock(&data_mutex);
 
@@ -1279,9 +1282,9 @@ static void db_thread_sub(void) {
 
         switch (type) {
             case DT_QUERY:		if (mysql_query_con(&mysql,opt1)) {
-                    elog("Failed to create %s entry query=\"%60.60s\": Error: %s (%d)",opt2,opt1,mysql_error(&mysql),mysql_errno(&mysql));
+                    elog("Failed to create %s entry query=\"%.60s\": Error: %s (%d)",opt2,opt1,mysql_error(&mysql),mysql_errno(&mysql));
                 }
-                if (mysql_affected_rows(&mysql)==0) elog("(%60.60s) affected %llu rows",opt1,mysql_affected_rows(&mysql));
+                if (mysql_affected_rows(&mysql)==0) elog("(%.60s) affected %llu rows",opt1,mysql_affected_rows(&mysql));
                 break;
             case DT_LOAD:		load_char(opt1,opt2);
                 break;
@@ -1324,6 +1327,8 @@ static void db_thread_sub(void) {
             case DT_PVPLIST:	db_pvplist(opt1,opt2);
                 break;
             case DT_LOAD_TEAM:  db_load_team(opt1);
+                break;
+            case DT_LOAD_MEMBER:  db_load_member(opt1,opt2);
                 break;
         }
 
@@ -3606,35 +3611,45 @@ int isbanned_iplog(int ip) {
 #include "rodar_helper.h"
 
 
-int db_create_team(char *name,int founderID) {
+void db_create_team(char *name,int founderID) {
     char buf[256];
 
     sprintf(buf,"insert rodar_team set name='%s', founderID=%d",name,founderID);
     add_query(DT_QUERY,buf,"create rodar team",0);
-
-    return 0;
 }
 
-int db_add_team_member(int teamID,int charID,enum membertype type) {
+void db_add_team_member(int teamID,int charID,enum membertype type) {
     char buf[256];
 
     sprintf(buf,"insert rodar_member set teamID=%d, charID=%d, type='%s'",teamID,charID,rodar_membertype2(type));
-    add_query(DT_QUERY,buf,"create rodar team",0);
-
-    return 0;
+    add_query(DT_QUERY,buf,"add rodar team member",0);
 }
 
-int db_read_team(char *name) {
+void db_del_team_member(int teamID,int charID) {
+    char buf[256];
+
+    sprintf(buf,"delete from rodar_member where teamID=%d and charID=%d'",teamID,charID);
+    add_query(DT_QUERY,buf,"del rodar team member",0);
+}
+
+void db_read_member(int teamID,int charID) {
+    char buf1[80],buf2[80];
+
+    sprintf(buf1,"%d",teamID);
+    sprintf(buf2,"%d",charID);
+
+    add_query(DT_LOAD_MEMBER,buf1,buf2,0);
+}
+
+void db_read_team(char *name) {
     add_query(DT_LOAD_TEAM,name,NULL,0);
-
-    return 0;
 }
 
-int db_read_team_byID(int ID) {
+void db_read_team_byID(int ID) {
     char buf[80];
 
     sprintf(buf,"%d",ID);
-    return db_read_team(buf);
+    db_read_team(buf);
 }
 
 static void db_load_team(char *name_or_ID) {
@@ -3643,7 +3658,7 @@ static void db_load_team(char *name_or_ID) {
     char buf[256];
     struct rodar_team team;
 
-    sprintf(buf,"select ID,name,founderID,type,status,wins,losses,kills,killed,score from rodar_team where %s='%s'",
+    sprintf(buf,"select ID,name,founderID,unix_timestamp(founded),type,status,wins,losses,kills,killed,score from rodar_team where %s='%s'",
             isdigit(name_or_ID[0])?"ID":"name",name_or_ID);
 
     if (mysql_query_con(&mysql,buf)) {
@@ -3674,20 +3689,57 @@ static void db_load_team(char *name_or_ID) {
     team.ID=atoi(row[0]);
     strncpy(team.name,row[1],79); team.name[79]=0;
     team.founderID=atoi(row[2]);
-    team.type=rodar_teamtype(row[3]);
-    team.status=rodar_teamstatus(row[4]);
-    team.wins=atoi(row[5]);
-    team.losses=atoi(row[6]);
-    team.kills=atoi(row[7]);
-    team.killed=atoi(row[8]);
-    team.score=atoi(row[9]);
+    team.founded=atoi(row[3]);
+    team.type=rodar_teamtype(row[4]);
+    team.status=rodar_teamstatus(row[5]);
+    team.wins=atoi(row[6]);
+    team.losses=atoi(row[7]);
+    team.kills=atoi(row[8]);
+    team.killed=atoi(row[9]);
+    team.score=atoi(row[10]);
 
     rodar_cache_team(name_or_ID,&team);
 
     mysql_free_result_cnt(result);
 }
 
-int db_write_team(struct rodar_team *team) {
+static void db_load_member(char *teamID,char *charID) {
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    char buf[256];
+
+    sprintf(buf,"select type from rodar_member where teamID=%s and charID=%s",teamID,charID);
+
+    if (mysql_query_con(&mysql,buf)) {
+        elog("Failed to select team member: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+    if (!(result=mysql_store_result_cnt(&mysql))) {
+        elog("Failed to store result: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+    if (mysql_num_rows(result)==0) {
+        rodar_cache_member(atoi(teamID),atoi(charID),MEMBER_NONE);
+        mysql_free_result_cnt(result);
+        return;
+    }
+    if (!(row=mysql_fetch_row(result))) {
+        elog("db_load_member: fetch_row returned NULL");
+        mysql_free_result_cnt(result);
+        return;
+    }
+    if (!row[0]) {
+        elog("db_load_member: one of the values NULL");
+        mysql_free_result_cnt(result);
+        return;
+    }
+
+    rodar_cache_member(atoi(teamID),atoi(charID),rodar_membertype(row[0]));
+
+    mysql_free_result_cnt(result);
+}
+
+void db_write_team(struct rodar_team *team) {
     char buf[512];
 
     sprintf(buf,"update rodar_team set name='%s', type='%s', status='%s', wins=%d, losses=%d, kills=%d, killed=%d, score=%d where ID=%d",
@@ -3696,7 +3748,5 @@ int db_write_team(struct rodar_team *team) {
             team->ID);
 
     add_query(DT_QUERY,buf,"update rodar team",0);
-
-    return 0;
 }
 
