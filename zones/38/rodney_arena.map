@@ -321466,15 +321466,15 @@ gsprite=59137
 flag=MF_INDOORS
 
 field="230,248"
-gsprite=59138
+gsprite=793896706
 flag=MF_INDOORS
 
 field="231,248"
-gsprite=59136
+gsprite=793896704
 flag=MF_INDOORS
 
 field="232,248"
-gsprite=59137
+gsprite=793896705
 flag=MF_INDOORS
 
 field="233,248"
@@ -322508,23 +322508,26 @@ gsprite=59130
 flag=MF_INDOORS
 
 field="229,249"
-gsprite=59131
+gsprite=793700091
 flag=MF_INDOORS
 
 field="230,249"
-gsprite=59132
+gsprite=50027
 flag=MF_INDOORS
+flag=MF_RESTAREA
 
 field="231,249"
-gsprite=59130
+gsprite=50035
 flag=MF_INDOORS
+flag=MF_RESTAREA
 
 field="232,249"
-gsprite=59131
+gsprite=50033
 flag=MF_INDOORS
+flag=MF_RESTAREA
 
 field="233,249"
-gsprite=59132
+gsprite=793831164
 flag=MF_INDOORS
 
 field="234,249"
@@ -323552,23 +323555,26 @@ gsprite=59133
 flag=MF_INDOORS
 
 field="229,250"
-gsprite=59134
+gsprite=793700094
 flag=MF_INDOORS
 
 field="230,250"
-gsprite=59135
+gsprite=50028
 flag=MF_INDOORS
+flag=MF_RESTAREA
 
 field="231,250"
-gsprite=59133
+gsprite=50036
 flag=MF_INDOORS
+flag=MF_RESTAREA
 
 field="232,250"
-gsprite=59134
+gsprite=793690992
 flag=MF_INDOORS
+flag=MF_RESTAREA
 
 field="233,250"
-gsprite=59135
+gsprite=793831167
 flag=MF_INDOORS
 
 field="234,250"
@@ -324598,23 +324604,26 @@ gsprite=59136
 flag=MF_INDOORS
 
 field="229,251"
-gsprite=59137
+gsprite=793700097
 flag=MF_INDOORS
 
 field="230,251"
-gsprite=59138
+gsprite=50029
 flag=MF_INDOORS
+flag=MF_RESTAREA
 
 field="231,251"
-gsprite=59136
+gsprite=50030
 flag=MF_INDOORS
+flag=MF_RESTAREA
 
 field="232,251"
-gsprite=59137
+gsprite=793690991
 flag=MF_INDOORS
+flag=MF_RESTAREA
 
 field="233,251"
-gsprite=59138
+gsprite=793831170
 flag=MF_INDOORS
 
 field="234,251"
@@ -325654,15 +325663,15 @@ gsprite=59131
 flag=MF_INDOORS
 
 field="230,252"
-gsprite=59132
+gsprite=793765628
 flag=MF_INDOORS
 
 field="231,252"
-gsprite=59130
+gsprite=793765626
 flag=MF_INDOORS
 
 field="232,252"
-gsprite=59131
+gsprite=793765627
 flag=MF_INDOORS
 
 field="233,252"

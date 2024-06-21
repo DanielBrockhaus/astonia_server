@@ -3628,7 +3628,7 @@ void db_add_team_member(int teamID,int charID,enum membertype type) {
 void db_del_team_member(int teamID,int charID) {
     char buf[256];
 
-    sprintf(buf,"delete from rodar_member where teamID=%d and charID=%d'",teamID,charID);
+    sprintf(buf,"delete from rodar_member where teamID=%d and charID=%d",teamID,charID);
     add_query(DT_QUERY,buf,"del rodar team member",0);
 }
 

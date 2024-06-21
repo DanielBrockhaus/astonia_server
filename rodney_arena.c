@@ -9,6 +9,7 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
 #include "server.h"
 #include "libload.h"
@@ -18,9 +19,12 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 #include "do.h"
 #include "log.h"
 #include "talk.h"
+#include "create.h"
 #include "command.h"
+#include "drdata.h"
 #include "rodar_helper.h"
 #include "database.h"
+#include "lookup.h"
 
 // library helper functions needed for init
 int ch_driver(int nr,int cn,int ret,int lastact);           // character driver (decides next action)
@@ -134,7 +138,7 @@ static int cmd_found(int cn,char *ptr) {
 static int cmd_join(int cn,char *ptr) {
     char *tmp;
     struct rodar_team team;
-    int type;
+    struct rodar_drd *dat;
 
     while (*ptr==' ') ptr++;
 
@@ -157,12 +161,12 @@ static int cmd_join(int cn,char *ptr) {
         return 2;
     }
 
-    if ((type=rodar_member(team.ID,ch[cn].ID))==-1) {
-        db_read_member(team.ID,ch[cn].ID);
-        return 3;
-    }
+    dat=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat) return 2;
 
-    log_char(cn,LOG_SYSTEM,0,"Type %d found.",type);
+    dat->joinID=team.ID;
+
+    log_char(cn,LOG_SYSTEM,0,"Team %s membership requested. An admin or the owner must now hire you.",team.name);
 
     return 2;
 }
@@ -170,6 +174,7 @@ static int cmd_join(int cn,char *ptr) {
 static int cmd_activate(int cn,char *ptr) {
     char *tmp;
     struct rodar_team team;
+    struct rodar_drd *dat;
     int type;
 
     while (*ptr==' ') ptr++;
@@ -203,7 +208,160 @@ static int cmd_activate(int cn,char *ptr) {
         return 2;
     }
 
+    dat=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat) return 2;
+
+    dat->teamID=team.ID;
+    dat->memtype=type;
+
     log_char(cn,LOG_SYSTEM,0,"Team %s membership of rank %s activated.",team.name,rodar_membertype2(type));
+
+    return 2;
+}
+
+// why isn't this in tool.c?
+int find_char_byname(char *name) {
+    int co;
+
+    for (co=getfirst_char(); co; co=getnext_char(co)) {
+        if (!(ch[co].flags&CF_PLAYER)) continue;
+        if (!strcasecmp(name,ch[co].name)) break;
+    }
+    return co;
+}
+
+static int cmd_hire(int cn,char *ptr) {
+    char *tmp;
+    struct rodar_drd *dat1,*dat2;
+    int co;
+    enum membertype type;
+
+    while (*ptr==' ') ptr++;
+
+    for (tmp=ptr; *tmp; tmp++) {
+        if (!isalpha(*tmp)) {
+            log_char(cn,LOG_SYSTEM,0,"Syntax: /hire <name>. The name must be letters only.");
+            return 2;
+        }
+    }
+
+    dat1=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat1) return 2;
+
+    if (!dat1->teamID) {
+        log_char(cn,LOG_SYSTEM,0,"You have not activated your team membership.");
+        return 2;
+    }
+    if (dat1->memtype!=MEMBER_ADMIN && dat1->memtype!=MEMBER_OWNER) {
+        log_char(cn,LOG_SYSTEM,0,"You lack the required rank in your team.");
+        return 2;
+    }
+
+    co=find_char_byname(ptr);
+    if (!co) {
+        log_char(cn,LOG_SYSTEM,0,"No player by that name in this area.");
+        return 2;
+    }
+
+    dat2=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat2) return 2;
+
+    if (dat2->joinID!=dat1->teamID) {
+        log_char(cn,LOG_SYSTEM,0,"%s has not asked to join your team.",ch[co].name);
+        return 2;
+    }
+
+    if ((type=rodar_member(dat1->teamID,ch[co].ID))==-1) {
+        db_read_member(dat1->teamID,ch[co].ID);
+        return 3;
+    }
+
+    if (type!=MEMBER_NONE) {
+        log_char(cn,LOG_SYSTEM,0,"%s is already a member of your team.",ch[co].name);
+        return 2;
+    }
+
+    db_add_team_member(dat1->teamID,ch[co].ID,MEMBER);
+    db_read_member(dat1->teamID,ch[co].ID);
+
+    log_char(cn,LOG_SYSTEM,0,"%s is now a member of your team.",ch[co].name);
+    log_char(co,LOG_SYSTEM,0,"Your team application has been accepted by %s.",ch[cn].name);
+
+    return 2;
+}
+
+
+static int cmd_fire(int cn,char *ptr) {
+    char *tmp,name[80];
+    struct rodar_drd *dat1,*dat2;
+    int co,coID;
+    enum membertype type;
+
+    while (*ptr==' ') ptr++;
+
+    for (tmp=ptr; *tmp; tmp++) {
+        if (!isalpha(*tmp)) {
+            log_char(cn,LOG_SYSTEM,0,"Syntax: /fire <name>. The name must be letters only.");
+            return 2;
+        }
+    }
+
+    dat1=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat1) return 2;
+
+    if (!dat1->teamID) {
+        log_char(cn,LOG_SYSTEM,0,"You have not activated your team membership.");
+        return 2;
+    }
+    if (dat1->memtype!=MEMBER_ADMIN && dat1->memtype!=MEMBER_OWNER) {
+        log_char(cn,LOG_SYSTEM,0,"You lack the required rank in your team.");
+        return 2;
+    }
+
+    coID=lookup_name(ptr,name);
+    if (!coID) return 3;    // waiting for database
+
+    if (coID==-1) {
+        log_char(cn,LOG_SYSTEM,0,"No player by that name.");
+        return 2;
+    }
+
+    if ((type=rodar_member(dat1->teamID,coID))==-1) {
+        db_read_member(dat1->teamID,coID);
+        return 3;
+    }
+
+    if (type==MEMBER_NONE) {
+        log_char(cn,LOG_SYSTEM,0,"%s is not a member of your team.",name);
+        return 2;
+    }
+
+    if (type==MEMBER_OWNER) {
+        log_char(cn,LOG_SYSTEM,0,"You cannot fire the owner of a team.");
+        return 2;
+    }
+
+    if (type==MEMBER_ADMIN && dat1->memtype!=MEMBER_OWNER) {
+        log_char(cn,LOG_SYSTEM,0,"Only the owner can fire admins.");
+        return 2;
+    }
+
+    db_del_team_member(dat1->teamID,coID);
+    db_read_member(dat1->teamID,coID);
+
+    co=find_char_byname(ptr);
+    if (co) {
+        dat2=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
+        if (dat2) {
+            if (dat2->teamID==dat1->teamID) {
+                dat1->teamID=0;
+                dat1->memtype=0;
+                log_char(co,LOG_SYSTEM,0,"You have been fired from your active team.");
+            }
+        }
+    }
+
+    log_char(cn,LOG_SYSTEM,0,"%s has been fired.",name);
 
     return 2;
 }
@@ -218,23 +376,56 @@ int rodar_parser(int cn,char *ptr) {
         if ((len=cmdcmp(ptr,"found",4))) return cmd_found(cn,ptr+len);
         if ((len=cmdcmp(ptr,"join",4))) return cmd_join(cn,ptr+len);
         if ((len=cmdcmp(ptr,"activate",4))) return cmd_activate(cn,ptr+len);
-        //if ((len=cmdcmp(ptr,"hire",4))) return cmd_hire(cn,ptr+len);
-        //if ((len=cmdcmp(ptr,"fire",4))) return cmd_fire(cn,ptr+len);
+        if ((len=cmdcmp(ptr,"hire",4))) return cmd_hire(cn,ptr+len);
+        if ((len=cmdcmp(ptr,"fire",4))) return cmd_fire(cn,ptr+len);
     }
 
     return 1;
 }
 
 int rodar_canattack(int cn,int co) {
-    xlog("can attack %d %d",cn,co);
-    return 1;   // 1 = use default, 2 = yes, 3 = no
+    int m,mf1,mf2;
+    struct rodar_drd *dat1,*dat2;
+
+    dat1=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat1) return 0;
+
+    dat2=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat2) return 0;
+
+    // one is not a team member. no fighting.
+    if (!dat1->teamID || !dat2->teamID) return 3;
+
+    // team members don't attack each other
+    if (dat1->teamID==dat2->teamID) return 3;
+
+    m=ch[cn].x+ch[cn].y*MAXMAP;
+    mf1=map[m].flags;
+
+    m=ch[co].x+ch[co].y*MAXMAP;
+    mf2=map[m].flags;
+
+    // arena is fair game
+    if ((mf1&MF_ARENA) && (mf2&MF_ARENA)) return 2;
+
+    // everywhere else not
+    return 3;   // 1 = use default, 2 = yes, 3 = no
 }
 
 int rodar_canhelp(int cn,int co) {
-    xlog("can help %d %d",cn,co);
-    return 1;   // 1 = use default, 2 = yes, 3 = no
-}
+    struct rodar_drd *dat1,*dat2;
 
+    dat1=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat1) return 0;
+
+    dat2=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat2) return 0;
+
+    // team members can help each other
+    if (dat1->teamID && dat1->teamID==dat2->teamID) return 2;
+
+    return 3;   // 1 = use default, 2 = yes, 3 = no
+}
 
 void immortal_dead(int cn,int co) {
     charlog(cn,"I JUST DIED! I'M SUPPOSED TO BE IMMORTAL!");

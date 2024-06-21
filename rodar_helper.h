@@ -41,6 +41,13 @@ struct rodar_member {
     enum membertype type;
 };
 
+struct rodar_drd {
+    int teamID; // active team
+    enum membertype memtype;
+
+    int joinID; // team player wants to join
+};
+
 enum teamtype rodar_teamtype(char *val);
 enum teamstatus rodar_teamstatus(char *val);
 char *rodar_teamtype2(enum teamtype type);
