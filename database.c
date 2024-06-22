@@ -3757,3 +3757,27 @@ void db_write_team(struct rodar_team *team) {
     add_query(DT_QUERY,buf,"update rodar team",0);
 }
 
+void db_write_team_name(int teamID,char *name) {
+    char buf[512];
+
+    sprintf(buf,"update rodar_team set name='%s' where ID=%d",name,teamID);
+
+    add_query(DT_QUERY,buf,"name update rodar team",0);
+}
+
+void db_write_team_status(int teamID,enum teamstatus status) {
+    char buf[512];
+
+    sprintf(buf,"update rodar_team set status='%s' where ID=%d",rodar_teamstatus2(status),teamID);
+
+    add_query(DT_QUERY,buf,"status update rodar team",0);
+}
+
+void db_inc_team_value(int teamID,char *value) {
+    char buf[512];
+
+    sprintf(buf,"update rodar_team set '%s'='%s'+1 where ID=%d",value,value,teamID);
+
+    add_query(DT_QUERY,buf,"inc update rodar team",0);
+}
+

@@ -65,6 +65,7 @@ void rodarmaster(int cn,int ret,int lastact) {
 }
 
 static int cmd_rodar(int cn) {
+
     log_char(cn,LOG_SYSTEM,0,"Rodar Help");
     log_char(cn,LOG_SYSTEM,0,"%s","");
     log_char(cn,LOG_SYSTEM,0,"/join <team name> - join team");
@@ -75,6 +76,13 @@ static int cmd_rodar(int cn) {
     log_char(cn,LOG_SYSTEM,0,"/promote <char name> - promote player to admin in the active team");
     log_char(cn,LOG_SYSTEM,0,"/demote <char name> - demote player from admin to member");
     log_char(cn,LOG_SYSTEM,0,"/found <team name> - found a new team (1000G)");
+
+    if (ch[cn].flags&CF_GOD) {
+        log_char(cn,LOG_SYSTEM,0,"/setteam <team name> - temporarily join team");
+        log_char(cn,LOG_SYSTEM,0,"/rename <new team name> - rename active team");
+        log_char(cn,LOG_SYSTEM,0,"/ban <team name> - ban team");
+        log_char(cn,LOG_SYSTEM,0,"/unban <team name> - unban team");
+    }
 
     return 2;
 }
@@ -224,7 +232,7 @@ static int cmd_leave(int cn,char *ptr) {
     return 2;
 }
 
-static int cmd_activate(int cn,char *ptr) {
+static int cmd_activate(int cn,char *ptr,int godmode) {
     char *tmp;
     struct rodar_team team;
     struct rodar_drd *dat;
@@ -239,19 +247,24 @@ static int cmd_activate(int cn,char *ptr) {
         }
     }
 
-    // team not found
+    // load team
     if (rodar_team_byname(ptr,&team)==-1) {
         db_read_team(ptr);
         return 3;
     }
 
-    // load team
     if (!team.ID) {
         log_char(cn,LOG_SYSTEM,0,"No team by that name.");
         return 2;
     }
 
-    if ((type=rodar_member(team.ID,ch[cn].ID))==-1) {
+    if (team.status!=TEAM_ACTIVE) {
+        log_char(cn,LOG_SYSTEM,0,"That team has been %s.",rodar_teamstatus2(team.status));
+        return 2;
+    }
+
+    if (godmode) type=MEMBER_OWNER;
+    else if ((type=rodar_member(team.ID,ch[cn].ID))==-1) {
         db_read_member(team.ID,ch[cn].ID);
         return 3;
     }
@@ -419,7 +432,7 @@ static int cmd_fire(int cn,char *ptr) {
     return 2;
 }
 
-static int cmd_admin(int cn,char *ptr,int promote) {
+static int cmd_promote(int cn,char *ptr,int promote) {
     char *tmp,name[80];
     struct rodar_drd *dat1,*dat2;
     int co,coID;
@@ -429,7 +442,7 @@ static int cmd_admin(int cn,char *ptr,int promote) {
 
     for (tmp=ptr; *tmp; tmp++) {
         if (!isalpha(*tmp)) {
-            log_char(cn,LOG_SYSTEM,0,"Syntax: /admin <name>. The name must be letters only.");
+            log_char(cn,LOG_SYSTEM,0,"Syntax: %s <name>. The name must be letters only.",promote?"/promote":"/demote");
             return 2;
         }
     }
@@ -442,7 +455,7 @@ static int cmd_admin(int cn,char *ptr,int promote) {
         return 2;
     }
     if (dat1->memtype!=MEMBER_OWNER) {
-        log_char(cn,LOG_SYSTEM,0,"Only the owner can make new admins.");
+        log_char(cn,LOG_SYSTEM,0,"Only the owner can promote or demote.");
         return 2;
     }
 
@@ -502,6 +515,111 @@ static int cmd_admin(int cn,char *ptr,int promote) {
     return 2;
 }
 
+static int cmd_rename(int cn,char *ptr) {
+    char *tmp;
+    struct rodar_team team;
+    struct rodar_drd *dat;
+
+    while (*ptr==' ') ptr++;
+
+    for (tmp=ptr; *tmp; tmp++) {
+        if (!isalpha(*tmp) && *tmp!=' ') {
+            log_char(cn,LOG_SYSTEM,0,"Syntax: /rename <name>. The name must be letters and spaces only.");
+            return 2;
+        }
+    }
+
+    // eat trailing spaces
+    while (tmp[-1]==' ') tmp--;
+    tmp[0]=0;
+
+    if (tmp-ptr<3) {
+        log_char(cn,LOG_SYSTEM,0,"Team name must be at least three letters.");
+        return 2;
+    }
+    if (tmp-ptr>42) {
+        log_char(cn,LOG_SYSTEM,0,"Team name must be at most 42 letters.");
+        return 2;
+    }
+
+    dat=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat) return 2;
+
+    if (!dat->teamID) {
+        log_char(cn,LOG_SYSTEM,0,"You need to /setteam first.");
+        return 2;
+    }
+
+    // team not found
+    if (rodar_team_byname(ptr,&team)==-1) {
+        db_read_team(ptr);
+        return 3;
+    }
+
+    // load team
+    if (team.ID) {
+        log_char(cn,LOG_SYSTEM,0,"New name already exists.");
+        return 2;
+    }
+
+    db_write_team_name(dat->teamID,ptr);
+    db_read_team_byID(dat->teamID);
+
+    log_char(cn,LOG_SYSTEM,0,"Rename scheduled.");
+
+    return 2;
+}
+
+static int cmd_ban(int cn,char *ptr,int doban) {
+    char *tmp;
+    struct rodar_team team;
+    struct rodar_drd *dat;
+    int co;
+
+    while (*ptr==' ') ptr++;
+
+    for (tmp=ptr; *tmp; tmp++) {
+        if (!isalpha(*tmp) && *tmp!=' ') {
+            log_char(cn,LOG_SYSTEM,0,"Syntax: /%s <name>. The name must be letters and spaces only.",doban?"ban":"unban");
+            return 2;
+        }
+    }
+
+    // team not found
+    if (rodar_team_byname(ptr,&team)==-1) {
+        db_read_team(ptr);
+        return 3;
+    }
+
+    // load team
+    if (!team.ID) {
+        log_char(cn,LOG_SYSTEM,0,"No team by that name.");
+        return 2;
+    }
+
+    if (doban) db_write_team_status(team.ID,TEAM_BANNED);
+    else db_write_team_status(team.ID,TEAM_ACTIVE);
+    db_read_team_byID(team.ID);
+
+    if (doban) {
+        for (co=getfirst_char(); co; co=getnext_char(co)) {
+            if (!(ch[co].flags&CF_PLAYER)) continue;
+
+            dat=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
+            if (!dat) continue;
+
+            if (dat->teamID==team.ID) {
+                dat->teamID=0;
+                dat->memtype=0;
+            }
+        }
+    }
+
+    log_char(cn,LOG_SYSTEM,0,"%s scheduled.",doban?"Ban":"Unban");
+
+    return 2;
+}
+
 int rodar_parser(int cn,char *ptr) {
     int len;
 
@@ -511,12 +629,19 @@ int rodar_parser(int cn,char *ptr) {
         if (cmdcmp(ptr,"rodar",4)) return cmd_rodar(cn);
         if ((len=cmdcmp(ptr,"found",4))) return cmd_found(cn,ptr+len);
         if ((len=cmdcmp(ptr,"join",4))) return cmd_join(cn,ptr+len);
-        if ((len=cmdcmp(ptr,"activate",4))) return cmd_activate(cn,ptr+len);
+        if ((len=cmdcmp(ptr,"activate",4))) return cmd_activate(cn,ptr+len,0);
         if ((len=cmdcmp(ptr,"leave",4))) return cmd_leave(cn,ptr+len);
         if ((len=cmdcmp(ptr,"hire",4))) return cmd_hire(cn,ptr+len);
         if ((len=cmdcmp(ptr,"fire",4))) return cmd_fire(cn,ptr+len);
-        if ((len=cmdcmp(ptr,"promote",4))) return cmd_admin(cn,ptr+len,1);
-        if ((len=cmdcmp(ptr,"demote",4))) return cmd_admin(cn,ptr+len,0);
+        if ((len=cmdcmp(ptr,"promote",4))) return cmd_promote(cn,ptr+len,1);
+        if ((len=cmdcmp(ptr,"demote",4))) return cmd_promote(cn,ptr+len,0);
+
+        if (ch[cn].flags&CF_GOD) {
+            if ((len=cmdcmp(ptr,"setteam",4))) return cmd_activate(cn,ptr+len,1);
+            if ((len=cmdcmp(ptr,"rename",4))) return cmd_rename(cn,ptr+len);
+            if ((len=cmdcmp(ptr,"ban",3))) return cmd_ban(cn,ptr+len,1);
+            if ((len=cmdcmp(ptr,"unban",4))) return cmd_ban(cn,ptr+len,0);
+        }
     }
 
     return 1;
