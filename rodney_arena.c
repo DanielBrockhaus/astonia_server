@@ -25,6 +25,7 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 #include "rodar_helper.h"
 #include "database.h"
 #include "lookup.h"
+#include "see.h"
 
 // library helper functions needed for init
 int ch_driver(int nr,int cn,int ret,int lastact);           // character driver (decides next action)
@@ -45,16 +46,81 @@ int driver(int type,int nr,int obj,int ret,int lastact) {
     }
 }
 
+struct master_data {
+    struct rodar_event ev;
+};
+
 void rodarmaster(int cn,int ret,int lastact) {
     struct msg *msg,*next;
+    struct master_data *dat;
+    struct rodar_event ev;
+    int n,co;
 
-    //dat=set_data(cn,DRD_RANDOMMASTER,sizeof(struct master_data));
-    //if (!dat) return;   // oops...
+    dat=set_data(cn,DRD_RANDOMMASTER,sizeof(struct master_data));
+    if (!dat) return;   // oops...
 
     // loop through our messages
     for (msg=ch[cn].msg; msg; msg=next) {
         next=msg->next;
+
+        if (msg->type==NT_CREATE) {
+            dat->ev.ID=0;
+            rodar_read_event();
+        }
+
+        if (msg->type==NT_TEXT) {
+            char *ptr=(char *)msg->dat2;
+            co=msg->dat3;
+
+            if (!(ch[co].flags&CF_PLAYER)) { remove_message(cn,msg); continue; }
+            if (!char_see_char(cn,co) || cn==co) { remove_message(cn,msg); continue; }
+            if (char_dist(cn,co)>10) { remove_message(cn,msg); continue; }
+
+            if (strstr(ptr,"Master") && strstr(ptr,"event")) {
+                if (dat->ev.ID) {
+                    if (dat->ev.t>time_now) say(cn,"The event %d will start in %d seconds.",dat->ev.ID,dat->ev.t-time_now);
+                    else say(cn,"The event %d has started %d seconds ago.",dat->ev.ID,time_now-dat->ev.t);
+                    say(cn,"It is for level %d, with %s participants per team and the option %s.",
+                        dat->ev.level,rodar_eventtype2(dat->ev.type),rodar_eventopt2(dat->ev.opt));
+                } else say(cn,"There is no current event.");
+            }
+        }
+
         remove_message(cn,msg);
+    }
+
+    if (rodar_event_loaded()) {
+        // get newest event
+        n=rodar_get_event_cnt();
+        if (!n) {
+            rodar_create_event(time_now);
+        } else {
+            rodar_get_event(n-1,&ev);
+
+            // less than one week in the future?
+            if (ev.t<time_now+60*60*24*7) {
+                rodar_create_event(ev.t);
+            }
+        }
+    }
+
+    // current event
+    if (rodar_event_loaded() && rodar_get_event_cnt()>0) {
+
+        rodar_get_event(0,&ev);
+
+        if (time_now-ev.t>60*30) { // event is over, load new schedule
+            rodar_read_event();
+        } else {
+            if (ev.t-time_now<60*30) { // event will start in less than 30 minutes
+                if (dat->ev.ID!=ev.ID) {
+                    dat->ev=ev;
+
+                    // TODO: clean up arena
+                    xlog("current event: ID=%d, level=%d",dat->ev.ID,dat->ev.level);
+                }
+            }
+        }
     }
 
     if (spell_self_driver(cn)) return;

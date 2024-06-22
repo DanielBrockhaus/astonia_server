@@ -84,9 +84,10 @@
 #define DT_UNLOCKNAME		18
 #define DT_CLUBS		19
 #define DT_PVPLIST		20
-#define DT_KARMALOG		21
-#define DT_LOAD_TEAM    22
-#define DT_LOAD_MEMBER  23
+#define DT_KARMALOG         21
+#define DT_LOAD_TEAM        22
+#define DT_LOAD_MEMBER      23
+#define DT_LOAD_EVENT       24
 
 #define MAXAREA		50
 #define MAXMIRROR	27
@@ -118,6 +119,7 @@ int isbanned_iplog(int ip);
 void add_iplog(int ID,unsigned int ip);
 static void db_load_team(char *team);
 static void db_load_member(char *team,char *member);
+static void db_load_event(void);
 
 static pthread_t db_tid;
 static pthread_mutex_t data_mutex;
@@ -1244,6 +1246,7 @@ void list_queries(int cn) {
         if (q->type==DT_UNLOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: unlock name %s",q->nr,q->opt1);
         if (q->type==DT_LOAD_TEAM) log_char(cn,LOG_SYSTEM,0,"%d: query: load team %s",q->nr,q->opt1);
         if (q->type==DT_LOAD_MEMBER) log_char(cn,LOG_SYSTEM,0,"%d: query: load member %s",q->nr,q->opt1);
+        if (q->type==DT_LOAD_EVENT) log_char(cn,LOG_SYSTEM,0,"%d: query: load event %s",q->nr,q->opt1);
     }
     pthread_mutex_unlock(&data_mutex);
 
@@ -1320,15 +1323,17 @@ static void db_thread_sub(void) {
                 break;
             case DT_STAT_UPDATE:	db_stat_update();
                 break;
-            case DT_LASTSEEN:	db_lastseen(opt1,opt2);
+            case DT_LASTSEEN:	    db_lastseen(opt1,opt2);
                 break;
-            case DT_CLUBS:		db_read_clubs();
+            case DT_CLUBS:		    db_read_clubs();
                 break;
-            case DT_PVPLIST:	db_pvplist(opt1,opt2);
+            case DT_PVPLIST:	    db_pvplist(opt1,opt2);
                 break;
-            case DT_LOAD_TEAM:  db_load_team(opt1);
+            case DT_LOAD_TEAM:      db_load_team(opt1);
                 break;
-            case DT_LOAD_MEMBER:  db_load_member(opt1,opt2);
+            case DT_LOAD_MEMBER:    db_load_member(opt1,opt2);
+                break;
+            case DT_LOAD_EVENT:     db_load_event();
                 break;
         }
 
@@ -3695,7 +3700,7 @@ static void db_load_team(char *name_or_ID) {
     bzero(&team,sizeof(team));
     team.ID=atoi(row[0]);
     strncpy(team.name,row[1],79); team.name[79]=0;
-    team.founderID=atoi(row[2]);
+    if (row[2]) team.founderID=atoi(row[2]); else team.founderID=0;
     team.founded=atoi(row[3]);
     team.type=rodar_teamtype(row[4]);
     team.status=rodar_teamstatus(row[5]);
@@ -3779,5 +3784,45 @@ void db_inc_team_value(int teamID,char *value) {
     sprintf(buf,"update rodar_team set '%s'='%s'+1 where ID=%d",value,value,teamID);
 
     add_query(DT_QUERY,buf,"inc update rodar team",0);
+}
+
+void db_read_event(void) {
+    add_query(DT_LOAD_EVENT,NULL,NULL,0);
+}
+
+static void db_load_event(void) {
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    char buf[256];
+
+    // grab all event entries that do not have a winner and are in the future or less than an hour overdue
+    sprintf(buf,"select ID,unix_timestamp(t),type,option,level,winnerID from rodar_event where isnull(winnerID) and t>from_unixtime(%d)",time_now-60*30);
+    if (mysql_query_con(&mysql,buf)) {
+        elog("Failed to select team event: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+    if (!(result=mysql_store_result_cnt(&mysql))) {
+        elog("Failed to store result: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+
+    rodar_reset_event();
+    while ((row=mysql_fetch_row(result))) {
+        if (!row[0]) continue;
+
+        rodar_add_event(atoi(row[0]),atoi(row[1]),rodar_eventtype(row[2]),rodar_eventopt(row[3]),atoi(row[4]),row[5]?atoi(row[5]):0);
+    }
+    rodar_event_done();
+
+    mysql_free_result_cnt(result);
+}
+
+void db_add_event(int t,enum eventtype type,enum eventopt opt,int level) {
+    char buf[256];
+
+    sprintf(buf,"insert into rodar_event set t=from_unixtime(%d),type='%s',option='%s',level=%d",
+            t,rodar_eventtype2(type),rodar_eventopt2(opt),level);
+
+    add_query(DT_QUERY,buf,"add rodar event",0);
 }
 

@@ -62,6 +62,8 @@ int karmalog(int rID);
 struct rodar_team;
 enum membertype;
 enum teamstatus;
+enum eventtype;
+enum eventopt;
 void db_create_team(char *name,int founderID);
 void db_add_team_member(int teamID,int charID,enum membertype type);
 void db_del_team_member(int teamID,int charID);
@@ -73,4 +75,6 @@ void db_write_team(struct rodar_team *team);
 void db_write_team_name(int teamID,char *name);
 void db_write_team_status(int teamID,enum teamstatus status);
 void db_inc_team_value(int teamID,char *value);
+void db_read_event(void);
+void db_add_event(int t,enum eventtype type,enum eventopt opt,int level);
 

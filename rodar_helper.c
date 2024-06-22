@@ -4,7 +4,13 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <pthread.h>
+#include <stdio.h>
+#include "server.h"
 #include "rodar_helper.h"
+#include "database.h"
+
+static pthread_mutex_t cache_mutex=PTHREAD_MUTEX_INITIALIZER;
 
 enum teamtype rodar_teamtype(char *val) {
     switch (val[0]) {
@@ -60,6 +66,54 @@ char *rodar_membertype2(enum membertype type) {
     }
 }
 
+enum eventtype rodar_eventtype(char *val) {
+    switch (val[0]) {
+        case '2':   return EVENT2;
+        case '3':   return EVENT3;
+        case '5':   return EVENT5;
+        case '7':   return EVENT7;
+        case '1':   return EVENT12;
+        default:    return EVENT_ANY;
+    }
+}
+
+char *rodar_eventtype2(enum eventtype type) {
+    switch (type) {
+        case EVENT2:    return "2";
+        case EVENT3:    return "3";
+        case EVENT5:    return "5";
+        case EVENT7:    return "7";
+        case EVENT12:   return "12";
+        default:        return "any";
+    }
+}
+
+enum eventopt rodar_eventopt(char *val) {
+    enum eventopt opt=EVENT_NONE;
+
+    if (strstr(val,"clan")) opt|=EVENT_CLAN;
+    if (strstr(val,"nomagic")) opt|=EVENT_NOMAGIC;
+    if (strstr(val,"nofreeze")) opt|=EVENT_NOFREEZE;
+    if (strstr(val,"nowarcry")) opt|=EVENT_NOWARCRY;
+
+    return opt;
+}
+
+char *rodar_eventopt2(enum eventopt opt) {
+    static char opts[256];
+    char *ptr=opts;
+    int comma=0;
+
+    *ptr=0;
+    if (opt&EVENT_CLAN) ptr+=sprintf(ptr,"%s%s",comma++?",":"","clan");
+    if (opt&EVENT_NOMAGIC) ptr+=sprintf(ptr,"%s%s",comma++?",":"","nomagic");
+    if (opt&EVENT_NOFREEZE) ptr+=sprintf(ptr,"%s%s",comma++?",":"","nofreeze");
+    if (opt&EVENT_NOWARCRY) ptr+=sprintf(ptr,"%s%s",comma++?",":"","nowarcry");
+
+    return opts;
+}
+
+
 #define MAXTEAM     64
 
 static struct rodar_team team_cache[MAXTEAM]={0};
@@ -68,6 +122,8 @@ static int team_idx=0;
 void rodar_cache_team(char *name_or_ID,struct rodar_team *team) {
     int n;
     int tID=atoi(name_or_ID);
+
+    pthread_mutex_lock(&cache_mutex);
 
     for (n=0; n<MAXTEAM; n++) {
         if (tID) {
@@ -84,21 +140,33 @@ void rodar_cache_team(char *name_or_ID,struct rodar_team *team) {
         bzero(&team_cache[n],sizeof(team_cache[n]));
         strcpy(team_cache[n].name,name_or_ID);
     }
+
+    pthread_mutex_unlock(&cache_mutex);
 }
 
 int rodar_team_byname(char *name,struct rodar_team *team) {
     int n;
+    int teamID;
+
+    pthread_mutex_lock(&cache_mutex);
 
     for (n=0; n<MAXTEAM; n++)
         if (!strcasecmp(team_cache[n].name,name)) break;
+
     if (n==MAXTEAM) {
+        pthread_mutex_unlock(&cache_mutex);
+
         if (team) bzero(team,sizeof(struct rodar_team));
         return -1;
     }
 
+    teamID=team_cache[n].ID;
+
     if (team) *team=team_cache[n];
 
-    return team_cache[n].ID;
+    pthread_mutex_unlock(&cache_mutex);
+
+    return teamID;
 }
 
 #define MAXMEMBER   256
@@ -109,6 +177,8 @@ static int member_idx=0;
 void rodar_cache_member(int teamID,int charID,int type) {
     int n;
 
+    pthread_mutex_lock(&cache_mutex);
+
     for (n=0; n<MAXMEMBER; n++) {
         if (member_cache[n].teamID==teamID && member_cache[n].charID==charID) break;
     }
@@ -117,20 +187,160 @@ void rodar_cache_member(int teamID,int charID,int type) {
     member_cache[n].teamID=teamID;
     member_cache[n].charID=charID;
     member_cache[n].type=type;
+
+    pthread_mutex_unlock(&cache_mutex);
 }
 
 int rodar_member(int teamID,int charID) {
     int n;
+    enum membertype type;
+
+    pthread_mutex_lock(&cache_mutex);
 
     for (n=0; n<MAXMEMBER; n++)
         if (member_cache[n].teamID==teamID && member_cache[n].charID==charID) break;
-    if (n==MAXMEMBER) return -1;
 
-    return member_cache[n].type;
+    if (n==MAXMEMBER) {
+        pthread_mutex_unlock(&cache_mutex);
+        return -1;
+    }
+
+    type=member_cache[n].type;
+
+    pthread_mutex_unlock(&cache_mutex);
+
+    return type;
+}
+
+#define MAXSCHED    672 // 7 days, 24 hours, 4 events per hour
+
+static struct rodar_event events[MAXSCHED];
+static int event_cnt,event_loaded=0;
+
+void rodar_read_event(void) {
+
+    event_loaded=0; // atomic, no mutex needed
+
+    db_read_event();
+}
+
+void rodar_reset_event(void) {
+    event_loaded=0;
+    event_cnt=0;
+}
+
+void rodar_event_done(void) {
+    event_loaded=1;
+}
+
+int rodar_event_loaded(void) {
+    return event_loaded;
+}
+
+void rodar_add_event(int ID,int t,enum eventtype type,enum eventopt opt,int level,int winnerID) {
+    int n;
+
+    pthread_mutex_lock(&cache_mutex);
+    n=event_cnt++;
+
+    if (n>=MAXSCHED) {
+        pthread_mutex_unlock(&cache_mutex);
+        return;
+    }
+
+    events[n].ID=ID;
+    events[n].t=t;
+    events[n].type=type;
+    events[n].opt=opt;
+    events[n].level=level;
+    events[n].winnerID=winnerID;
+
+    pthread_mutex_unlock(&cache_mutex);
+}
+
+int rodar_get_event(int idx,struct rodar_event *ev) {
+
+    pthread_mutex_lock(&cache_mutex);
+
+    if (idx>=event_cnt) {
+        pthread_mutex_unlock(&cache_mutex);
+        return 0;
+    }
+
+    if (ev) *ev=events[idx];
+
+    pthread_mutex_unlock(&cache_mutex);
+    return 1;
+}
+
+int rodar_get_event_cnt(void) {
+    int cnt;
+
+    pthread_mutex_lock(&cache_mutex);
+
+    cnt=event_cnt;  // this is atomic, no need for mutex?
+
+    pthread_mutex_unlock(&cache_mutex);
+
+    return cnt;
+}
+
+static int rand_level(void) {
+    int r;
+
+    r=RANDOM(100);
+
+    return (r/10+1)*20;
+}
+
+static enum eventtype rand_type(void) {
+    int r;
+
+    r=RANDOM(10);
+
+    switch (r) {
+        case 0: return EVENT2;
+        case 1: return EVENT3;
+        case 2: return EVENT5;
+        case 3: return EVENT7;
+        case 4: return EVENT7;
+        case 5: return EVENT12;
+        case 6: return EVENT12;
+        case 7: return EVENT12;
+        default: return EVENT_ANY;
+    }
+}
+
+static enum eventopt rand_opt(void) {
+    enum eventopt opt=EVENT_NONE;
+
+    if (RANDOM(10)==1) opt|=EVENT_NOMAGIC;
+    else if (RANDOM(10)==1) opt|=EVENT_NOFREEZE;
+    if (RANDOM(10)==1) opt|=EVENT_NOWARCRY;
+    if (RANDOM(2)==1) opt|=EVENT_CLAN;
+
+    return opt;
+}
+
+void rodar_create_event(int when) {
+
+    when=(when/(60*60)+1)*60*60;
+
+    db_add_event(when,rand_type(),rand_opt(),rand_level());
+    event_loaded=0;
+    db_read_event();
 }
 
 /*
+TODO
+====
+
+Remove team sizes?
+
+
+
 Tables
+======
 
 Teams:
 founderID = player ID of the founder. might come in handy.
@@ -175,11 +385,12 @@ Events will be created one week in advance.
 
 winnerID = ID from rodar_teams
 
-create table rodar_schedule (
+create table rodar_event (
     ID int not null auto_increment,
     t timestamp not null default 0,
     type enum ('2','3','5','7','12','any') not null default 'any',
-    option set ('open','clan','nomagic','nofreeze','nowarcry') not null default (''),
+    option set ('clan','nomagic','nofreeze','nowarcry') not null default (''),
+    level int not null default 200,
     winnerID int default null,
     primary key(ID),
     key(t)
