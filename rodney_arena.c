@@ -26,6 +26,7 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 #include "database.h"
 #include "lookup.h"
 #include "see.h"
+#include "map.h"
 
 // library helper functions needed for init
 int ch_driver(int nr,int cn,int ret,int lastact);           // character driver (decides next action)
@@ -46,6 +47,15 @@ int driver(int type,int nr,int obj,int ret,int lastact) {
     }
 }
 
+struct event_room {
+    int x,y;
+};
+
+static struct event_room room[]={
+    {0,0},          // 0
+    {10,10},        // 1
+};
+
 struct master_data {
     struct rodar_event ev;
 };
@@ -56,7 +66,7 @@ void rodarmaster(int cn,int ret,int lastact) {
     struct rodar_event ev;
     int n,co;
 
-    dat=set_data(cn,DRD_RANDOMMASTER,sizeof(struct master_data));
+    dat=set_data(cn,DRD_RODARMASTER,sizeof(struct master_data));
     if (!dat) return;   // oops...
 
     // loop through our messages
@@ -80,9 +90,25 @@ void rodarmaster(int cn,int ret,int lastact) {
                 if (dat->ev.ID) {
                     if (dat->ev.t>time_now) say(cn,"The event %d will start in %d seconds.",dat->ev.ID,dat->ev.t-time_now);
                     else say(cn,"The event %d has started %d seconds ago.",dat->ev.ID,time_now-dat->ev.t);
-                    say(cn,"It is for level %d, with %s participants per team and the option %s.",
-                        dat->ev.level,rodar_eventtype2(dat->ev.type),rodar_eventopt2(dat->ev.opt));
+                    say(cn,"It is for level %d, with %s participants per team and the option(s) %s. It is held in room %d.",
+                        dat->ev.level,rodar_eventtype2(dat->ev.type),rodar_eventopt2(dat->ev.opt),dat->ev.room);
                 } else say(cn,"There is no current event.");
+
+                remove_message(cn,msg);
+                continue;
+            }
+
+            if (strstr(ptr,"Master") && strstr(ptr,"enter")) {
+                int oldx,oldy;
+
+                oldx=ch[co].x; oldy=ch[co].y;
+                remove_char(co);
+
+                if (!drop_char_extended(co,room[1].x,room[1].y,7))
+                    drop_char(co,oldx,oldy,0);
+
+                remove_message(cn,msg);
+                continue;
             }
         }
 
@@ -125,7 +151,7 @@ void rodarmaster(int cn,int ret,int lastact) {
 
     if (spell_self_driver(cn)) return;
 
-    if (secure_move_driver(cn,ch[cn].tmpx,ch[cn].tmpy,DX_RIGHT,ret,lastact)) return;
+    if (secure_move_driver(cn,ch[cn].tmpx,ch[cn].tmpy,DX_DOWN,ret,lastact)) return;
 
     do_idle(cn,TICKS);
 }

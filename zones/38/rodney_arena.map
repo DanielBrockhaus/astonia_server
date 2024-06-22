@@ -2095,9 +2095,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="6,1"
-fsprite=59172
-flag=MF_SIGHTBLOCK
-flag=MF_MOVEBLOCK
+it=link_return
 flag=MF_INDOORS
 flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
@@ -292099,7 +292097,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,225"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292107,7 +292105,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,225"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292115,7 +292113,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="246,225"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292123,7 +292121,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="247,225"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292131,7 +292129,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="248,225"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292139,7 +292137,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="249,225"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292147,7 +292145,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="250,225"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292155,7 +292153,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="251,225"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292163,7 +292161,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="252,225"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292171,7 +292169,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="253,225"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292179,7 +292177,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="254,225"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -292187,7 +292185,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,225"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -293421,7 +293419,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,226"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -293429,51 +293427,44 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,226"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="246,226"
-gsprite=59133
-fsprite=59185
-flag=MF_MOVEBLOCK
+gsprite=59720
 flag=MF_INDOORS
 
 field="247,226"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,226"
-gsprite=59135
-it=mr_walltorch_on_ls
+gsprite=59718
 flag=MF_INDOORS
 
 field="249,226"
-gsprite=59133
-fsprite=59185
-flag=MF_MOVEBLOCK
+gsprite=59721
+it=warped_teleport_deco
 flag=MF_INDOORS
 
 field="250,226"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="251,226"
-gsprite=59135
-it=mr_walltorch_on_ls
+gsprite=59719
 flag=MF_INDOORS
 
 field="252,226"
-gsprite=59133
-fsprite=59185
-flag=MF_MOVEBLOCK
+gsprite=59721
 flag=MF_INDOORS
 
 field="253,226"
-gsprite=59134
+gsprite=59720
 flag=MF_INDOORS
 
 field="254,226"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -293481,7 +293472,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,226"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -294715,7 +294706,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,227"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -294723,45 +294714,43 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,227"
-gsprite=59138
-fsprite=59188
-flag=MF_MOVEBLOCK
+gsprite=59718
 flag=MF_INDOORS
 
 field="246,227"
-gsprite=59136
+gsprite=59720
 flag=MF_INDOORS
 
 field="247,227"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="248,227"
-gsprite=59138
+gsprite=59721
 flag=MF_INDOORS
 
 field="249,227"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="250,227"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="251,227"
-gsprite=59138
+gsprite=59719
 flag=MF_INDOORS
 
 field="252,227"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="253,227"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="254,227"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -294769,7 +294758,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,227"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -296003,7 +295992,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,228"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -296011,44 +296000,45 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,228"
-gsprite=59132
-it=mr_walltorch_on_ds
+gsprite=59719
+fsprite=21280
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
 
 field="246,228"
-gsprite=59130
+gsprite=59719
 flag=MF_INDOORS
 
 field="247,228"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,228"
-gsprite=59132
+gsprite=59718
 flag=MF_INDOORS
 
 field="249,228"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,228"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="251,228"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="252,228"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="253,228"
-gsprite=59131
+gsprite=722397510
 flag=MF_INDOORS
 
 field="254,228"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -296056,7 +296046,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,228"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -297290,7 +297280,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,229"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -297298,43 +297288,43 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,229"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="246,229"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,229"
-gsprite=59134
+gsprite=59721
 flag=MF_INDOORS
 
 field="248,229"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="249,229"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="250,229"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="251,229"
-gsprite=59135
+gsprite=59718
 flag=MF_INDOORS
 
 field="252,229"
-gsprite=59133
+gsprite=59720
 flag=MF_INDOORS
 
 field="253,229"
-gsprite=59134
+gsprite=59721
 flag=MF_INDOORS
 
 field="254,229"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -297342,7 +297332,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,229"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -298576,7 +298566,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,230"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -298584,45 +298574,47 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,230"
-gsprite=59138
-fsprite=59188
+gsprite=59719
+fsprite=59729
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 
 field="246,230"
-gsprite=59136
+gsprite=59721
 flag=MF_INDOORS
 
 field="247,230"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="248,230"
-gsprite=59138
+gsprite=59718
 flag=MF_INDOORS
 
 field="249,230"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="250,230"
-gsprite=59137
+gsprite=59721
 flag=MF_INDOORS
 
 field="251,230"
-gsprite=59138
+gsprite=59719
 flag=MF_INDOORS
 
 field="252,230"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="253,230"
-gsprite=59137
+gsprite=59720
 flag=MF_INDOORS
 
 field="254,230"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -298630,7 +298622,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,230"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -299864,7 +299856,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,231"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -299872,44 +299864,43 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,231"
-gsprite=59132
-it=mr_walltorch_on_ds
+gsprite=59721
 flag=MF_INDOORS
 
 field="246,231"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,231"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,231"
-gsprite=59132
+gsprite=59720
 flag=MF_INDOORS
 
 field="249,231"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="250,231"
-gsprite=59131
+gsprite=59719
 flag=MF_INDOORS
 
 field="251,231"
-gsprite=59132
+gsprite=59720
 flag=MF_INDOORS
 
 field="252,231"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="253,231"
-gsprite=59131
+gsprite=59720
 flag=MF_INDOORS
 
 field="254,231"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -299917,7 +299908,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,231"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -301151,7 +301142,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,232"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -301159,43 +301150,44 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,232"
-gsprite=59135
+gsprite=59719
 flag=MF_INDOORS
 
 field="246,232"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,232"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,232"
-gsprite=59135
+gsprite=59719
+it=warped_return_deco
 flag=MF_INDOORS
 
 field="249,232"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="250,232"
-gsprite=59134
+gsprite=59719
 flag=MF_INDOORS
 
 field="251,232"
-gsprite=59135
+gsprite=59719
 flag=MF_INDOORS
 
 field="252,232"
-gsprite=59133
+gsprite=59721
 flag=MF_INDOORS
 
 field="253,232"
-gsprite=59134
+gsprite=59720
 flag=MF_INDOORS
 
 field="254,232"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -301203,7 +301195,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,232"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -302437,7 +302429,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,233"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -302445,45 +302437,43 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,233"
-gsprite=59138
-fsprite=59188
-flag=MF_MOVEBLOCK
+gsprite=59721
 flag=MF_INDOORS
 
 field="246,233"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,233"
-gsprite=59137
+gsprite=59720
 flag=MF_INDOORS
 
 field="248,233"
-gsprite=59138
+gsprite=59721
 flag=MF_INDOORS
 
 field="249,233"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="250,233"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="251,233"
-gsprite=59138
+gsprite=59720
 flag=MF_INDOORS
 
 field="252,233"
-gsprite=59136
+gsprite=59721
 flag=MF_INDOORS
 
 field="253,233"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="254,233"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -302491,7 +302481,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,233"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -303725,7 +303715,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,234"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -303733,44 +303723,45 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,234"
-gsprite=59132
-it=mr_walltorch_on_ds
+gsprite=59719
+it=white_torch1
 flag=MF_INDOORS
 
 field="246,234"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,234"
-gsprite=59131
+gsprite=59719
 flag=MF_INDOORS
 
 field="248,234"
-gsprite=59132
+gsprite=59721
 flag=MF_INDOORS
 
 field="249,234"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,234"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="251,234"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="252,234"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="253,234"
-gsprite=59131
+gsprite=59721
+it=white_torch3
 flag=MF_INDOORS
 
 field="254,234"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -303778,7 +303769,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,234"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -305012,7 +305003,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,235"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -305020,43 +305011,43 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,235"
-gsprite=59135
+gsprite=59718
 flag=MF_INDOORS
 
 field="246,235"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,235"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,235"
-gsprite=59135
+gsprite=59719
 flag=MF_INDOORS
 
 field="249,235"
-gsprite=59133
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,235"
-gsprite=59134
+gsprite=59720
 flag=MF_INDOORS
 
 field="251,235"
-gsprite=59135
+gsprite=59721
 flag=MF_INDOORS
 
 field="252,235"
-gsprite=59133
+gsprite=59721
 flag=MF_INDOORS
 
 field="253,235"
-gsprite=59134
+gsprite=59719
 flag=MF_INDOORS
 
 field="254,235"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -305064,7 +305055,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,235"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -306298,7 +306289,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,236"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -306306,45 +306297,43 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,236"
-gsprite=59138
-fsprite=59188
-flag=MF_MOVEBLOCK
+gsprite=59721
 flag=MF_INDOORS
 
 field="246,236"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,236"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,236"
-gsprite=59138
+gsprite=59719
 flag=MF_INDOORS
 
 field="249,236"
-gsprite=59136
+gsprite=59721
 flag=MF_INDOORS
 
 field="250,236"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="251,236"
-gsprite=59138
+gsprite=59718
 flag=MF_INDOORS
 
 field="252,236"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="253,236"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="254,236"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -306352,7 +306341,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,236"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -307586,7 +307575,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,237"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -307594,44 +307583,43 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,237"
-gsprite=59132
-it=mr_walltorch_on_ds
+gsprite=59720
 flag=MF_INDOORS
 
 field="246,237"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="247,237"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,237"
-gsprite=59132
+gsprite=59721
 flag=MF_INDOORS
 
 field="249,237"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,237"
-gsprite=59131
+gsprite=59720
 flag=MF_INDOORS
 
 field="251,237"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="252,237"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="253,237"
-gsprite=59131
+gsprite=59720
 flag=MF_INDOORS
 
 field="254,237"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -307639,7 +307627,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,237"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -308873,7 +308861,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,238"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -308881,43 +308869,47 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,238"
-gsprite=59135
+gsprite=59719
+fsprite=59729
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 
 field="246,238"
-gsprite=59133
+gsprite=59720
 flag=MF_INDOORS
 
 field="247,238"
-gsprite=59134
+gsprite=59719
 flag=MF_INDOORS
 
 field="248,238"
-gsprite=59135
+gsprite=59721
 flag=MF_INDOORS
 
 field="249,238"
-gsprite=59133
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,238"
-gsprite=59134
+gsprite=59719
 flag=MF_INDOORS
 
 field="251,238"
-gsprite=59135
+gsprite=59719
 flag=MF_INDOORS
 
 field="252,238"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="253,238"
-gsprite=59134
+gsprite=59721
 flag=MF_INDOORS
 
 field="254,238"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -308925,7 +308917,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,238"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -310159,7 +310151,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,239"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -310167,45 +310159,43 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,239"
-gsprite=59138
-fsprite=59188
-flag=MF_MOVEBLOCK
+gsprite=59719
 flag=MF_INDOORS
 
 field="246,239"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,239"
-gsprite=59137
+gsprite=59720
 flag=MF_INDOORS
 
 field="248,239"
-gsprite=59138
+gsprite=59721
 flag=MF_INDOORS
 
 field="249,239"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="250,239"
-gsprite=59137
+gsprite=59720
 flag=MF_INDOORS
 
 field="251,239"
-gsprite=59138
+gsprite=59720
 flag=MF_INDOORS
 
 field="252,239"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="253,239"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="254,239"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -310213,7 +310203,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,239"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -311447,7 +311437,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,240"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -311455,44 +311445,44 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,240"
-gsprite=59132
-it=mr_walltorch_on_ds
+gsprite=59720
 flag=MF_INDOORS
 
 field="246,240"
-gsprite=59130
+gsprite=59719
 flag=MF_INDOORS
 
 field="247,240"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,240"
-gsprite=59132
+gsprite=59718
 flag=MF_INDOORS
 
 field="249,240"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,240"
-gsprite=59131
+gsprite=59719
 flag=MF_INDOORS
 
 field="251,240"
-gsprite=59132
+gsprite=59720
+it=warped_return_deco
 flag=MF_INDOORS
 
 field="252,240"
-gsprite=59130
+gsprite=59721
 flag=MF_INDOORS
 
 field="253,240"
-gsprite=59131
+gsprite=59720
 flag=MF_INDOORS
 
 field="254,240"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -311500,7 +311490,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,240"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -312734,7 +312724,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,241"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -312742,43 +312732,44 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,241"
-gsprite=59135
+gsprite=59719
+it=white_torch1
 flag=MF_INDOORS
 
 field="246,241"
-gsprite=59133
+gsprite=59719
 flag=MF_INDOORS
 
 field="247,241"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,241"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="249,241"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="250,241"
-gsprite=59134
+gsprite=59720
 flag=MF_INDOORS
 
 field="251,241"
-gsprite=59135
+gsprite=59721
 flag=MF_INDOORS
 
 field="252,241"
-gsprite=59133
+gsprite=59719
 flag=MF_INDOORS
 
 field="253,241"
-gsprite=59134
+gsprite=59721
 flag=MF_INDOORS
 
 field="254,241"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -312786,7 +312777,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,241"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -314020,7 +314011,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,242"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -314028,45 +314019,43 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,242"
-gsprite=59138
-fsprite=59188
-flag=MF_MOVEBLOCK
+gsprite=59718
 flag=MF_INDOORS
 
 field="246,242"
-gsprite=59136
+gsprite=59720
 flag=MF_INDOORS
 
 field="247,242"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,242"
-gsprite=59138
+gsprite=59718
 flag=MF_INDOORS
 
 field="249,242"
-gsprite=59136
+gsprite=59721
 flag=MF_INDOORS
 
 field="250,242"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="251,242"
-gsprite=59138
+gsprite=59718
 flag=MF_INDOORS
 
 field="252,242"
-gsprite=59136
+gsprite=59721
 flag=MF_INDOORS
 
 field="253,242"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="254,242"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -314074,7 +314063,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,242"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -315308,7 +315297,7 @@ flag=MF_INDOORS
 flag=MF_ARENA
 
 field="244,243"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -315316,44 +315305,43 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,243"
-gsprite=59132
-it=mr_walltorch_on_ds
+gsprite=59719
 flag=MF_INDOORS
 
 field="246,243"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="247,243"
-gsprite=59131
+gsprite=59721
 flag=MF_INDOORS
 
 field="248,243"
-gsprite=59132
+gsprite=59718
 flag=MF_INDOORS
 
 field="249,243"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,243"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="251,243"
-gsprite=59132
+gsprite=59718
 flag=MF_INDOORS
 
 field="252,243"
-gsprite=59130
+gsprite=59719
 flag=MF_INDOORS
 
 field="253,243"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="254,243"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -315361,7 +315349,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,243"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317169,7 +317157,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="225,244"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317177,7 +317165,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,244"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317185,7 +317173,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="227,244"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317193,7 +317181,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="228,244"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317201,7 +317189,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="229,244"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317209,7 +317197,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="230,244"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317217,7 +317205,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="231,244"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317225,7 +317213,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="232,244"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317233,7 +317221,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="233,244"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317241,7 +317229,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="234,244"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317249,7 +317237,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="235,244"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317257,7 +317245,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="236,244"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317265,7 +317253,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="237,244"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317273,7 +317261,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="238,244"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317281,7 +317269,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="239,244"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317289,7 +317277,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="240,244"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317297,7 +317285,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="241,244"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317305,7 +317293,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="242,244"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317313,7 +317301,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="243,244"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317321,7 +317309,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="244,244"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317329,43 +317317,44 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,244"
-gsprite=59135
+gsprite=59718
 flag=MF_INDOORS
 
 field="246,244"
-gsprite=59133
+gsprite=59719
 flag=MF_INDOORS
 
 field="247,244"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,244"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="249,244"
-gsprite=59133
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,244"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="251,244"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="252,244"
-gsprite=59133
+gsprite=59721
 flag=MF_INDOORS
 
 field="253,244"
-gsprite=59134
+gsprite=59720
+it=white_torch3
 flag=MF_INDOORS
 
 field="254,244"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -317373,7 +317362,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,244"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -318289,7 +318278,7 @@ gsprite=59138
 flag=MF_INDOORS
 
 field="225,245"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -318297,137 +318286,131 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,245"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="227,245"
-gsprite=59138
-fsprite=59185
-flag=MF_MOVEBLOCK
+gsprite=59718
 flag=MF_INDOORS
 
 field="228,245"
-gsprite=59136
-it=mr_walltorch_on_ls
+gsprite=59718
 flag=MF_INDOORS
 
 field="229,245"
-gsprite=59137
+gsprite=59718
+it=white_torch2
 flag=MF_INDOORS
 
 field="230,245"
-gsprite=59138
-fsprite=59185
-flag=MF_MOVEBLOCK
+gsprite=59720
 flag=MF_INDOORS
 
 field="231,245"
-gsprite=59136
-it=mr_walltorch_on_ls
+gsprite=59721
 flag=MF_INDOORS
 
 field="232,245"
-gsprite=59137
+gsprite=59721
+fsprite=59726
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 
 field="233,245"
-gsprite=59138
-fsprite=59185
-flag=MF_MOVEBLOCK
+gsprite=59721
 flag=MF_INDOORS
 
 field="234,245"
-gsprite=59136
-it=mr_walltorch_on_ls
+gsprite=59719
 flag=MF_INDOORS
 
 field="235,245"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="236,245"
-gsprite=59138
-fsprite=59185
+gsprite=59718
+fsprite=21267
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
 
 field="237,245"
-gsprite=59136
-it=mr_walltorch_on_ls
+gsprite=59720
 flag=MF_INDOORS
 
 field="238,245"
-gsprite=59137
+gsprite=59719
+fsprite=59726
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 
 field="239,245"
-gsprite=59138
-fsprite=59185
-flag=MF_MOVEBLOCK
+gsprite=59721
 flag=MF_INDOORS
 
 field="240,245"
-gsprite=59136
-it=mr_walltorch_on_ls
+gsprite=59720
 flag=MF_INDOORS
 
 field="241,245"
-gsprite=59137
+gsprite=59719
+it=white_torch2
 flag=MF_INDOORS
 
 field="242,245"
-gsprite=59138
-fsprite=59185
-flag=MF_MOVEBLOCK
+gsprite=59720
 flag=MF_INDOORS
 
 field="243,245"
-gsprite=59136
-it=mr_walltorch_on_ls
+gsprite=59718
 flag=MF_INDOORS
 
 field="244,245"
-gsprite=59137
+gsprite=59721
 flag=MF_INDOORS
 
 field="245,245"
-gsprite=59138
+gsprite=59718
 flag=MF_INDOORS
 
 field="246,245"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,245"
-gsprite=59137
+gsprite=59721
 flag=MF_INDOORS
 
 field="248,245"
-gsprite=59138
+gsprite=59721
 flag=MF_INDOORS
 
 field="249,245"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="250,245"
-gsprite=59137
+gsprite=59721
 flag=MF_INDOORS
 
 field="251,245"
-gsprite=59138
+gsprite=59720
 flag=MF_INDOORS
 
 field="252,245"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="253,245"
-gsprite=59137
+gsprite=59720
 flag=MF_INDOORS
 
 field="254,245"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -318435,7 +318418,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,245"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -319351,7 +319334,7 @@ gsprite=59132
 flag=MF_INDOORS
 
 field="225,246"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -319359,121 +319342,119 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,246"
-gsprite=59131
-fsprite=59188
-flag=MF_MOVEBLOCK
+gsprite=59719
 flag=MF_INDOORS
 
 field="227,246"
-gsprite=59132
+gsprite=59720
 flag=MF_INDOORS
 
 field="228,246"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="229,246"
-gsprite=59131
+gsprite=59719
 flag=MF_INDOORS
 
 field="230,246"
-gsprite=59132
+gsprite=59718
 flag=MF_INDOORS
 
 field="231,246"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="232,246"
-gsprite=59131
+gsprite=59721
 flag=MF_INDOORS
 
 field="233,246"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="234,246"
-gsprite=59130
+gsprite=59721
 flag=MF_INDOORS
 
 field="235,246"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="236,246"
-gsprite=59132
+gsprite=59721
 flag=MF_INDOORS
 
 field="237,246"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="238,246"
-gsprite=59131
+gsprite=59720
 flag=MF_INDOORS
 
 field="239,246"
-gsprite=59132
+gsprite=59718
 flag=MF_INDOORS
 
 field="240,246"
-gsprite=59130
+gsprite=59719
 flag=MF_INDOORS
 
 field="241,246"
-gsprite=59131
+gsprite=59720
 flag=MF_INDOORS
 
 field="242,246"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="243,246"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="244,246"
-gsprite=59131
+gsprite=59719
 flag=MF_INDOORS
 
 field="245,246"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="246,246"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,246"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,246"
-gsprite=59132
+gsprite=59721
 flag=MF_INDOORS
 
 field="249,246"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,246"
-gsprite=59131
+gsprite=59721
 flag=MF_INDOORS
 
 field="251,246"
-gsprite=59132
+gsprite=59718
 flag=MF_INDOORS
 
 field="252,246"
-gsprite=59130
+gsprite=59721
 flag=MF_INDOORS
 
 field="253,246"
-gsprite=59131
+gsprite=59719
 flag=MF_INDOORS
 
 field="254,246"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -319481,7 +319462,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,246"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -320397,7 +320378,7 @@ gsprite=59135
 flag=MF_INDOORS
 
 field="225,247"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -320405,119 +320386,119 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,247"
-gsprite=59134
+gsprite=59720
 flag=MF_INDOORS
 
 field="227,247"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="228,247"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="229,247"
-gsprite=59134
+gsprite=59721
 flag=MF_INDOORS
 
 field="230,247"
-gsprite=59135
+gsprite=59718
 flag=MF_INDOORS
 
 field="231,247"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="232,247"
-gsprite=59134
+gsprite=59719
 flag=MF_INDOORS
 
 field="233,247"
-gsprite=59135
+gsprite=59719
 flag=MF_INDOORS
 
 field="234,247"
-gsprite=59133
+gsprite=59719
 flag=MF_INDOORS
 
 field="235,247"
-gsprite=59134
+gsprite=59720
 flag=MF_INDOORS
 
 field="236,247"
-gsprite=59135
+gsprite=59719
 flag=MF_INDOORS
 
 field="237,247"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="238,247"
-gsprite=59134
+gsprite=59719
 flag=MF_INDOORS
 
 field="239,247"
-gsprite=59135
+gsprite=59721
 flag=MF_INDOORS
 
 field="240,247"
-gsprite=59133
+gsprite=59720
 flag=MF_INDOORS
 
 field="241,247"
-gsprite=59134
+gsprite=59719
 flag=MF_INDOORS
 
 field="242,247"
-gsprite=59135
+gsprite=59718
 flag=MF_INDOORS
 
 field="243,247"
-gsprite=59133
+gsprite=59721
 flag=MF_INDOORS
 
 field="244,247"
-gsprite=59134
+gsprite=59719
 flag=MF_INDOORS
 
 field="245,247"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="246,247"
-gsprite=59133
+gsprite=59721
 flag=MF_INDOORS
 
 field="247,247"
-gsprite=59134
+gsprite=59719
 flag=MF_INDOORS
 
 field="248,247"
-gsprite=59135
+gsprite=59719
 flag=MF_INDOORS
 
 field="249,247"
-gsprite=59133
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,247"
-gsprite=59134
+gsprite=59721
 flag=MF_INDOORS
 
 field="251,247"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="252,247"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="253,247"
-gsprite=59134
+gsprite=59720
 flag=MF_INDOORS
 
 field="254,247"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -320525,7 +320506,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,247"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -321441,7 +321422,7 @@ gsprite=59138
 flag=MF_INDOORS
 
 field="225,248"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -321449,120 +321430,119 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,248"
-gsprite=59137
-it=mr_walltorch_on_ds
+gsprite=59719
 flag=MF_INDOORS
 
 field="227,248"
-gsprite=59138
+gsprite=59720
 flag=MF_INDOORS
 
 field="228,248"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="229,248"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="230,248"
-gsprite=793896706
+gsprite=793897287
 flag=MF_INDOORS
 
 field="231,248"
-gsprite=793896704
+gsprite=793897289
 flag=MF_INDOORS
 
 field="232,248"
-gsprite=793896705
+gsprite=793897289
 flag=MF_INDOORS
 
 field="233,248"
-gsprite=59138
+gsprite=59718
 flag=MF_INDOORS
 
 field="234,248"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="235,248"
-gsprite=59137
+gsprite=59721
 flag=MF_INDOORS
 
 field="236,248"
-gsprite=59138
+gsprite=59721
 flag=MF_INDOORS
 
 field="237,248"
-gsprite=59136
+gsprite=59720
 flag=MF_INDOORS
 
 field="238,248"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="239,248"
-gsprite=59138
+gsprite=59718
 flag=MF_INDOORS
 
 field="240,248"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="241,248"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="242,248"
-gsprite=59138
+gsprite=59720
 flag=MF_INDOORS
 
 field="243,248"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="244,248"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="245,248"
-gsprite=59138
+gsprite=59720
 flag=MF_INDOORS
 
 field="246,248"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="247,248"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="248,248"
-gsprite=59138
+gsprite=59721
 flag=MF_INDOORS
 
 field="249,248"
-gsprite=59136
+gsprite=59720
 flag=MF_INDOORS
 
 field="250,248"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="251,248"
-gsprite=59138
+gsprite=59720
 flag=MF_INDOORS
 
 field="252,248"
-gsprite=59136
+gsprite=59720
 flag=MF_INDOORS
 
 field="253,248"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="254,248"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -321570,7 +321550,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,248"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -322486,7 +322466,7 @@ gsprite=59132
 flag=MF_INDOORS
 
 field="225,249"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -322494,21 +322474,20 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,249"
-gsprite=59131
-fsprite=59188
-flag=MF_MOVEBLOCK
+gsprite=59720
+it=warped_teleport_deco
 flag=MF_INDOORS
 
 field="227,249"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="228,249"
-gsprite=59130
+gsprite=59719
 flag=MF_INDOORS
 
 field="229,249"
-gsprite=793700091
+gsprite=793700679
 flag=MF_INDOORS
 
 field="230,249"
@@ -322527,91 +322506,91 @@ flag=MF_INDOORS
 flag=MF_RESTAREA
 
 field="233,249"
-gsprite=793831164
+gsprite=793831752
 flag=MF_INDOORS
 
 field="234,249"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="235,249"
-gsprite=59131
+gsprite=59719
 flag=MF_INDOORS
 
 field="236,249"
-gsprite=59132
+gsprite=59720
 flag=MF_INDOORS
 
 field="237,249"
-gsprite=59130
+gsprite=59719
 flag=MF_INDOORS
 
 field="238,249"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="239,249"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="240,249"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="241,249"
-gsprite=59131
+gsprite=59720
 flag=MF_INDOORS
 
 field="242,249"
-gsprite=59132
+gsprite=59720
 flag=MF_INDOORS
 
 field="243,249"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="244,249"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="245,249"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="246,249"
-gsprite=59130
+gsprite=59721
 flag=MF_INDOORS
 
 field="247,249"
-gsprite=59131
+gsprite=59720
 flag=MF_INDOORS
 
 field="248,249"
-gsprite=59132
+gsprite=59718
 flag=MF_INDOORS
 
 field="249,249"
-gsprite=59130
+gsprite=59721
 flag=MF_INDOORS
 
 field="250,249"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="251,249"
-gsprite=59132
+gsprite=59720
 flag=MF_INDOORS
 
 field="252,249"
-gsprite=59130
+gsprite=59721
 flag=MF_INDOORS
 
 field="253,249"
-gsprite=59131
+gsprite=59721
 flag=MF_INDOORS
 
 field="254,249"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -322619,7 +322598,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,249"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -323535,7 +323514,7 @@ gsprite=59135
 flag=MF_INDOORS
 
 field="225,250"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -323543,19 +323522,19 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,250"
-gsprite=59134
+gsprite=59721
 flag=MF_INDOORS
 
 field="227,250"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="228,250"
-gsprite=59133
+gsprite=59719
 flag=MF_INDOORS
 
 field="229,250"
-gsprite=793700094
+gsprite=793700681
 flag=MF_INDOORS
 
 field="230,250"
@@ -323574,92 +323553,92 @@ flag=MF_INDOORS
 flag=MF_RESTAREA
 
 field="233,250"
-gsprite=793831167
+gsprite=793831751
 flag=MF_INDOORS
 
 field="234,250"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="235,250"
-gsprite=59134
+gsprite=59720
 flag=MF_INDOORS
 
 field="236,250"
-gsprite=59135
+gsprite=59721
 flag=MF_INDOORS
 
 field="237,250"
-gsprite=59133
+gsprite=59721
 flag=MF_INDOORS
 
 field="238,250"
-gsprite=59134
+gsprite=59720
 flag=MF_INDOORS
 
 field="239,250"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="240,250"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="241,250"
-gsprite=59134
+gsprite=59719
 flag=MF_INDOORS
 
 field="242,250"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="243,250"
-gsprite=59133
+gsprite=59720
 flag=MF_INDOORS
 
 field="244,250"
-gsprite=59134
+gsprite=59721
 flag=MF_INDOORS
 
 field="245,250"
-gsprite=59135
+gsprite=59721
 flag=MF_INDOORS
 
 field="246,250"
-gsprite=59133
+gsprite=59721
 flag=MF_INDOORS
 
 field="247,250"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,250"
-gsprite=59135
+gsprite=59719
 flag=MF_INDOORS
 
 field="249,250"
-gsprite=59133
+gsprite=59719
 flag=MF_INDOORS
 
 field="250,250"
-gsprite=59134
+gsprite=59721
 ch=master
 flag=MF_INDOORS
 
 field="251,250"
-gsprite=59135
+gsprite=59719
 flag=MF_INDOORS
 
 field="252,250"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="253,250"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="254,250"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -323667,7 +323646,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,250"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -324583,7 +324562,7 @@ gsprite=59138
 flag=MF_INDOORS
 
 field="225,251"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -324591,20 +324570,19 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,251"
-gsprite=59137
-it=mr_walltorch_on_ds
+gsprite=59719
 flag=MF_INDOORS
 
 field="227,251"
-gsprite=59138
+gsprite=59719
 flag=MF_INDOORS
 
 field="228,251"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="229,251"
-gsprite=793700097
+gsprite=793700681
 flag=MF_INDOORS
 
 field="230,251"
@@ -324623,97 +324601,98 @@ flag=MF_INDOORS
 flag=MF_RESTAREA
 
 field="233,251"
-gsprite=793831170
+gsprite=793831752
 flag=MF_INDOORS
 
 field="234,251"
-gsprite=59136
+gsprite=59721
 flag=MF_INDOORS
 
 field="235,251"
-gsprite=59137
+gsprite=59721
 flag=MF_INDOORS
 
 field="236,251"
-gsprite=59138
+gsprite=59719
 flag=MF_INDOORS
 
 field="237,251"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="238,251"
-gsprite=59137
+gsprite=59721
 flag=MF_INDOORS
 
 field="239,251"
-gsprite=59138
+gsprite=59721
 flag=MF_INDOORS
 
 field="240,251"
-gsprite=59136
+gsprite=59718
 flag=MF_INDOORS
 
 field="241,251"
-gsprite=59137
+gsprite=59720
 flag=MF_INDOORS
 
 field="242,251"
-gsprite=59138
+gsprite=59719
 flag=MF_INDOORS
 
 field="243,251"
-gsprite=59136
+gsprite=59718
+it=warped_return_deco
 flag=MF_INDOORS
 
 field="244,251"
-gsprite=59137
+gsprite=59719
 flag=MF_INDOORS
 
 field="245,251"
-gsprite=59138
+gsprite=59720
 flag=MF_INDOORS
 
 field="246,251"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="247,251"
-gsprite=59137
+gsprite=59720
 flag=MF_INDOORS
 
 field="248,251"
-gsprite=59138
+gsprite=59721
 flag=MF_INDOORS
 
 field="249,251"
-gsprite=59136
-fsprite=20158
+gsprite=59721
+fsprite=59104
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
 
 field="250,251"
-gsprite=59137
-fsprite=20158
+gsprite=59720
+fsprite=59105
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
 
 field="251,251"
-gsprite=59138
-fsprite=20158
+gsprite=59720
+fsprite=59104
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
 
 field="252,251"
-gsprite=59136
+gsprite=59719
 flag=MF_INDOORS
 
 field="253,251"
-gsprite=59137
+gsprite=59718
 flag=MF_INDOORS
 
 field="254,251"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -324721,7 +324700,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,251"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -325637,7 +325616,7 @@ gsprite=59132
 flag=MF_INDOORS
 
 field="225,252"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -325645,121 +325624,119 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,252"
-gsprite=59131
-fsprite=59188
-flag=MF_MOVEBLOCK
+gsprite=59719
 flag=MF_INDOORS
 
 field="227,252"
-gsprite=59132
+gsprite=59721
 flag=MF_INDOORS
 
 field="228,252"
-gsprite=59130
+gsprite=59719
 flag=MF_INDOORS
 
 field="229,252"
-gsprite=59131
+gsprite=59719
 flag=MF_INDOORS
 
 field="230,252"
-gsprite=793765628
+gsprite=793766214
 flag=MF_INDOORS
 
 field="231,252"
-gsprite=793765626
+gsprite=793766214
 flag=MF_INDOORS
 
 field="232,252"
-gsprite=793765627
+gsprite=793766214
 flag=MF_INDOORS
 
 field="233,252"
-gsprite=59132
+gsprite=59718
 flag=MF_INDOORS
 
 field="234,252"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="235,252"
-gsprite=59131
+gsprite=59721
 flag=MF_INDOORS
 
 field="236,252"
-gsprite=59132
+gsprite=59720
 flag=MF_INDOORS
 
 field="237,252"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="238,252"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="239,252"
-gsprite=59132
+gsprite=59718
 flag=MF_INDOORS
 
 field="240,252"
-gsprite=59130
+gsprite=59718
 flag=MF_INDOORS
 
 field="241,252"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="242,252"
-gsprite=59132
+gsprite=59721
 flag=MF_INDOORS
 
 field="243,252"
-gsprite=59130
+gsprite=59719
 flag=MF_INDOORS
 
 field="244,252"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="245,252"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="246,252"
-gsprite=59130
+gsprite=59720
 flag=MF_INDOORS
 
 field="247,252"
-gsprite=59131
+gsprite=59721
 flag=MF_INDOORS
 
 field="248,252"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="249,252"
-gsprite=59130
+gsprite=59721
 flag=MF_INDOORS
 
 field="250,252"
-gsprite=59131
+gsprite=59718
 flag=MF_INDOORS
 
 field="251,252"
-gsprite=59132
+gsprite=59719
 flag=MF_INDOORS
 
 field="252,252"
-gsprite=59130
+gsprite=59719
 flag=MF_INDOORS
 
 field="253,252"
-gsprite=59131
+gsprite=59721
 flag=MF_INDOORS
 
 field="254,252"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -325767,7 +325744,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,252"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -326683,7 +326660,7 @@ gsprite=59135
 flag=MF_INDOORS
 
 field="225,253"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -326691,121 +326668,122 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,253"
-gsprite=59134
+gsprite=59721
 flag=MF_INDOORS
 
 field="227,253"
-gsprite=59135
+gsprite=59721
 flag=MF_INDOORS
 
 field="228,253"
-gsprite=59133
+gsprite=59721
 flag=MF_INDOORS
 
 field="229,253"
-gsprite=59134
+gsprite=59720
+it=white_torch4
 flag=MF_INDOORS
 
 field="230,253"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="231,253"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="232,253"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="233,253"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="234,253"
-gsprite=59133
+gsprite=59719
 flag=MF_INDOORS
 
 field="235,253"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="236,253"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="237,253"
-gsprite=59133
+gsprite=59718
 flag=MF_INDOORS
 
 field="238,253"
-gsprite=59134
+gsprite=59721
 flag=MF_INDOORS
 
 field="239,253"
-gsprite=59135
+gsprite=59720
 flag=MF_INDOORS
 
 field="240,253"
-gsprite=59133
+gsprite=59719
 flag=MF_INDOORS
 
 field="241,253"
-gsprite=59134
+gsprite=59720
 flag=MF_INDOORS
 
 field="242,253"
-gsprite=59135
+gsprite=59720
+it=white_torch4
 flag=MF_INDOORS
 
 field="243,253"
-gsprite=59133
+gsprite=59720
 flag=MF_INDOORS
 
 field="244,253"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="245,253"
-gsprite=59135
+gsprite=59721
 flag=MF_INDOORS
 
 field="246,253"
-gsprite=59133
+gsprite=59721
 flag=MF_INDOORS
 
 field="247,253"
-gsprite=59134
+gsprite=59718
 flag=MF_INDOORS
 
 field="248,253"
-gsprite=59135
+gsprite=59718
 flag=MF_INDOORS
 
 field="249,253"
-gsprite=59133
-it=mr_standing_light_on
+gsprite=59721
 flag=MF_INDOORS
 
 field="250,253"
-gsprite=59134
+gsprite=59720
+it=white_torch4
 flag=MF_INDOORS
 
 field="251,253"
-gsprite=59135
+gsprite=59721
 flag=MF_INDOORS
 
 field="252,253"
-gsprite=59133
+gsprite=59719
 flag=MF_INDOORS
 
 field="253,253"
-gsprite=59134
-it=mr_standing_light_on
+gsprite=59718
 flag=MF_INDOORS
 
 field="254,253"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -326813,7 +326791,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,253"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328621,7 +328599,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="225,254"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328629,7 +328607,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,254"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328637,7 +328615,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="227,254"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328645,7 +328623,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="228,254"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328653,7 +328631,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="229,254"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328661,7 +328639,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="230,254"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328669,7 +328647,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="231,254"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328677,7 +328655,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="232,254"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328685,7 +328663,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="233,254"
-fsprite=59174
+gsprite=59719
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328693,7 +328672,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="234,254"
-fsprite=59171
+gsprite=59718
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328701,7 +328681,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="235,254"
-fsprite=59172
+gsprite=59718
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328709,7 +328690,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="236,254"
-fsprite=59173
+gsprite=59721
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328717,7 +328699,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="237,254"
-fsprite=59174
+gsprite=59718
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328725,7 +328708,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="238,254"
-fsprite=59171
+gsprite=59721
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328733,7 +328717,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="239,254"
-fsprite=59172
+gsprite=59718
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328741,7 +328726,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="240,254"
-fsprite=59173
+gsprite=59721
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328749,7 +328735,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="241,254"
-fsprite=59174
+gsprite=59721
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328757,7 +328744,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="242,254"
-fsprite=59171
+gsprite=59719
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328765,7 +328753,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="243,254"
-fsprite=59172
+gsprite=59718
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328773,7 +328762,8 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="244,254"
-fsprite=59173
+gsprite=59718
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328781,7 +328771,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,254"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328789,7 +328779,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="246,254"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328797,7 +328787,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="247,254"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328805,7 +328795,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="248,254"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328813,7 +328803,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="249,254"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328821,7 +328811,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="250,254"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328829,7 +328819,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="251,254"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328841,7 +328831,7 @@ gsprite=59136
 it=link_aston
 
 field="253,254"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328849,7 +328839,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="254,254"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -328857,7 +328847,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,254"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330665,7 +330655,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="225,255"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330673,7 +330663,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="226,255"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330681,7 +330671,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="227,255"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330689,7 +330679,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="228,255"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330697,7 +330687,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="229,255"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330705,7 +330695,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="230,255"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330713,7 +330703,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="231,255"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330721,7 +330711,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="232,255"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330729,7 +330719,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="233,255"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330737,7 +330727,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="234,255"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330745,7 +330735,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="235,255"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330753,7 +330743,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="236,255"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330761,7 +330751,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="237,255"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330769,7 +330759,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="238,255"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330777,7 +330767,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="239,255"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330785,7 +330775,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="240,255"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330793,7 +330783,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="241,255"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330801,7 +330791,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="242,255"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330809,7 +330799,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="243,255"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330817,7 +330807,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="244,255"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330825,7 +330815,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="245,255"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330833,7 +330823,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="246,255"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330841,7 +330831,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="247,255"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330849,7 +330839,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="248,255"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330857,7 +330847,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="249,255"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330865,7 +330855,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="250,255"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330873,7 +330863,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="251,255"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330881,7 +330871,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="252,255"
-fsprite=59172
+fsprite=59723
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330889,7 +330879,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="253,255"
-fsprite=59173
+fsprite=59724
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330897,7 +330887,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="254,255"
-fsprite=59174
+fsprite=59725
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS
@@ -330905,7 +330895,7 @@ flag=MF_SOUNDBLOCK
 flag=MF_SHOUTBLOCK
 
 field="255,255"
-fsprite=59171
+fsprite=59722
 flag=MF_SIGHTBLOCK
 flag=MF_MOVEBLOCK
 flag=MF_INDOORS

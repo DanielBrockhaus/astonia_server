@@ -10,3 +10,52 @@ driver=10
 arg="7500D100030001"   # x=123, y=188, a=3, quiet=1
 ;
 
+link_return:
+name="Door"
+description="A steel door."
+sprite=20124
+flag=IF_USE
+flag=IF_MOVEBLOCK
+flag=IF_SIGHTBLOCK
+flag=IF_SOUNDBLOCK
+driver=10
+arg="F900EA00000001"   # x=123, y=188, a=0, quiet=1
+;
+
+warped_teleport_deco:
+sprite=14194
+flag=IF_MOVEBLOCK
+mod_index=V_LIGHT
+mod_value=50
+;
+
+warped_return_deco:
+sprite=59743
+mod_index=V_LIGHT
+mod_value=50
+;
+
+white_torch1:
+sprite=59734
+mod_index=V_LIGHT
+mod_value=200
+flag=IF_MOVEBLOCK
+;
+white_torch2:
+sprite=59735
+mod_index=V_LIGHT
+mod_value=200
+flag=IF_MOVEBLOCK
+;
+white_torch3:
+sprite=59736
+mod_index=V_LIGHT
+mod_value=200
+flag=IF_MOVEBLOCK
+;
+white_torch4:
+sprite=59737
+mod_index=V_LIGHT
+mod_value=200
+flag=IF_MOVEBLOCK
+;

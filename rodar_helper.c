@@ -237,7 +237,7 @@ int rodar_event_loaded(void) {
     return event_loaded;
 }
 
-void rodar_add_event(int ID,int t,enum eventtype type,enum eventopt opt,int level,int winnerID) {
+void rodar_add_event(int ID,int t,enum eventtype type,enum eventopt opt,int level,int room,int winnerID) {
     int n;
 
     pthread_mutex_lock(&cache_mutex);
@@ -253,6 +253,7 @@ void rodar_add_event(int ID,int t,enum eventtype type,enum eventopt opt,int leve
     events[n].type=type;
     events[n].opt=opt;
     events[n].level=level;
+    events[n].room=room;
     events[n].winnerID=winnerID;
 
     pthread_mutex_unlock(&cache_mutex);
@@ -293,6 +294,10 @@ static int rand_level(void) {
     return (r/10+1)*20;
 }
 
+static int rand_room(void) {
+    return 1;
+}
+
 static enum eventtype rand_type(void) {
     int r;
 
@@ -326,7 +331,7 @@ void rodar_create_event(int when) {
 
     when=(when/(60*60)+1)*60*60;
 
-    db_add_event(when,rand_type(),rand_opt(),rand_level());
+    db_add_event(when,rand_type(),rand_opt(),rand_level(),rand_room());
     event_loaded=0;
     db_read_event();
 }
@@ -390,6 +395,7 @@ create table rodar_event (
     t timestamp not null default 0,
     type enum ('2','3','5','7','12','any') not null default 'any',
     option set ('clan','nomagic','nofreeze','nowarcry') not null default (''),
+    room int not null default 1,
     level int not null default 200,
     winnerID int default null,
     primary key(ID),

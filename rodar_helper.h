@@ -63,6 +63,7 @@ struct rodar_event {
     int t;
     enum eventtype type;
     enum eventopt opt;
+    int room;
     int level;
     int winnerID;
 };
@@ -94,7 +95,7 @@ void rodar_read_event(void);
 void rodar_reset_event(void);
 void rodar_event_done(void);
 int rodar_event_loaded(void);
-void rodar_add_event(int ID,int t,enum eventtype type,enum eventopt opt,int level,int winnerID);
+void rodar_add_event(int ID,int t,enum eventtype type,enum eventopt opt,int level,int room,int winnerID);
 int rodar_get_event(int idx,struct rodar_event *ev);
 int rodar_get_event_cnt(void);
 void rodar_create_event(int when);

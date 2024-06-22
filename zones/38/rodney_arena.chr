@@ -1,25 +1,26 @@
 master:
-name="Master"
-description="The Master."
-sprite=147
+name="Journeyman"
+description="One of Rodney's journeyman. He looks quite impressive."
+sprite=13
 sound=1
 
 flag=CF_IMMORTAL
 flag=CF_NOATTACK
 flag=CF_NOGIVE
 flag=CF_ALIVE
+flag=CF_INFRARED
 
-V_HP=10
-V_ENDURANCE=10
-V_MANA=10
+V_HP=50
+V_ENDURANCE=50
+V_MANA=70
 
-V_WIS=10
-V_INT=10
-V_AGI=10
-V_STR=10
+V_WIS=50
+V_INT=50
+V_AGI=50
+V_STR=50
 
 # weapon skills
-V_DAGGER=1
+V_DAGGER=75
 V_HAND=1
 V_STAFF=0
 V_SWORD=1
@@ -41,16 +42,16 @@ V_PERCEPT=1
 V_STEALTH=1
 
 # spells
-V_BLESS=1
+V_BLESS=75
 V_HEAL=1
 V_FREEZE=1
-V_MAGICSHIELD=1
+V_MAGICSHIELD=75
 V_FLASH=1
 V_FIREBALL=1
 
 V_REGENERATE=1
-V_MEDITATE=1
-V_IMMUNITY=1
+V_MEDITATE=50
+V_IMMUNITY=55
 
 driver=125
 ;

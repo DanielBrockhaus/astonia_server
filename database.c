@@ -3796,7 +3796,7 @@ static void db_load_event(void) {
     char buf[256];
 
     // grab all event entries that do not have a winner and are in the future or less than an hour overdue
-    sprintf(buf,"select ID,unix_timestamp(t),type,option,level,winnerID from rodar_event where isnull(winnerID) and t>from_unixtime(%d)",time_now-60*30);
+    sprintf(buf,"select ID,unix_timestamp(t),type,option,level,room,winnerID from rodar_event where isnull(winnerID) and t>from_unixtime(%d)",time_now-60*30);
     if (mysql_query_con(&mysql,buf)) {
         elog("Failed to select team event: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
         return;
@@ -3810,18 +3810,18 @@ static void db_load_event(void) {
     while ((row=mysql_fetch_row(result))) {
         if (!row[0]) continue;
 
-        rodar_add_event(atoi(row[0]),atoi(row[1]),rodar_eventtype(row[2]),rodar_eventopt(row[3]),atoi(row[4]),row[5]?atoi(row[5]):0);
+        rodar_add_event(atoi(row[0]),atoi(row[1]),rodar_eventtype(row[2]),rodar_eventopt(row[3]),atoi(row[4]),atoi(row[5]),row[6]?atoi(row[6]):0);
     }
     rodar_event_done();
 
     mysql_free_result_cnt(result);
 }
 
-void db_add_event(int t,enum eventtype type,enum eventopt opt,int level) {
+void db_add_event(int t,enum eventtype type,enum eventopt opt,int level,int room) {
     char buf[256];
 
-    sprintf(buf,"insert into rodar_event set t=from_unixtime(%d),type='%s',option='%s',level=%d",
-            t,rodar_eventtype2(type),rodar_eventopt2(opt),level);
+    sprintf(buf,"insert into rodar_event set t=from_unixtime(%d),type='%s',option='%s',level=%d, room=%d",
+            t,rodar_eventtype2(type),rodar_eventopt2(opt),level,room);
 
     add_query(DT_QUERY,buf,"add rodar event",0);
 }

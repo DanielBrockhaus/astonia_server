@@ -76,5 +76,5 @@ void db_write_team_name(int teamID,char *name);
 void db_write_team_status(int teamID,enum teamstatus status);
 void db_inc_team_value(int teamID,char *value);
 void db_read_event(void);
-void db_add_event(int t,enum eventtype type,enum eventopt opt,int level);
+void db_add_event(int t,enum eventtype type,enum eventopt opt,int level,int room);
 
