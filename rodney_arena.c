@@ -63,8 +63,6 @@ static struct event_room room[]={
     {{{10,10}}},        // 1
 };
 
-#define MAXMEMBER   256
-
 struct active_team {
     int teamID;
     int *charID;
@@ -76,6 +74,10 @@ struct master_data {
     struct active_team *at;
     int at_cnt,at_max;
 };
+
+// A pointer to the event in master_data
+// We need it for can_attack(). TODO: Not a good solution.
+static struct rodar_event *ev_ptr=NULL;
 
 static void cleanup_event(struct master_data *dat) {
     int n;
@@ -152,6 +154,13 @@ static int event_maxchars(enum eventtype type) {
     }
 }
 
+static int time_till_event(void) {
+    if (!ev_ptr) return 60*60;
+    if (!ev_ptr->ID) return 60*60;
+
+    return ev_ptr->t-time_now;
+}
+
 void rodarmaster(int cn,int ret,int lastact) {
     struct msg *msg,*next;
     struct master_data *dat;
@@ -160,6 +169,8 @@ void rodarmaster(int cn,int ret,int lastact) {
 
     dat=set_data(cn,DRD_RODARMASTER,sizeof(struct master_data));
     if (!dat) return;   // oops...
+
+    ev_ptr=&dat->ev;    // set_data should not move the memory block, but set it every time just to be safe
 
     // loop through our messages
     for (msg=ch[cn].msg; msg; msg=next) {
@@ -191,18 +202,20 @@ void rodarmaster(int cn,int ret,int lastact) {
 
             if (strstr(ptr,"Master") && strstr(ptr,"enter")) {
                 int oldx,oldy;
-
                 struct rodar_drd *dat2;
+
                 dat2=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
                 if (!dat2) {
                     remove_message(cn,msg);
                     continue;
                 }
+
                 if (!dat2->teamID) {
                     say(cn,"You need to activate your team first, %s",ch[co].name);
                     remove_message(cn,msg);
                     continue;
                 }
+
                 tmp=is_in_event(dat,dat2->teamID,ch[co].ID);
                 if (tmp==0) {
                     if (chars_in_event(dat,dat2->teamID)>=event_maxchars(dat->ev.type)) {
@@ -212,6 +225,7 @@ void rodarmaster(int cn,int ret,int lastact) {
                     }
                     add_to_event(dat,dat2->teamID,ch[co].ID);
                 }
+
                 if (tmp==-1) {
                     say(cn,"You cannot enter the same event for different teams.");
                     remove_message(cn,msg);
@@ -864,7 +878,7 @@ int rodar_canattack(int cn,int co) {
     dat1=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
     if (!dat1) return 0;
 
-    dat2=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    dat2=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
     if (!dat2) return 0;
 
     // one is not a team member. no fighting.
@@ -879,8 +893,8 @@ int rodar_canattack(int cn,int co) {
     m=ch[co].x+ch[co].y*MAXMAP;
     mf2=map[m].flags;
 
-    // arena is fair game
-    if ((mf1&MF_ARENA) && (mf2&MF_ARENA)) return 2;
+    // arena is fair game if an event is running
+    if ((mf1&MF_ARENA) && (mf2&MF_ARENA) && time_till_event()<=0) return 2;
 
     // everywhere else not
     return 3;   // 1 = use default, 2 = yes, 3 = no
@@ -892,7 +906,7 @@ int rodar_canhelp(int cn,int co) {
     dat1=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
     if (!dat1) return 0;
 
-    dat2=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    dat2=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
     if (!dat2) return 0;
 
     // team members can help each other
