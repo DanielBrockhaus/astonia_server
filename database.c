@@ -3826,3 +3826,10 @@ void db_add_event(int t,enum eventtype type,enum eventopt opt,int level,int room
     add_query(DT_QUERY,buf,"add rodar event",0);
 }
 
+void db_win_event(int ID,int winnerID) {
+    char buf[256];
+
+    sprintf(buf,"update rodar_event set winnerID=%d where ID=%d",winnerID,ID);
+
+    add_query(DT_QUERY,buf,"update rodar event",0);
+}

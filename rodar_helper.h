@@ -89,6 +89,7 @@ char *rodar_eventopt2(enum eventopt opt);
 
 void rodar_cache_team(char *name_or_ID,struct rodar_team *team);
 int rodar_team_byname(char *name,struct rodar_team *team);
+int rodar_team_byID(int teamID,struct rodar_team *team);
 void rodar_cache_member(int teamID,int charID,int type);
 int rodar_member(int teamID,int charID);
 void rodar_read_event(void);

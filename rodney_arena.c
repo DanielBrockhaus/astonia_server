@@ -10,6 +10,8 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
 
 #include "server.h"
 #include "libload.h"
@@ -27,7 +29,9 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 #include "lookup.h"
 #include "see.h"
 #include "map.h"
+#include "sector.h"
 #include "mem.h"
+#include "tool.h"
 
 // library helper functions needed for init
 int ch_driver(int nr,int cn,int ret,int lastact);           // character driver (decides next action)
@@ -73,6 +77,9 @@ struct master_data {
     struct rodar_event ev;
     struct active_team *at;
     int at_cnt,at_max;
+
+    int woneventID;
+    struct rodar_team win_team;
 };
 
 // A pointer to the event in master_data
@@ -161,6 +168,27 @@ static int time_till_event(void) {
     return ev_ptr->t-time_now;
 }
 
+void announce(int cn,char *format,...) __attribute__ ((format(printf,2,3)));
+
+void announce(int cn,char *format,...) {
+    unsigned char buf[1024];
+    va_list args;
+    int len,co;
+
+    va_start(args,format);
+    len=vsnprintf(buf,1020,format,args);
+    va_end(args);
+
+    if (len==1020) return;
+
+    if (strchr(buf,'"')) return;
+
+    for (co=getfirst_char(); co; co=getnext_char(co)) {
+        if (!(ch[co].flags&CF_PLAYER)) continue;
+        log_char(co,LOG_SYSTEM,0,"%s announces: \"%s\"",ch[cn].name,buf);
+    }
+}
+
 void rodarmaster(int cn,int ret,int lastact) {
     struct msg *msg,*next;
     struct master_data *dat;
@@ -188,19 +216,27 @@ void rodarmaster(int cn,int ret,int lastact) {
             if (!char_see_char(cn,co) || cn==co) { remove_message(cn,msg); continue; }
             if (char_dist(cn,co)>10) { remove_message(cn,msg); continue; }
 
-            if (strstr(ptr,"Master") && strstr(ptr,"event")) {
+            if (strcasestr(ptr,"showevent")) {
                 if (dat->ev.ID) {
-                    if (dat->ev.t>time_now) say(cn,"The event %d will start in %d seconds.",dat->ev.ID,dat->ev.t-time_now);
-                    else say(cn,"The event %d has started %d seconds ago.",dat->ev.ID,time_now-dat->ev.t);
-                    say(cn,"It is for level %d, with %s participants per team and the option(s) %s. It is held in room %d.",
-                        dat->ev.level,rodar_eventtype2(dat->ev.type),rodar_eventopt2(dat->ev.opt),dat->ev.room);
+                    if (dat->ev.winnerID) {
+                        if (dat->ev.winnerID==dat->win_team.ID) say(cn,"The event %d is already over. Team %s (%d) has won.",dat->ev.ID,dat->win_team.name,dat->ev.winnerID);
+                        else {
+                            say(cn,"The event %d is already over. Team %d has won.",dat->ev.ID,dat->ev.winnerID);
+                            rodar_team_byID(dat->ev.winnerID,&dat->win_team);
+                        }
+                    } else {
+                        if (dat->ev.t>time_now) say(cn,"The event %d will start in %d seconds.",dat->ev.ID,dat->ev.t-time_now);
+                        else say(cn,"The event %d has started %d seconds ago.",dat->ev.ID,time_now-dat->ev.t);
+                        say(cn,"It is for level %d, with %s participants per team and the option(s) %s. It is held in room %d.",
+                            dat->ev.level,rodar_eventtype2(dat->ev.type),rodar_eventopt2(dat->ev.opt),dat->ev.room);
+                    }
                 } else say(cn,"There is no current event.");
 
                 remove_message(cn,msg);
                 continue;
             }
 
-            if (strstr(ptr,"Master") && strstr(ptr,"enter")) {
+            if (strstr(ptr,"doenter")) {
                 int oldx,oldy;
                 struct rodar_drd *dat2;
 
@@ -274,10 +310,32 @@ void rodarmaster(int cn,int ret,int lastact) {
                 if (dat->ev.ID!=ev.ID) {
                     dat->ev=ev;
 
-                    // TODO: clean up arena
-                    xlog("current event: ID=%d, level=%d",dat->ev.ID,dat->ev.level);
+                    announce(cn,"Event %d will start in 30 minutes!",dat->ev.ID);
+
+                    for (co=getfirst_char(); co; co=getnext_char(co)) {
+                        if (!(ch[co].flags&CF_PLAYER)) continue;
+                        if (ch[co].x<240 && ch[co].y<240) {
+                            int oldx,oldy;
+
+                            oldx=ch[co].x; oldy=ch[co].y;
+                            remove_char(co);
+
+                            if (!drop_char_extended(co,249,234,7))
+                                drop_char(co,oldx,oldy,0);
+                        }
+                    }
                 }
             }
+        }
+    }
+
+    if (dat->ev.winnerID && dat->woneventID!=dat->ev.winnerID) {
+
+        if (dat->win_team.ID==dat->ev.winnerID) {
+            dat->woneventID=dat->ev.winnerID;
+            announce(cn,"Team %s (%d) has won event %d!",dat->win_team.name,dat->ev.winnerID,dat->ev.ID);
+        } else {
+            rodar_team_byID(dat->ev.winnerID,&dat->win_team);
         }
     }
 
@@ -915,6 +973,136 @@ int rodar_canhelp(int cn,int co) {
     return 3;   // 1 = use default, 2 = yes, 3 = no
 }
 
+static int lightoff[]={
+    -MAXMAP*14  -14,
+    -MAXMAP*14  -12,
+    -MAXMAP*14  -10,
+    -MAXMAP*14  - 8,
+    -MAXMAP*14  - 6,
+    -MAXMAP*14  - 4,
+    -MAXMAP*12  - 4,
+    -MAXMAP*10  - 4,
+    -MAXMAP* 8  - 4,
+    -MAXMAP* 6  - 4,
+    -MAXMAP* 4  - 4,
+    -MAXMAP* 4  - 6,
+    -MAXMAP* 4  - 8,
+    -MAXMAP* 4  -10,
+    -MAXMAP* 4  -12,
+    -MAXMAP* 4  -14,
+    -MAXMAP* 6  -14,
+    -MAXMAP* 8  -14,
+    -MAXMAP*10  -14,
+    -MAXMAP*12  -14
+};
+
+static inline int mapx(int m) {
+    return m%MAXMAP;
+}
+
+static inline int mapy(int m) {
+    return m/MAXMAP;
+}
+
+static void end_event(int winnerID) {
+    if (ev_ptr && ev_ptr->ID && winnerID) {
+        db_win_event(ev_ptr->ID,winnerID);
+        ev_ptr->winnerID=winnerID;
+    }
+}
+
+void rodar_solver(int in,int cn) {
+    //int arenaID
+    int state,step,delay,d_cnt,newstate=0;
+    int m,x,y,co,teamID=0;
+    int len=sizeof(lightoff)/sizeof(lightoff[0]);
+    struct rodar_drd *dat;
+
+    if (cn) return;     // we handle ONLY timer calls
+
+    //arenaID=it[in].drdata[0];
+    state=it[in].drdata[1];
+    step=it[in].drdata[2];
+    delay=it[in].drdata[3];
+    d_cnt=it[in].drdata[4];
+    m=it[in].x+it[in].y*MAXMAP;
+
+    if (time_till_event()<0 && ev_ptr && !ev_ptr->winnerID) {
+        for (x=it[in].x-13; x<it[in].x-5 && !newstate; x++) {
+            for (y=it[in].y-13; y<it[in].y-5 && !newstate; y++) {
+                if ((co=map[x+y*MAXMAP].ch) && (ch[co].flags&CF_PLAYER)) {
+                    dat=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
+                    if (dat) {
+                        if (teamID && dat->teamID && teamID!=dat->teamID) newstate=2;  // two teams, go red
+                        else if (dat->teamID) teamID=dat->teamID; // remember team ID
+                    }
+                }
+            }
+        }
+        if (newstate) ;
+        else if (teamID) newstate=1;
+        else newstate=3;
+    } else newstate=3;
+
+    if (state!=newstate) {
+        state=newstate;
+        step=0;
+        if (state==1) delay=16;
+        else delay=0;
+        d_cnt=0;
+    }
+
+    if (delay>d_cnt) {
+        d_cnt++;
+    } else {
+        d_cnt=0;
+        if (state==1) {         // going green
+            if (step>len) {
+                ;
+            } else if (step==len) {
+                it[in].sprite=14136;
+                set_sector(it[in].x,it[in].y);
+                end_event(teamID);
+                step++;
+            } else {
+                map[m+lightoff[step]].fsprite=14200;
+                set_sector(mapx(m+lightoff[step]),mapy(m+lightoff[step]));
+                step++;
+            }
+        } else if (state==2) {      // going red
+            if (step>len) {
+                ;
+            } else if (step==len) {
+                it[in].sprite=14139;
+                set_sector(it[in].x,it[in].y);
+                step++;
+            } else {
+                map[m+lightoff[step]].fsprite=14202;
+                set_sector(mapx(m+lightoff[step]),mapy(m+lightoff[step]));
+                step++;
+            }
+        } else if (state==3) {      // going orange
+            if (step>len) {
+                ;
+            } else if (step==len) {
+                it[in].sprite=14138;
+                set_sector(it[in].x,it[in].y);
+                step++;
+            } else {
+                map[m+lightoff[step]].fsprite=14201;
+                set_sector(mapx(m+lightoff[step]),mapy(m+lightoff[step]));
+                step++;
+            }
+        }
+    }
+
+    it[in].drdata[1]=state;
+    it[in].drdata[2]=step;
+    it[in].drdata[3]=delay;
+    it[in].drdata[4]=d_cnt;
+    call_item(IDR_RODARSOLVER,in,0,ticker+2);
+}
+
 void immortal_dead(int cn,int co) {
     charlog(cn,"I JUST DIED! I'M SUPPOSED TO BE IMMORTAL!");
 }
@@ -929,6 +1117,7 @@ int ch_driver(int nr,int cn,int ret,int lastact) {
 
 int it_driver(int nr,int in,int cn) {
     switch (nr) {
+        case IDR_RODARSOLVER:       rodar_solver(in,cn); return 1;
         default:		return 0;
     }
 }

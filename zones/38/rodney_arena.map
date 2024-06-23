@@ -4336,6 +4336,7 @@ flag=MF_ARENA
 
 field="45,2"
 gsprite=59684
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -9580,22 +9581,42 @@ flag=MF_ARENA
 
 field="43,6"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,6"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,6"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="46,6"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="47,6"
@@ -9620,22 +9641,42 @@ flag=MF_ARENA
 
 field="51,6"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="52,6"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="53,6"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="54,6"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,6"
@@ -9660,7 +9701,12 @@ flag=MF_ARENA
 
 field="59,6"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,6"
@@ -10889,11 +10935,17 @@ flag=MF_ARENA
 
 field="43,7"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,7"
 gsprite=59683
+it=orange_torch1
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -10944,7 +10996,12 @@ flag=MF_ARENA
 
 field="54,7"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,7"
@@ -10969,7 +11026,12 @@ flag=MF_ARENA
 
 field="59,7"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,7"
@@ -12215,7 +12277,12 @@ flag=MF_ARENA
 
 field="43,8"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,8"
@@ -12270,7 +12337,12 @@ flag=MF_ARENA
 
 field="54,8"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,8"
@@ -12295,7 +12367,12 @@ flag=MF_ARENA
 
 field="59,8"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,8"
@@ -13517,7 +13594,12 @@ flag=MF_ARENA
 
 field="43,9"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,9"
@@ -13572,7 +13654,12 @@ flag=MF_ARENA
 
 field="54,9"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,9"
@@ -13597,7 +13684,12 @@ flag=MF_ARENA
 
 field="59,9"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,9"
@@ -14813,7 +14905,12 @@ flag=MF_ARENA
 
 field="43,10"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,10"
@@ -14868,7 +14965,12 @@ flag=MF_ARENA
 
 field="54,10"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,10"
@@ -14893,11 +14995,17 @@ flag=MF_ARENA
 
 field="59,10"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,10"
 gsprite=59684
+it=orange_torch4
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -14913,6 +15021,7 @@ flag=MF_ARENA
 
 field="63,10"
 gsprite=59684
+it=orange_torch4
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -16119,7 +16228,12 @@ flag=MF_ARENA
 
 field="43,11"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,11"
@@ -16174,7 +16288,12 @@ flag=MF_ARENA
 
 field="54,11"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,11"
@@ -16199,27 +16318,52 @@ flag=MF_ARENA
 
 field="59,11"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,11"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="61,11"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="62,11"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="63,11"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="64,11"
@@ -17431,11 +17575,17 @@ flag=MF_ARENA
 
 field="43,12"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,12"
 gsprite=59682
+it=orange_torch1
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -17486,7 +17636,12 @@ flag=MF_ARENA
 
 field="54,12"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,12"
@@ -18788,22 +18943,42 @@ flag=MF_ARENA
 
 field="43,13"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,13"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,13"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="46,13"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="47,13"
@@ -18828,22 +19003,42 @@ flag=MF_ARENA
 
 field="51,13"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="52,13"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="53,13"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="54,13"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,13"
@@ -20149,7 +20344,12 @@ flag=MF_ARENA
 
 field="54,14"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,14"
@@ -21451,7 +21651,12 @@ flag=MF_ARENA
 
 field="54,15"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,15"
@@ -22752,7 +22957,12 @@ flag=MF_ARENA
 
 field="54,16"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,16"
@@ -22777,7 +22987,12 @@ flag=MF_ARENA
 
 field="59,16"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,16"
@@ -24058,7 +24273,12 @@ flag=MF_ARENA
 
 field="54,17"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,17"
@@ -24083,7 +24303,12 @@ flag=MF_ARENA
 
 field="59,17"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,17"
@@ -25409,22 +25634,42 @@ flag=MF_ARENA
 
 field="43,18"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,18"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,18"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="46,18"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="47,18"
@@ -25449,22 +25694,42 @@ flag=MF_ARENA
 
 field="51,18"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="52,18"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="53,18"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="54,18"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,18"
@@ -25489,7 +25754,12 @@ flag=MF_ARENA
 
 field="59,18"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,18"
@@ -26716,11 +26986,17 @@ flag=MF_ARENA
 
 field="43,19"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,19"
 gsprite=59685
+it=orange_torch1
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -26766,12 +27042,18 @@ flag=MF_ARENA
 
 field="53,19"
 gsprite=59682
+it=orange_torch3
 flag=MF_INDOORS
 flag=MF_ARENA
 
 field="54,19"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,19"
@@ -26796,7 +27078,12 @@ flag=MF_ARENA
 
 field="59,19"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,19"
@@ -28023,7 +28310,12 @@ flag=MF_ARENA
 
 field="43,20"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,20"
@@ -28078,7 +28370,12 @@ flag=MF_ARENA
 
 field="54,20"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,20"
@@ -28103,7 +28400,12 @@ flag=MF_ARENA
 
 field="59,20"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,20"
@@ -29329,7 +29631,12 @@ flag=MF_ARENA
 
 field="43,21"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,21"
@@ -29384,7 +29691,12 @@ flag=MF_ARENA
 
 field="54,21"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,21"
@@ -29409,7 +29721,12 @@ flag=MF_ARENA
 
 field="59,21"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,21"
@@ -30635,7 +30952,12 @@ flag=MF_ARENA
 
 field="43,22"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,22"
@@ -30690,7 +31012,12 @@ flag=MF_ARENA
 
 field="54,22"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,22"
@@ -30715,7 +31042,12 @@ flag=MF_ARENA
 
 field="59,22"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,22"
@@ -31911,52 +32243,102 @@ flag=MF_ARENA
 
 field="29,23"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,23"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,23"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,23"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="33,23"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="34,23"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,23"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="36,23"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="37,23"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="38,23"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="39,23"
@@ -31981,7 +32363,12 @@ flag=MF_ARENA
 
 field="43,23"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,23"
@@ -32036,11 +32423,17 @@ flag=MF_ARENA
 
 field="54,23"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,23"
 gsprite=59684
+it=orange_torch4
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -32056,12 +32449,18 @@ flag=MF_ARENA
 
 field="58,23"
 gsprite=59685
+it=orange_torch4
 flag=MF_INDOORS
 flag=MF_ARENA
 
 field="59,23"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,23"
@@ -33258,7 +33657,12 @@ flag=MF_ARENA
 
 field="38,24"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="39,24"
@@ -33283,7 +33687,12 @@ flag=MF_ARENA
 
 field="43,24"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,24"
@@ -33338,32 +33747,62 @@ flag=MF_ARENA
 
 field="54,24"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,24"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="56,24"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="57,24"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="58,24"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="59,24"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,24"
@@ -34559,7 +34998,12 @@ flag=MF_ARENA
 
 field="38,25"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="39,25"
@@ -34584,7 +35028,12 @@ flag=MF_ARENA
 
 field="43,25"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,25"
@@ -34639,7 +35088,12 @@ flag=MF_ARENA
 
 field="54,25"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,25"
@@ -35860,7 +36314,12 @@ flag=MF_ARENA
 
 field="38,26"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="39,26"
@@ -35885,7 +36344,12 @@ flag=MF_ARENA
 
 field="43,26"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,26"
@@ -35940,7 +36404,12 @@ flag=MF_ARENA
 
 field="54,26"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,26"
@@ -37187,7 +37656,12 @@ flag=MF_ARENA
 
 field="43,27"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,27"
@@ -37242,7 +37716,12 @@ flag=MF_ARENA
 
 field="54,27"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,27"
@@ -38483,17 +38962,32 @@ flag=MF_ARENA
 
 field="29,28"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,28"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,28"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,28"
@@ -38553,7 +39047,12 @@ flag=MF_ARENA
 
 field="43,28"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,28"
@@ -38608,7 +39107,12 @@ flag=MF_ARENA
 
 field="54,28"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,28"
@@ -39785,17 +40289,32 @@ flag=MF_ARENA
 
 field="29,29"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,29"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,29"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,29"
@@ -39855,11 +40374,17 @@ flag=MF_ARENA
 
 field="43,29"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,29"
 gsprite=59684
+it=orange_torch1
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -39910,7 +40435,12 @@ flag=MF_ARENA
 
 field="54,29"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,29"
@@ -39935,7 +40465,12 @@ flag=MF_ARENA
 
 field="59,29"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,29"
@@ -41086,17 +41621,32 @@ flag=MF_ARENA
 
 field="29,30"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,30"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,30"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,30"
@@ -41121,17 +41671,32 @@ flag=MF_ARENA
 
 field="36,30"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="37,30"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="38,30"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="39,30"
@@ -41156,7 +41721,12 @@ flag=MF_ARENA
 
 field="43,30"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,30"
@@ -41211,7 +41781,12 @@ flag=MF_ARENA
 
 field="54,30"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,30"
@@ -41236,7 +41811,12 @@ flag=MF_ARENA
 
 field="59,30"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,30"
@@ -42389,17 +42969,32 @@ flag=MF_ARENA
 
 field="29,31"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,31"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,31"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,31"
@@ -42424,17 +43019,32 @@ flag=MF_ARENA
 
 field="36,31"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="37,31"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="38,31"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="39,31"
@@ -42459,7 +43069,12 @@ flag=MF_ARENA
 
 field="43,31"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,31"
@@ -42514,7 +43129,12 @@ flag=MF_ARENA
 
 field="54,31"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,31"
@@ -42539,7 +43159,12 @@ flag=MF_ARENA
 
 field="59,31"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,31"
@@ -43691,17 +44316,32 @@ flag=MF_ARENA
 
 field="29,32"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,32"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,32"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,32"
@@ -43726,17 +44366,32 @@ flag=MF_ARENA
 
 field="36,32"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="37,32"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="38,32"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="39,32"
@@ -43761,7 +44416,12 @@ flag=MF_ARENA
 
 field="43,32"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,32"
@@ -43811,12 +44471,18 @@ flag=MF_ARENA
 
 field="53,32"
 gsprite=59682
+it=orange_torch3
 flag=MF_INDOORS
 flag=MF_ARENA
 
 field="54,32"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,32"
@@ -43841,7 +44507,12 @@ flag=MF_ARENA
 
 field="59,32"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,32"
@@ -45037,17 +45708,32 @@ flag=MF_ARENA
 
 field="29,33"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,33"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,33"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,33"
@@ -45072,17 +45758,32 @@ flag=MF_ARENA
 
 field="36,33"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="37,33"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="38,33"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="39,33"
@@ -45107,7 +45808,12 @@ flag=MF_ARENA
 
 field="43,33"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,33"
@@ -45132,37 +45838,72 @@ flag=MF_ARENA
 
 field="48,33"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="49,33"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="50,33"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="51,33"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="52,33"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="53,33"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="54,33"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,33"
@@ -45187,7 +45928,12 @@ flag=MF_ARENA
 
 field="59,33"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,33"
@@ -46405,7 +47151,12 @@ flag=MF_ARENA
 
 field="43,34"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,34"
@@ -46460,7 +47211,12 @@ flag=MF_ARENA
 
 field="54,34"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,34"
@@ -46485,7 +47241,12 @@ flag=MF_ARENA
 
 field="59,34"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,34"
@@ -47511,7 +48272,12 @@ flag=MF_ARENA
 
 field="6,35"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,35"
@@ -47696,7 +48462,12 @@ flag=MF_ARENA
 
 field="43,35"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,35"
@@ -47751,7 +48522,12 @@ flag=MF_ARENA
 
 field="54,35"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,35"
@@ -47776,7 +48552,12 @@ flag=MF_ARENA
 
 field="59,35"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,35"
@@ -48802,7 +49583,12 @@ flag=MF_ARENA
 
 field="6,36"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,36"
@@ -48987,11 +49773,17 @@ flag=MF_ARENA
 
 field="43,36"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,36"
 gsprite=59683
+it=orange_torch1
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -49042,7 +49834,12 @@ flag=MF_ARENA
 
 field="54,36"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,36"
@@ -49067,7 +49864,12 @@ flag=MF_ARENA
 
 field="59,36"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,36"
@@ -50093,7 +50895,12 @@ flag=MF_ARENA
 
 field="6,37"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,37"
@@ -50278,7 +51085,12 @@ flag=MF_ARENA
 
 field="43,37"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,37"
@@ -50333,7 +51145,12 @@ flag=MF_ARENA
 
 field="54,37"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,37"
@@ -50358,7 +51175,12 @@ flag=MF_ARENA
 
 field="59,37"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,37"
@@ -51384,7 +52206,12 @@ flag=MF_ARENA
 
 field="6,38"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,38"
@@ -51409,47 +52236,92 @@ flag=MF_ARENA
 
 field="11,38"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="12,38"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="13,38"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="14,38"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="15,38"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="16,38"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="17,38"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="18,38"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="19,38"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="20,38"
@@ -51474,132 +52346,262 @@ flag=MF_ARENA
 
 field="24,38"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="25,38"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="26,38"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="27,38"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="28,38"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="29,38"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,38"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,38"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,38"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="33,38"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="34,38"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,38"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="36,38"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="37,38"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="38,38"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="39,38"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,38"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,38"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,38"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,38"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,38"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,38"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="46,38"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="47,38"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="48,38"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="49,38"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="50,38"
@@ -51624,7 +52626,12 @@ flag=MF_ARENA
 
 field="54,38"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,38"
@@ -51649,11 +52656,17 @@ flag=MF_ARENA
 
 field="59,38"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,38"
 gsprite=59684
+it=orange_torch4
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -51669,6 +52682,7 @@ flag=MF_ARENA
 
 field="63,38"
 gsprite=59685
+it=orange_torch4
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -52705,6 +53719,7 @@ flag=MF_ARENA
 
 field="12,39"
 gsprite=59685
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -52735,6 +53750,7 @@ flag=MF_ARENA
 
 field="18,39"
 gsprite=59685
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -52770,6 +53786,7 @@ flag=MF_ARENA
 
 field="25,39"
 gsprite=59685
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -52915,7 +53932,12 @@ flag=MF_ARENA
 
 field="54,39"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,39"
@@ -52940,27 +53962,52 @@ flag=MF_ARENA
 
 field="59,39"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="60,39"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="61,39"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="62,39"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="63,39"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="64,39"
@@ -54206,7 +55253,12 @@ flag=MF_ARENA
 
 field="54,40"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,40"
@@ -55237,6 +56289,7 @@ flag=MF_SHOUTBLOCK
 
 field="2,41"
 gsprite=59685
+it=orange_torch1
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -55497,7 +56550,12 @@ flag=MF_ARENA
 
 field="54,41"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,41"
@@ -56788,7 +57846,12 @@ flag=MF_ARENA
 
 field="54,42"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,42"
@@ -57839,7 +58902,12 @@ flag=MF_ARENA
 
 field="6,43"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,43"
@@ -57864,122 +58932,242 @@ flag=MF_ARENA
 
 field="11,43"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="12,43"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="13,43"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="14,43"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="15,43"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="16,43"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="17,43"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="18,43"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="19,43"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="20,43"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="21,43"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="22,43"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="23,43"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,43"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="25,43"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="26,43"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="27,43"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="28,43"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="29,43"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,43"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,43"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,43"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="33,43"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="34,43"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,43"
@@ -58004,47 +59192,92 @@ flag=MF_ARENA
 
 field="39,43"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,43"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,43"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,43"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,43"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,43"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,43"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="46,43"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="47,43"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="48,43"
@@ -58069,17 +59302,32 @@ flag=MF_ARENA
 
 field="52,43"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="53,43"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="54,43"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,43"
@@ -59130,7 +60378,12 @@ flag=MF_ARENA
 
 field="6,44"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,44"
@@ -59210,16 +60463,23 @@ flag=MF_ARENA
 
 field="22,44"
 gsprite=59682
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
 field="23,44"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,44"
 gsprite=59685
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -59265,12 +60525,18 @@ flag=MF_ARENA
 
 field="33,44"
 gsprite=59685
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
 field="34,44"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,44"
@@ -59295,47 +60561,92 @@ flag=MF_ARENA
 
 field="39,44"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,44"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,44"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,44"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,44"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,44"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,44"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="46,44"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="47,44"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="48,44"
@@ -59360,27 +60671,52 @@ flag=MF_ARENA
 
 field="52,44"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="53,44"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="54,44"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="55,44"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="56,44"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="57,44"
@@ -59405,17 +60741,32 @@ flag=MF_ARENA
 
 field="61,44"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="62,44"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="63,44"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="64,44"
@@ -60421,7 +61772,12 @@ flag=MF_ARENA
 
 field="6,45"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,45"
@@ -60506,7 +61862,12 @@ flag=MF_ARENA
 
 field="23,45"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,45"
@@ -60561,7 +61922,12 @@ flag=MF_ARENA
 
 field="34,45"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,45"
@@ -60586,32 +61952,62 @@ flag=MF_ARENA
 
 field="39,45"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,45"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,45"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,45"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,45"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,45"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,45"
@@ -60651,6 +62047,7 @@ flag=MF_ARENA
 
 field="52,45"
 gsprite=59683
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -60671,6 +62068,7 @@ flag=MF_ARENA
 
 field="56,45"
 gsprite=59685
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -60701,6 +62099,7 @@ flag=MF_ARENA
 
 field="62,45"
 gsprite=59683
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -61712,7 +63111,12 @@ flag=MF_ARENA
 
 field="6,46"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,46"
@@ -61797,7 +63201,12 @@ flag=MF_ARENA
 
 field="23,46"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,46"
@@ -61852,7 +63261,12 @@ flag=MF_ARENA
 
 field="34,46"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,46"
@@ -61877,36 +63291,67 @@ flag=MF_ARENA
 
 field="39,46"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,46"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,46"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,46"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,46"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,46"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,46"
 gsprite=59684
+it=orange_torch1
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -63003,7 +64448,12 @@ flag=MF_ARENA
 
 field="6,47"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,47"
@@ -63088,7 +64538,12 @@ flag=MF_ARENA
 
 field="23,47"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,47"
@@ -63143,7 +64598,12 @@ flag=MF_ARENA
 
 field="34,47"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,47"
@@ -63168,32 +64628,62 @@ flag=MF_ARENA
 
 field="39,47"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,47"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,47"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,47"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,47"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,47"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,47"
@@ -64294,67 +65784,132 @@ flag=MF_ARENA
 
 field="6,48"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,48"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="8,48"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="9,48"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="10,48"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="11,48"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="12,48"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="13,48"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="14,48"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="15,48"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="16,48"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="17,48"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="18,48"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="19,48"
@@ -64379,7 +65934,12 @@ flag=MF_ARENA
 
 field="23,48"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,48"
@@ -64404,37 +65964,72 @@ flag=MF_ARENA
 
 field="28,48"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="29,48"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,48"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,48"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,48"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="33,48"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="34,48"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,48"
@@ -65585,11 +67180,17 @@ flag=MF_ARENA
 
 field="6,49"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,49"
 gsprite=59683
+it=orange_torch2
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -65670,7 +67271,12 @@ flag=MF_ARENA
 
 field="23,49"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,49"
@@ -65800,6 +67406,7 @@ flag=MF_ARENA
 
 field="49,49"
 gsprite=59685
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -65810,6 +67417,7 @@ flag=MF_ARENA
 
 field="51,49"
 gsprite=59682
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -65820,6 +67428,7 @@ flag=MF_ARENA
 
 field="53,49"
 gsprite=59683
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -65830,6 +67439,7 @@ flag=MF_ARENA
 
 field="55,49"
 gsprite=59683
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -65840,6 +67450,7 @@ flag=MF_ARENA
 
 field="57,49"
 gsprite=59684
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -65850,6 +67461,7 @@ flag=MF_ARENA
 
 field="59,49"
 gsprite=59685
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -66876,7 +68488,12 @@ flag=MF_ARENA
 
 field="6,50"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,50"
@@ -66961,7 +68578,12 @@ flag=MF_ARENA
 
 field="23,50"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,50"
@@ -68167,7 +69789,12 @@ flag=MF_ARENA
 
 field="6,51"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,51"
@@ -68252,7 +69879,12 @@ flag=MF_ARENA
 
 field="23,51"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,51"
@@ -68382,6 +70014,7 @@ flag=MF_ARENA
 
 field="49,51"
 gsprite=59685
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -68432,6 +70065,7 @@ flag=MF_ARENA
 
 field="59,51"
 gsprite=59684
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -69458,7 +71092,12 @@ flag=MF_ARENA
 
 field="6,52"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,52"
@@ -69543,7 +71182,12 @@ flag=MF_ARENA
 
 field="23,52"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,52"
@@ -69623,32 +71267,62 @@ flag=MF_ARENA
 
 field="39,52"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,52"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,52"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,52"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,52"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,52"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,52"
@@ -70749,7 +72423,12 @@ flag=MF_ARENA
 
 field="6,53"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,53"
@@ -70774,42 +72453,82 @@ flag=MF_ARENA
 
 field="11,53"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="12,53"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="13,53"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="14,53"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="15,53"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="16,53"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="17,53"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="18,53"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="19,53"
@@ -70834,7 +72553,12 @@ flag=MF_ARENA
 
 field="23,53"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,53"
@@ -70859,37 +72583,72 @@ flag=MF_ARENA
 
 field="28,53"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="29,53"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,53"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,53"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,53"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="33,53"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="34,53"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,53"
@@ -70914,32 +72673,62 @@ flag=MF_ARENA
 
 field="39,53"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,53"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,53"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,53"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,53"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,53"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,53"
@@ -70964,6 +72753,7 @@ flag=MF_ARENA
 
 field="49,53"
 gsprite=59682
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -71014,6 +72804,7 @@ flag=MF_ARENA
 
 field="59,53"
 gsprite=59685
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -72040,7 +73831,12 @@ flag=MF_ARENA
 
 field="6,54"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,54"
@@ -72100,7 +73896,12 @@ flag=MF_ARENA
 
 field="18,54"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="19,54"
@@ -72125,7 +73926,12 @@ flag=MF_ARENA
 
 field="23,54"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,54"
@@ -72150,37 +73956,72 @@ flag=MF_ARENA
 
 field="28,54"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="29,54"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,54"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,54"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,54"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="33,54"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="34,54"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,54"
@@ -72205,36 +74046,67 @@ flag=MF_ARENA
 
 field="39,54"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,54"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,54"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,54"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,54"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,54"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,54"
 gsprite=59685
+it=orange_torch1
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -73331,7 +75203,12 @@ flag=MF_ARENA
 
 field="6,55"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,55"
@@ -73391,7 +75268,12 @@ flag=MF_ARENA
 
 field="18,55"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="19,55"
@@ -73416,7 +75298,12 @@ flag=MF_ARENA
 
 field="23,55"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,55"
@@ -73496,32 +75383,62 @@ flag=MF_ARENA
 
 field="39,55"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,55"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,55"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,55"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,55"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,55"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,55"
@@ -73546,6 +75463,7 @@ flag=MF_ARENA
 
 field="49,55"
 gsprite=59683
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -73596,6 +75514,7 @@ flag=MF_ARENA
 
 field="59,55"
 gsprite=59682
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -74622,7 +76541,12 @@ flag=MF_ARENA
 
 field="6,56"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,56"
@@ -74682,7 +76606,12 @@ flag=MF_ARENA
 
 field="18,56"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="19,56"
@@ -74707,7 +76636,12 @@ flag=MF_ARENA
 
 field="23,56"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,56"
@@ -74787,32 +76721,62 @@ flag=MF_ARENA
 
 field="39,56"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,56"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="41,56"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="42,56"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="43,56"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="44,56"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,56"
@@ -75914,7 +77878,12 @@ flag=MF_ARENA
 
 field="6,57"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,57"
@@ -75974,7 +77943,12 @@ flag=MF_ARENA
 
 field="18,57"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="19,57"
@@ -75999,7 +77973,12 @@ flag=MF_ARENA
 
 field="23,57"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,57"
@@ -76079,7 +78058,12 @@ flag=MF_ARENA
 
 field="39,57"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,57"
@@ -76129,6 +78113,7 @@ flag=MF_ARENA
 
 field="49,57"
 gsprite=59684
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -76179,6 +78164,7 @@ flag=MF_ARENA
 
 field="59,57"
 gsprite=59684
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -77205,42 +79191,82 @@ flag=MF_ARENA
 
 field="6,58"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,58"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="8,58"
 gsprite=59685
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="9,58"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="10,58"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="11,58"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="12,58"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="13,58"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="14,58"
@@ -77265,7 +79291,12 @@ flag=MF_ARENA
 
 field="18,58"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="19,58"
@@ -77290,7 +79321,12 @@ flag=MF_ARENA
 
 field="23,58"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,58"
@@ -77370,7 +79406,12 @@ flag=MF_ARENA
 
 field="39,58"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,58"
@@ -78496,42 +80537,82 @@ flag=MF_ARENA
 
 field="6,59"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="7,59"
 gsprite=59684
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="8,59"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="9,59"
 gsprite=59684
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="10,59"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="11,59"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="12,59"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="13,59"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="14,59"
@@ -78556,7 +80637,12 @@ flag=MF_ARENA
 
 field="18,59"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="19,59"
@@ -78581,7 +80667,12 @@ flag=MF_ARENA
 
 field="23,59"
 gsprite=59682
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="24,59"
@@ -78606,62 +80697,122 @@ flag=MF_ARENA
 
 field="28,59"
 gsprite=59682
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="29,59"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="30,59"
 gsprite=59684
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="31,59"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="32,59"
 gsprite=59685
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="33,59"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="34,59"
 gsprite=59682
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="35,59"
 gsprite=59683
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="36,59"
 gsprite=59684
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="37,59"
 gsprite=59683
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="38,59"
 gsprite=59685
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="39,59"
 gsprite=59685
+fsprite=59686
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="40,59"
@@ -78711,6 +80862,7 @@ flag=MF_ARENA
 
 field="49,59"
 gsprite=59682
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -78721,6 +80873,7 @@ flag=MF_ARENA
 
 field="51,59"
 gsprite=59683
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -78731,6 +80884,7 @@ flag=MF_ARENA
 
 field="53,59"
 gsprite=59684
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -78741,6 +80895,7 @@ flag=MF_ARENA
 
 field="55,59"
 gsprite=59683
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -78751,6 +80906,7 @@ flag=MF_ARENA
 
 field="57,59"
 gsprite=59683
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -78761,6 +80917,7 @@ flag=MF_ARENA
 
 field="59,59"
 gsprite=59682
+fsprite=14202
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -81268,7 +83425,12 @@ flag=MF_ARENA
 
 field="44,61"
 gsprite=59683
+fsprite=59689
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,61"
@@ -82559,11 +84721,17 @@ flag=MF_ARENA
 
 field="44,62"
 gsprite=59682
+fsprite=59688
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,62"
 gsprite=59685
+it=orange_torch1
 flag=MF_INDOORS
 flag=MF_ARENA
 
@@ -83850,7 +86018,12 @@ flag=MF_ARENA
 
 field="44,63"
 gsprite=59683
+fsprite=59687
+flag=MF_SIGHTBLOCK
+flag=MF_MOVEBLOCK
 flag=MF_INDOORS
+flag=MF_SOUNDBLOCK
+flag=MF_SHOUTBLOCK
 flag=MF_ARENA
 
 field="45,63"
@@ -83946,6 +86119,7 @@ flag=MF_ARENA
 
 field="63,63"
 gsprite=59683
+it=arena_solver
 flag=MF_INDOORS
 flag=MF_ARENA
 

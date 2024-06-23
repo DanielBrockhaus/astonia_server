@@ -19,7 +19,7 @@ flag=IF_MOVEBLOCK
 flag=IF_SIGHTBLOCK
 flag=IF_SOUNDBLOCK
 driver=10
-arg="F900EA00000001"   # x=123, y=188, a=0, quiet=1
+arg="F900EA00000001"   # x=249, y=234, a=0, quiet=1
 ;
 
 warped_teleport_deco:
@@ -165,5 +165,16 @@ sprite=59733
 mod_index=V_LIGHT
 mod_value=200
 flag=IF_MOVEBLOCK
+;
+
+arena_solver:
+name="Cylinder"
+description="A red glowing cylinder."
+sprite=14139
+flag=IF_MOVEBLOCK
+mod_index=V_LIGHT
+mod_value=25
+driver=147
+arg="01"
 ;
 

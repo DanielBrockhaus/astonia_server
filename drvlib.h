@@ -365,6 +365,7 @@
 #define IDR_CALIGAR		144	//
 #define IDR_CALIGARFLAME	145	//
 #define IDR_ARKHATA		146	//
+#define IDR_RODARSOLVER		147	// rodneys arena
 
 #define IDR_DOUBLE_DOOR         187     // double door driver (in base.c)
 #define IDR_SALTMINE_ITEM       188     // nomads plain (saltmine) items

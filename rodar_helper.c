@@ -169,6 +169,28 @@ int rodar_team_byname(char *name,struct rodar_team *team) {
     return teamID;
 }
 
+int rodar_team_byID(int teamID,struct rodar_team *team) {
+    int n;
+
+    pthread_mutex_lock(&cache_mutex);
+
+    for (n=0; n<MAXTEAM; n++)
+        if (team_cache[n].ID==teamID) break;
+
+    if (n==MAXTEAM) {
+        pthread_mutex_unlock(&cache_mutex);
+
+        if (team) bzero(team,sizeof(struct rodar_team));
+        return -1;
+    }
+
+    if (team) *team=team_cache[n];
+
+    pthread_mutex_unlock(&cache_mutex);
+
+    return 0;
+}
+
 #define MAXMEMBER   256
 
 static struct rodar_member member_cache[MAXMEMBER]={0};
