@@ -27,6 +27,7 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 #include "lookup.h"
 #include "see.h"
 #include "map.h"
+#include "mem.h"
 
 // library helper functions needed for init
 int ch_driver(int nr,int cn,int ret,int lastact);           // character driver (decides next action)
@@ -47,24 +48,115 @@ int driver(int type,int nr,int obj,int ret,int lastact) {
     }
 }
 
-struct event_room {
+struct coords {
     int x,y;
 };
 
+#define MAXENTRANCE     16
+
+struct event_room {
+    struct coords entrance[MAXENTRANCE];
+};
+
 static struct event_room room[]={
-    {0,0},          // 0
-    {10,10},        // 1
+    {{{0,0}}},          // 0
+    {{{10,10}}},        // 1
+};
+
+#define MAXMEMBER   256
+
+struct active_team {
+    int teamID;
+    int *charID;
+    int char_cnt,char_max;
 };
 
 struct master_data {
     struct rodar_event ev;
+    struct active_team *at;
+    int at_cnt,at_max;
 };
+
+static void cleanup_event(struct master_data *dat) {
+    int n;
+
+    for (n=0; n<dat->at_cnt; n++)
+        if (dat->at[n].charID)
+            xfree(dat->at[n].charID);
+    if (dat->at) xfree(dat->at);
+
+    dat->at=NULL;
+    dat->at_max=dat->at_cnt=0;
+}
+
+static int is_in_event(struct master_data *dat,int teamID,int charID) {
+    int n,i;
+
+    for (n=0; n<dat->at_cnt; n++)
+        for (i=0; i<dat->at[n].char_cnt; i++)
+            if (dat->at[n].charID[i]==charID) {
+                if (dat->at[n].teamID==teamID) return 1;
+                else return -1;
+            }
+
+    return 0;
+}
+
+static int chars_in_event(struct master_data *dat,int teamID) {
+    int n;
+
+    for (n=0; n<dat->at_cnt; n++)
+        if (dat->at[n].teamID==teamID)
+            return dat->at[n].char_cnt;
+
+    return 0;
+}
+
+static int add_to_event(struct master_data *dat,int teamID,int charID) {
+    int n,i;
+
+    for (n=0; n<dat->at_cnt; n++)
+        if (dat->at[n].teamID==teamID)
+            break;
+    if (n==dat->at_cnt) {
+        if (dat->at_cnt>=dat->at_max) {
+            dat->at_max+=16;
+            dat->at=xrealloc(dat->at,sizeof(struct active_team)*dat->at_max,IM_TEMP);
+
+            bzero(&dat->at[n],sizeof(struct active_team));
+            dat->at[n].teamID=teamID;
+            dat->at_cnt++;
+        }
+    }
+
+    for (i=0; i<dat->at[n].char_cnt; i++)
+        if (dat->at[n].charID[i]==charID) break;
+    if (i==dat->at[n].char_cnt) {
+        dat->at[n].char_max+=16;
+        dat->at[n].charID=xrealloc(dat->at[n].charID,sizeof(int)*dat->at[n].char_max,IM_TEMP);
+        dat->at[n].charID[i]=charID;
+        dat->at[n].char_cnt++;
+        return 1;
+    }
+
+    return 0;
+}
+static int event_maxchars(enum eventtype type) {
+    switch (type) {
+        case EVENT2:    return 2;
+        case EVENT3:    return 3;
+        case EVENT5:    return 5;
+        case EVENT7:    return 7;
+        case EVENT12:   return 12;
+        default:        return 255;
+    }
+}
 
 void rodarmaster(int cn,int ret,int lastact) {
     struct msg *msg,*next;
     struct master_data *dat;
     struct rodar_event ev;
-    int n,co;
+    int n,co,tmp;
 
     dat=set_data(cn,DRD_RODARMASTER,sizeof(struct master_data));
     if (!dat) return;   // oops...
@@ -74,7 +166,6 @@ void rodarmaster(int cn,int ret,int lastact) {
         next=msg->next;
 
         if (msg->type==NT_CREATE) {
-            dat->ev.ID=0;
             rodar_read_event();
         }
 
@@ -101,10 +192,36 @@ void rodarmaster(int cn,int ret,int lastact) {
             if (strstr(ptr,"Master") && strstr(ptr,"enter")) {
                 int oldx,oldy;
 
+                struct rodar_drd *dat2;
+                dat2=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
+                if (!dat2) {
+                    remove_message(cn,msg);
+                    continue;
+                }
+                if (!dat2->teamID) {
+                    say(cn,"You need to activate your team first, %s",ch[co].name);
+                    remove_message(cn,msg);
+                    continue;
+                }
+                tmp=is_in_event(dat,dat2->teamID,ch[co].ID);
+                if (tmp==0) {
+                    if (chars_in_event(dat,dat2->teamID)>=event_maxchars(dat->ev.type)) {
+                        say(cn,"There are already %d players in this event, %s",event_maxchars(dat->ev.type),ch[co].name);
+                        remove_message(cn,msg);
+                        continue;
+                    }
+                    add_to_event(dat,dat2->teamID,ch[co].ID);
+                }
+                if (tmp==-1) {
+                    say(cn,"You cannot enter the same event for different teams.");
+                    remove_message(cn,msg);
+                    continue;
+                }
+
                 oldx=ch[co].x; oldy=ch[co].y;
                 remove_char(co);
 
-                if (!drop_char_extended(co,room[1].x,room[1].y,7))
+                if (!drop_char_extended(co,room[1].entrance[0].x,room[1].entrance[0].y,7))
                     drop_char(co,oldx,oldy,0);
 
                 remove_message(cn,msg);
@@ -136,6 +253,7 @@ void rodarmaster(int cn,int ret,int lastact) {
         rodar_get_event(0,&ev);
 
         if (time_now-ev.t>60*30) { // event is over, load new schedule
+            cleanup_event(dat);
             rodar_read_event();
         } else {
             if (ev.t-time_now<60*30) { // event will start in less than 30 minutes
