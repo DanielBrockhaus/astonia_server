@@ -15,33 +15,11 @@ static pthread_mutex_t cache_mutex=PTHREAD_MUTEX_INITIALIZER;
 
 struct rodar_data rodar_data;
 
-enum teamtype rodar_teamtype(char *val) {
-    switch (val[0]) {
-        case '2':   return TEAM2;
-        case '3':   return TEAM3;
-        case '5':   return TEAM5;
-        case '7':   return TEAM7;
-        case '1':   return TEAM12;
-        default:    return TEAM_ANY;
-    }
-}
-
 enum teamstatus rodar_teamstatus(char *val) {
     switch (val[0]) {
         case 'a':   return TEAM_ACTIVE;
         case 'b':   return TEAM_BANNED;
         default:    return TEAM_RETIRED;
-    }
-}
-
-char *rodar_teamtype2(enum teamtype type) {
-    switch (type) {
-        case TEAM2:     return "2";
-        case TEAM3:     return "3";
-        case TEAM5:     return "5";
-        case TEAM7:     return "7";
-        case TEAM12:    return "12";
-        default:        return "any";
     }
 }
 
@@ -471,8 +449,6 @@ TODO
 ====
 
 Remove team sizes?
-Enforce level limits!
-
 
 Tables
 ======
@@ -485,7 +461,6 @@ create table rodar_team (
     name char(80) not null,
     founderID int,
     founded timestamp not null default now(),
-    type enum ('2','3','5','7','12','any') not null default 'any',
     status enum ('active','banned','retired') not null default 'active',
     wins int not null default 0,
     losses int not null default 0,

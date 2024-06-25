@@ -71,7 +71,6 @@ void db_upd_team_member(int teamID,int charID,enum membertype type);
 void db_read_member(int teamID,int charID);
 void db_read_team(char *name);
 void db_read_team_byID(int ID);
-void db_write_team(struct rodar_team *team);
 void db_write_team_name(int teamID,char *name);
 void db_write_team_status(int teamID,enum teamstatus status);
 void db_inc_team_value(int teamID,char *value);

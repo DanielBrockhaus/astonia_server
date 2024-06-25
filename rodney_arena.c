@@ -246,6 +246,11 @@ static int cmd_found(int cn,char *ptr) {
     char *tmp;
     struct rodar_team team;
 
+    if (ch[cn].x<240 && ch[cn].y<240) {
+        log_char(cn,LOG_SYSTEM,0,"No founding teams while being in an arena.");
+        return 2;
+    }
+
     while (*ptr==' ') ptr++;
 
     for (tmp=ptr; *tmp; tmp++) {
@@ -305,6 +310,11 @@ static int cmd_join(int cn,char *ptr) {
     struct rodar_team team;
     struct rodar_drd *dat;
 
+    if (ch[cn].x<240 && ch[cn].y<240) {
+        log_char(cn,LOG_SYSTEM,0,"No changing teams while being in an arena.");
+        return 2;
+    }
+
     while (*ptr==' ') ptr++;
 
     for (tmp=ptr; *tmp; tmp++) {
@@ -341,6 +351,11 @@ static int cmd_leave(int cn,char *ptr) {
     struct rodar_team team;
     struct rodar_drd *dat;
     enum membertype type;
+
+    if (ch[cn].x<240 && ch[cn].y<240) {
+        log_char(cn,LOG_SYSTEM,0,"No changing teams while being in an arena.");
+        return 2;
+    }
 
     while (*ptr==' ') ptr++;
 
@@ -392,6 +407,11 @@ static int cmd_activate(int cn,char *ptr,int godmode) {
     struct rodar_team team;
     struct rodar_drd *dat;
     int type;
+
+    if (ch[cn].x<240 && ch[cn].y<240) {
+        log_char(cn,LOG_SYSTEM,0,"No changing teams while being in an arena.");
+        return 2;
+    }
 
     while (*ptr==' ') ptr++;
 
@@ -575,9 +595,17 @@ static int cmd_fire(int cn,char *ptr) {
         dat2=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
         if (dat2) {
             if (dat2->teamID==dat1->teamID) {
-                dat1->teamID=0;
-                dat1->memtype=0;
+                dat2->teamID=0;
+                dat2->memtype=0;
                 log_char(co,LOG_SYSTEM,0,"You have been fired from your active team.");
+
+                if (ch[co].x<240 && ch[co].y<240) {
+                    remove_char(co);
+                    if (!drop_char_extended(co,249,234,7)) {
+                        exit_char(co);
+                        if (ch[co].player) kick_player(ch[co].player,"No space to drop character");
+                    }
+                }
             }
         }
     }
@@ -784,6 +812,11 @@ static int cmd_enter(int cn,char *ptr) {
         return 2;
     }
 
+    if (ch[cn].level>rodar_data.ev.level) {
+        log_char(cn,LOG_SYSTEM,0,"This event is for levels %d and below. You are level %d.",rodar_data.ev.level,ch[cn].level);
+        return 2;
+    }
+
     while (*ptr==' ') ptr++;
     if (*ptr && cmd_activate(cn,ptr,0)==3) return 3;    // call activate to set team if needed
 
@@ -885,6 +918,10 @@ int rodar_canhelp(int cn,int co) {
 
     dat2=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
     if (!dat2) return 0;
+
+    // no help while in the lobby
+    if (ch[cn].x>240 || ch[cn].y>240) return 3;
+    if (ch[co].x>240 || ch[co].y>240) return 3;
 
     // team members can help each other
     if (dat1->teamID && dat1->teamID==dat2->teamID) return 2;

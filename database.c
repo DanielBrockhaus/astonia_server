@@ -3670,7 +3670,7 @@ static void db_load_team(char *name_or_ID) {
     char buf[256];
     struct rodar_team team;
 
-    sprintf(buf,"select ID,name,founderID,unix_timestamp(founded),type,status,wins,losses,kills,killed,score from rodar_team where %s='%s'",
+    sprintf(buf,"select ID,name,founderID,unix_timestamp(founded),status,wins,losses,kills,killed,score from rodar_team where %s='%s'",
             isdigit(name_or_ID[0])?"ID":"name",name_or_ID);
 
     if (mysql_query_con(&mysql,buf)) {
@@ -3702,13 +3702,12 @@ static void db_load_team(char *name_or_ID) {
     strncpy(team.name,row[1],79); team.name[79]=0;
     if (row[2]) team.founderID=atoi(row[2]); else team.founderID=0;
     team.founded=atoi(row[3]);
-    team.type=rodar_teamtype(row[4]);
-    team.status=rodar_teamstatus(row[5]);
-    team.wins=atoi(row[6]);
-    team.losses=atoi(row[7]);
-    team.kills=atoi(row[8]);
-    team.killed=atoi(row[9]);
-    team.score=atoi(row[10]);
+    team.status=rodar_teamstatus(row[4]);
+    team.wins=atoi(row[5]);
+    team.losses=atoi(row[6]);
+    team.kills=atoi(row[7]);
+    team.killed=atoi(row[8]);
+    team.score=atoi(row[9]);
 
     rodar_cache_team(name_or_ID,&team);
 
@@ -3749,17 +3748,6 @@ static void db_load_member(char *teamID,char *charID) {
     rodar_cache_member(atoi(teamID),atoi(charID),rodar_membertype(row[0]));
 
     mysql_free_result_cnt(result);
-}
-
-void db_write_team(struct rodar_team *team) {
-    char buf[512];
-
-    sprintf(buf,"update rodar_team set name='%s', type='%s', status='%s', wins=%d, losses=%d, kills=%d, killed=%d, score=%d where ID=%d",
-            team->name,rodar_teamtype2(team->type),rodar_teamstatus2(team->status),
-            team->wins,team->losses,team->kills,team->killed,team->score,
-            team->ID);
-
-    add_query(DT_QUERY,buf,"update rodar team",0);
 }
 
 void db_write_team_name(int teamID,char *name) {
