@@ -30,8 +30,8 @@ insert into area values (38,1,'Rodneys Arena',0,0,0,0,0,0,0,0);
 #include "see.h"
 #include "map.h"
 #include "sector.h"
-#include "mem.h"
 #include "tool.h"
+#include "player.h"
 
 // library helper functions needed for init
 int ch_driver(int nr,int cn,int ret,int lastact);           // character driver (decides next action)
@@ -52,121 +52,14 @@ int driver(int type,int nr,int obj,int ret,int lastact) {
     }
 }
 
-struct coords {
-    int x,y;
-};
-
-#define MAXENTRANCE     16
-
-struct event_room {
-    struct coords entrance[MAXENTRANCE];
-};
-
-static struct event_room room[]={
+static struct rodar_event_room room[]={
     {{{0,0}}},          // 0
     {{{10,10}}},        // 1
 };
 
-struct active_team {
-    int teamID;
-    int *charID;
-    int char_cnt,char_max;
-};
-
 struct master_data {
-    struct rodar_event ev;
-    struct active_team *at;
-    int at_cnt,at_max;
-
     int woneventID;
-    struct rodar_team win_team;
 };
-
-// A pointer to the event in master_data
-// We need it for can_attack(). TODO: Not a good solution.
-static struct rodar_event *ev_ptr=NULL;
-
-static void cleanup_event(struct master_data *dat) {
-    int n;
-
-    for (n=0; n<dat->at_cnt; n++)
-        if (dat->at[n].charID)
-            xfree(dat->at[n].charID);
-    if (dat->at) xfree(dat->at);
-
-    dat->at=NULL;
-    dat->at_max=dat->at_cnt=0;
-}
-
-static int is_in_event(struct master_data *dat,int teamID,int charID) {
-    int n,i;
-
-    for (n=0; n<dat->at_cnt; n++)
-        for (i=0; i<dat->at[n].char_cnt; i++)
-            if (dat->at[n].charID[i]==charID) {
-                if (dat->at[n].teamID==teamID) return 1;
-                else return -1;
-            }
-
-    return 0;
-}
-
-static int chars_in_event(struct master_data *dat,int teamID) {
-    int n;
-
-    for (n=0; n<dat->at_cnt; n++)
-        if (dat->at[n].teamID==teamID)
-            return dat->at[n].char_cnt;
-
-    return 0;
-}
-
-static int add_to_event(struct master_data *dat,int teamID,int charID) {
-    int n,i;
-
-    for (n=0; n<dat->at_cnt; n++)
-        if (dat->at[n].teamID==teamID)
-            break;
-    if (n==dat->at_cnt) {
-        if (dat->at_cnt>=dat->at_max) {
-            dat->at_max+=16;
-            dat->at=xrealloc(dat->at,sizeof(struct active_team)*dat->at_max,IM_TEMP);
-
-            bzero(&dat->at[n],sizeof(struct active_team));
-            dat->at[n].teamID=teamID;
-            dat->at_cnt++;
-        }
-    }
-
-    for (i=0; i<dat->at[n].char_cnt; i++)
-        if (dat->at[n].charID[i]==charID) break;
-    if (i==dat->at[n].char_cnt) {
-        dat->at[n].char_max+=16;
-        dat->at[n].charID=xrealloc(dat->at[n].charID,sizeof(int)*dat->at[n].char_max,IM_TEMP);
-        dat->at[n].charID[i]=charID;
-        dat->at[n].char_cnt++;
-        return 1;
-    }
-
-    return 0;
-}
-static int event_maxchars(enum eventtype type) {
-    switch (type) {
-        case EVENT2:    return 2;
-        case EVENT3:    return 3;
-        case EVENT5:    return 5;
-        case EVENT7:    return 7;
-        case EVENT12:   return 12;
-        default:        return 255;
-    }
-}
-
-static int time_till_event(void) {
-    if (!ev_ptr) return 60*60;
-    if (!ev_ptr->ID) return 60*60;
-
-    return ev_ptr->t-time_now;
-}
 
 void announce(int cn,char *format,...) __attribute__ ((format(printf,2,3)));
 
@@ -189,16 +82,31 @@ void announce(int cn,char *format,...) {
     }
 }
 
+static void clear_arena(void) {
+    int co;
+
+    for (co=getfirst_char(); co; co=getnext_char(co)) {
+        if (!(ch[co].flags&CF_PLAYER)) continue;
+
+        if (ch[co].x<240 && ch[co].y<240) {
+            remove_char(co);
+
+            if (!drop_char_extended(co,249,234,7)) {
+                exit_char(co);
+                if (ch[co].player) kick_player(ch[co].player,"No space to drop character");
+            }
+        }
+    }
+}
+
 void rodarmaster(int cn,int ret,int lastact) {
     struct msg *msg,*next;
     struct master_data *dat;
     struct rodar_event ev;
-    int n,co,tmp;
+    int n;
 
     dat=set_data(cn,DRD_RODARMASTER,sizeof(struct master_data));
     if (!dat) return;   // oops...
-
-    ev_ptr=&dat->ev;    // set_data should not move the memory block, but set it every time just to be safe
 
     // loop through our messages
     for (msg=ch[cn].msg; msg; msg=next) {
@@ -206,77 +114,6 @@ void rodarmaster(int cn,int ret,int lastact) {
 
         if (msg->type==NT_CREATE) {
             rodar_read_event();
-        }
-
-        if (msg->type==NT_TEXT) {
-            char *ptr=(char *)msg->dat2;
-            co=msg->dat3;
-
-            if (!(ch[co].flags&CF_PLAYER)) { remove_message(cn,msg); continue; }
-            if (!char_see_char(cn,co) || cn==co) { remove_message(cn,msg); continue; }
-            if (char_dist(cn,co)>10) { remove_message(cn,msg); continue; }
-
-            if (strcasestr(ptr,"showevent")) {
-                if (dat->ev.ID) {
-                    if (dat->ev.winnerID) {
-                        if (dat->ev.winnerID==dat->win_team.ID) say(cn,"The event %d is already over. Team %s (%d) has won.",dat->ev.ID,dat->win_team.name,dat->ev.winnerID);
-                        else {
-                            say(cn,"The event %d is already over. Team %d has won.",dat->ev.ID,dat->ev.winnerID);
-                            rodar_team_byID(dat->ev.winnerID,&dat->win_team);
-                        }
-                    } else {
-                        if (dat->ev.t>time_now) say(cn,"The event %d will start in %d seconds.",dat->ev.ID,dat->ev.t-time_now);
-                        else say(cn,"The event %d has started %d seconds ago.",dat->ev.ID,time_now-dat->ev.t);
-                        say(cn,"It is for level %d, with %s participants per team and the option(s) %s. It is held in room %d.",
-                            dat->ev.level,rodar_eventtype2(dat->ev.type),rodar_eventopt2(dat->ev.opt),dat->ev.room);
-                    }
-                } else say(cn,"There is no current event.");
-
-                remove_message(cn,msg);
-                continue;
-            }
-
-            if (strstr(ptr,"doenter")) {
-                int oldx,oldy;
-                struct rodar_drd *dat2;
-
-                dat2=set_data(co,DRD_RODAR,sizeof(struct rodar_drd));
-                if (!dat2) {
-                    remove_message(cn,msg);
-                    continue;
-                }
-
-                if (!dat2->teamID) {
-                    say(cn,"You need to activate your team first, %s",ch[co].name);
-                    remove_message(cn,msg);
-                    continue;
-                }
-
-                tmp=is_in_event(dat,dat2->teamID,ch[co].ID);
-                if (tmp==0) {
-                    if (chars_in_event(dat,dat2->teamID)>=event_maxchars(dat->ev.type)) {
-                        say(cn,"There are already %d players in this event, %s",event_maxchars(dat->ev.type),ch[co].name);
-                        remove_message(cn,msg);
-                        continue;
-                    }
-                    add_to_event(dat,dat2->teamID,ch[co].ID);
-                }
-
-                if (tmp==-1) {
-                    say(cn,"You cannot enter the same event for different teams.");
-                    remove_message(cn,msg);
-                    continue;
-                }
-
-                oldx=ch[co].x; oldy=ch[co].y;
-                remove_char(co);
-
-                if (!drop_char_extended(co,room[1].entrance[0].x,room[1].entrance[0].y,7))
-                    drop_char(co,oldx,oldy,0);
-
-                remove_message(cn,msg);
-                continue;
-            }
         }
 
         remove_message(cn,msg);
@@ -303,39 +140,28 @@ void rodarmaster(int cn,int ret,int lastact) {
         rodar_get_event(0,&ev);
 
         if (time_now-ev.t>60*30) { // event is over, load new schedule
-            cleanup_event(dat);
+            rodar_cleanup_event();
             rodar_read_event();
         } else {
             if (ev.t-time_now<60*30) { // event will start in less than 30 minutes
-                if (dat->ev.ID!=ev.ID) {
-                    dat->ev=ev;
+                if (rodar_data.ev.ID!=ev.ID) {
+                    rodar_data.ev=ev;
 
-                    announce(cn,"Event %d will start in 30 minutes!",dat->ev.ID);
+                    announce(cn,"Event %d will start in 30 minutes!",rodar_data.ev.ID);
 
-                    for (co=getfirst_char(); co; co=getnext_char(co)) {
-                        if (!(ch[co].flags&CF_PLAYER)) continue;
-                        if (ch[co].x<240 && ch[co].y<240) {
-                            int oldx,oldy;
-
-                            oldx=ch[co].x; oldy=ch[co].y;
-                            remove_char(co);
-
-                            if (!drop_char_extended(co,249,234,7))
-                                drop_char(co,oldx,oldy,0);
-                        }
-                    }
+                    clear_arena();
                 }
             }
         }
     }
 
-    if (dat->ev.winnerID && dat->woneventID!=dat->ev.winnerID) {
+    if (rodar_data.ev.winnerID && dat->woneventID!=rodar_data.ev.winnerID) {
 
-        if (dat->win_team.ID==dat->ev.winnerID) {
-            dat->woneventID=dat->ev.winnerID;
-            announce(cn,"Team %s (%d) has won event %d!",dat->win_team.name,dat->ev.winnerID,dat->ev.ID);
+        if (rodar_data.win_team.ID==rodar_data.ev.winnerID) {
+            dat->woneventID=rodar_data.ev.winnerID;
+            announce(cn,"Team %s (%d) has won event %d!",rodar_data.win_team.name,rodar_data.ev.winnerID,rodar_data.ev.ID);
         } else {
-            rodar_team_byID(dat->ev.winnerID,&dat->win_team);
+            rodar_team_byID(rodar_data.ev.winnerID,&rodar_data.win_team);
         }
     }
 
@@ -350,6 +176,8 @@ static int cmd_rodar(int cn) {
 
     log_char(cn,LOG_SYSTEM,0,"Rodar Help");
     log_char(cn,LOG_SYSTEM,0,"%s","");
+    log_char(cn,LOG_SYSTEM,0,"/show [offset] - show current event, or event [offset]");
+    log_char(cn,LOG_SYSTEM,0,"/enter [team name] - enter event [on behalf of team] or active team");
     log_char(cn,LOG_SYSTEM,0,"/join <team name> - join team");
     log_char(cn,LOG_SYSTEM,0,"/leave <team name> - leave team");
     log_char(cn,LOG_SYSTEM,0,"/activate <team name> - activate team membership");
@@ -365,6 +193,51 @@ static int cmd_rodar(int cn) {
         log_char(cn,LOG_SYSTEM,0,"/ban <team name> - ban team");
         log_char(cn,LOG_SYSTEM,0,"/unban <team name> - unban team");
     }
+
+    return 2;
+}
+
+static int cmd_show(int cn,char *ptr) {
+    int offset,d;
+    struct rodar_event ev;
+
+    offset=atoi(ptr);
+
+    if (!offset) {
+        if (rodar_data.ev.ID && rodar_data.ev.winnerID) {
+            if (rodar_data.ev.winnerID==rodar_data.win_team.ID) {
+                log_char(cn,LOG_SYSTEM,0,"The event %d is already over. Team %s (%d) has won.",
+                    rodar_data.ev.ID,rodar_data.win_team.name,rodar_data.ev.winnerID);
+                return 2;
+            } else {
+                rodar_load_winner();
+                return 3;
+            }
+
+        }
+        ev=rodar_data.ev;
+    } else {
+        if (!rodar_get_event(offset,&ev)) {
+            log_char(cn,LOG_SYSTEM,0,"No data about event at offset %d.",offset);
+            return 2;
+        }
+    }
+
+    if (!ev.ID) {
+        log_char(cn,LOG_SYSTEM,0,"There is no current event.");
+        return 2;
+    }
+
+    if (ev.t>time_now) {
+        d=ev.t-time_now;
+        log_char(cn,LOG_SYSTEM,0,"The event %d will start in %02d:%02d:%02d.",ev.ID,d/60/60,(d/60)%60,d%60);
+    } else {
+        d=time_now-ev.t;
+        log_char(cn,LOG_SYSTEM,0,"The event %d has started %02d:%02d:%02d ago.",ev.ID,d/60/60,(d/60)%60,d%60);
+    }
+
+    log_char(cn,LOG_SYSTEM,0,"It is for level %d, with %s participants per team in room %d. Options: %s.",
+        ev.level,rodar_eventtype2(ev.type),ev.room,ev.opt?rodar_eventopt2(ev.opt):"none");
 
     return 2;
 }
@@ -902,6 +775,50 @@ static int cmd_ban(int cn,char *ptr,int doban) {
     return 2;
 }
 
+static int cmd_enter(int cn,char *ptr) {
+    int oldx,oldy,tmp;
+    struct rodar_drd *dat2;
+
+    if (ch[cn].x<240 && ch[cn].y<240) {
+        log_char(cn,LOG_SYSTEM,0,"No entering an arena while being in an arena.");
+        return 2;
+    }
+
+    while (*ptr==' ') ptr++;
+    if (*ptr && cmd_activate(cn,ptr,0)==3) return 3;    // call activate to set team if needed
+
+    dat2=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (!dat2) return 2;
+
+    if (!dat2->teamID) {
+        log_char(cn,LOG_SYSTEM,0,"You need to activate your team first.");
+        return 2;
+    }
+
+    tmp=rodar_is_in_event(dat2->teamID,ch[cn].ID);
+    if (tmp==0) {
+        if (rodar_chars_in_event(dat2->teamID)>=rodar_event_maxchars(rodar_data.ev.type)) {
+            log_char(cn,LOG_SYSTEM,0,"There are already %d players in this event.",rodar_event_maxchars(rodar_data.ev.type));
+            return 2;
+        }
+        rodar_add_to_event(dat2->teamID,ch[cn].ID);
+    }
+
+    if (tmp==-1) {
+        log_char(cn,LOG_SYSTEM,0,"You cannot enter the same event for different teams.");
+        return 2;
+    }
+
+    oldx=ch[cn].x; oldy=ch[cn].y;
+    remove_char(cn);
+
+    if (!drop_char_extended(cn,room[1].entrance[0].x,room[1].entrance[0].y,7)) {
+        log_char(cn,LOG_SYSTEM,0,"There's no room in the event. Please try again.");
+        drop_char(cn,oldx,oldy,0);
+    }
+    return 2;
+}
+
 int rodar_parser(int cn,char *ptr) {
     int len;
 
@@ -917,6 +834,8 @@ int rodar_parser(int cn,char *ptr) {
         if ((len=cmdcmp(ptr,"fire",4))) return cmd_fire(cn,ptr+len);
         if ((len=cmdcmp(ptr,"promote",4))) return cmd_promote(cn,ptr+len,1);
         if ((len=cmdcmp(ptr,"demote",4))) return cmd_promote(cn,ptr+len,0);
+        if ((len=cmdcmp(ptr,"show",4))) return cmd_show(cn,ptr+len);
+        if ((len=cmdcmp(ptr,"enter",4))) return cmd_enter(cn,ptr+len);
 
         if (ch[cn].flags&CF_GOD) {
             if ((len=cmdcmp(ptr,"setteam",4))) return cmd_activate(cn,ptr+len,1);
@@ -952,7 +871,7 @@ int rodar_canattack(int cn,int co) {
     mf2=map[m].flags;
 
     // arena is fair game if an event is running
-    if ((mf1&MF_ARENA) && (mf2&MF_ARENA) && time_till_event()<=0) return 2;
+    if ((mf1&MF_ARENA) && (mf2&MF_ARENA) && rodar_time_till_event()<=0) return 2;
 
     // everywhere else not
     return 3;   // 1 = use default, 2 = yes, 3 = no
@@ -1004,13 +923,6 @@ static inline int mapy(int m) {
     return m/MAXMAP;
 }
 
-static void end_event(int winnerID) {
-    if (ev_ptr && ev_ptr->ID && winnerID) {
-        db_win_event(ev_ptr->ID,winnerID);
-        ev_ptr->winnerID=winnerID;
-    }
-}
-
 void rodar_solver(int in,int cn) {
     //int arenaID
     int state,step,delay,d_cnt,newstate=0;
@@ -1027,7 +939,7 @@ void rodar_solver(int in,int cn) {
     d_cnt=it[in].drdata[4];
     m=it[in].x+it[in].y*MAXMAP;
 
-    if (time_till_event()<0 && ev_ptr && !ev_ptr->winnerID) {
+    if (rodar_time_till_event()<0 && !rodar_data.ev.winnerID) {
         for (x=it[in].x-13; x<it[in].x-5 && !newstate; x++) {
             for (y=it[in].y-13; y<it[in].y-5 && !newstate; y++) {
                 if ((co=map[x+y*MAXMAP].ch) && (ch[co].flags&CF_PLAYER)) {
@@ -1062,7 +974,8 @@ void rodar_solver(int in,int cn) {
             } else if (step==len) {
                 it[in].sprite=14136;
                 set_sector(it[in].x,it[in].y);
-                end_event(teamID);
+                rodar_end_event(teamID);
+                clear_arena();
                 step++;
             } else {
                 map[m+lightoff[step]].fsprite=14200;

@@ -68,13 +68,37 @@ struct rodar_event {
     int winnerID;
 };
 
-
 struct rodar_drd {
     int teamID; // active team
     enum membertype memtype;
 
     int joinID; // team player wants to join
 };
+
+struct rodar_coords {
+    int x,y;
+};
+
+#define MAXENTRANCE     16
+
+struct rodar_event_room {
+    struct rodar_coords entrance[MAXENTRANCE];
+};
+
+struct rodar_active_team {
+    int teamID;
+    int *charID;
+    int char_cnt,char_max;
+};
+
+struct rodar_data {
+    struct rodar_event ev;
+    struct rodar_active_team *at;
+    int at_cnt,at_max;
+    struct rodar_team win_team;
+};
+
+extern struct rodar_data rodar_data;
 
 enum teamtype rodar_teamtype(char *val);
 enum teamstatus rodar_teamstatus(char *val);
@@ -101,3 +125,11 @@ int rodar_get_event(int idx,struct rodar_event *ev);
 int rodar_get_event_cnt(void);
 void rodar_create_event(int when);
 
+void rodar_cleanup_event(void);
+int rodar_is_in_event(int teamID,int charID);
+int rodar_chars_in_event(int teamID);
+int rodar_add_to_event(int teamID,int charID);
+int rodar_event_maxchars(enum eventtype type);
+int rodar_time_till_event(void);
+void rodar_end_event(int winnerID);
+void rodar_load_winner(void);

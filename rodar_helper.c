@@ -7,10 +7,13 @@
 #include <pthread.h>
 #include <stdio.h>
 #include "server.h"
+#include "mem.h"
 #include "rodar_helper.h"
 #include "database.h"
 
 static pthread_mutex_t cache_mutex=PTHREAD_MUTEX_INITIALIZER;
+
+struct rodar_data rodar_data;
 
 enum teamtype rodar_teamtype(char *val) {
     switch (val[0]) {
@@ -311,9 +314,15 @@ int rodar_get_event_cnt(void) {
 static int rand_level(void) {
     int r;
 
-    r=RANDOM(100);
+    r=RANDOM(4);
 
-    return (r/10+1)*20;
+    switch (r) {
+        case 0: return  28;
+        case 1: return  44;
+        case 2: return  60;
+        case 3: return  76;
+        default:    return 200;
+    }
 }
 
 static int rand_room(void) {
@@ -358,12 +367,111 @@ void rodar_create_event(int when) {
     db_read_event();
 }
 
+void rodar_cleanup_event(void) {
+    int n;
+
+    for (n=0; n<rodar_data.at_cnt; n++)
+        if (rodar_data.at[n].charID)
+            xfree(rodar_data.at[n].charID);
+    if (rodar_data.at) xfree(rodar_data.at);
+
+    rodar_data.at=NULL;
+    rodar_data.at_max=rodar_data.at_cnt=0;
+}
+
+int rodar_is_in_event(int teamID,int charID) {
+    int n,i;
+
+    for (n=0; n<rodar_data.at_cnt; n++)
+        for (i=0; i<rodar_data.at[n].char_cnt; i++)
+            if (rodar_data.at[n].charID[i]==charID) {
+                if (rodar_data.at[n].teamID==teamID) return 1;
+                else return -1;
+            }
+
+    return 0;
+}
+
+int rodar_chars_in_event(int teamID) {
+    int n;
+
+    for (n=0; n<rodar_data.at_cnt; n++)
+        if (rodar_data.at[n].teamID==teamID)
+            return rodar_data.at[n].char_cnt;
+
+    return 0;
+}
+
+int rodar_add_to_event(int teamID,int charID) {
+    int n,i;
+
+    for (n=0; n<rodar_data.at_cnt; n++)
+        if (rodar_data.at[n].teamID==teamID)
+            break;
+    if (n==rodar_data.at_cnt) {
+        if (rodar_data.at_cnt>=rodar_data.at_max) {
+            rodar_data.at_max+=16;
+            rodar_data.at=xrealloc(rodar_data.at,sizeof(struct rodar_active_team)*rodar_data.at_max,IM_TEMP);
+
+            bzero(&rodar_data.at[n],sizeof(struct rodar_active_team));
+            rodar_data.at[n].teamID=teamID;
+            rodar_data.at_cnt++;
+        }
+    }
+
+    for (i=0; i<rodar_data.at[n].char_cnt; i++)
+        if (rodar_data.at[n].charID[i]==charID) break;
+    if (i==rodar_data.at[n].char_cnt) {
+        rodar_data.at[n].char_max+=16;
+        rodar_data.at[n].charID=xrealloc(rodar_data.at[n].charID,sizeof(int)*rodar_data.at[n].char_max,IM_TEMP);
+        rodar_data.at[n].charID[i]=charID;
+        rodar_data.at[n].char_cnt++;
+        return 1;
+    }
+
+    return 0;
+}
+
+int rodar_event_maxchars(enum eventtype type) {
+    switch (type) {
+        case EVENT2:    return 2;
+        case EVENT3:    return 3;
+        case EVENT5:    return 5;
+        case EVENT7:    return 7;
+        case EVENT12:   return 12;
+        default:        return 255;
+    }
+}
+
+int rodar_time_till_event(void) {
+    if (!rodar_data.ev.ID) return 60*60;
+
+    return rodar_data.ev.t-time_now;
+}
+
+void rodar_load_winner(void) {
+    if (!rodar_data.ev.winnerID) return;
+
+    // this isn't guaranteed to load the data, but it will
+    // add it to the cache to be loaded on the next call
+    rodar_team_byID(rodar_data.ev.winnerID,&rodar_data.win_team);
+}
+
+void rodar_end_event(int winnerID) {
+    if (rodar_data.ev.ID && winnerID) {
+        db_win_event(rodar_data.ev.ID,winnerID);
+        rodar_data.ev.winnerID=winnerID;
+        rodar_load_winner();
+    }
+}
+
+
 /*
 TODO
 ====
 
 Remove team sizes?
-
+Enforce level limits!
 
 
 Tables
