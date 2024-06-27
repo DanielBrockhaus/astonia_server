@@ -5,7 +5,6 @@ create_armor
 create_character
 create_weapons
 motd.txt
-my
 runtime/
 server
 update_server
