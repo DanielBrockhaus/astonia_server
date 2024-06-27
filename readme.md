@@ -1,4 +1,4 @@
-To run under Ubuntu Ubuntu 22.04.4 LTS (tested and working as of 2024.06.27)
+To run under Ubuntu 22.04.4 LTS (tested and working as of 2024.06.27)
 
 ```
 sudo apt-get update
