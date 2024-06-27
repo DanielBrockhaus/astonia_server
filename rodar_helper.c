@@ -10,6 +10,7 @@
 #include "mem.h"
 #include "rodar_helper.h"
 #include "database.h"
+#include "log.h"
 
 static pthread_mutex_t cache_mutex=PTHREAD_MUTEX_INITIALIZER;
 
@@ -390,11 +391,10 @@ int rodar_add_to_event(int teamID,int charID) {
         if (rodar_data.at_cnt>=rodar_data.at_max) {
             rodar_data.at_max+=16;
             rodar_data.at=xrealloc(rodar_data.at,sizeof(struct rodar_active_team)*rodar_data.at_max,IM_TEMP);
-
-            bzero(&rodar_data.at[n],sizeof(struct rodar_active_team));
-            rodar_data.at[n].teamID=teamID;
-            rodar_data.at_cnt++;
         }
+        bzero(&rodar_data.at[n],sizeof(struct rodar_active_team));
+        rodar_data.at[n].teamID=teamID;
+        rodar_data.at_cnt++;
     }
 
     for (i=0; i<rodar_data.at[n].char_cnt; i++)
@@ -436,10 +436,22 @@ void rodar_load_winner(void) {
 }
 
 void rodar_end_event(int winnerID) {
+    int n;
+
     if (rodar_data.ev.ID && winnerID) {
         db_win_event(rodar_data.ev.ID,winnerID);
         rodar_data.ev.winnerID=winnerID;
+
+        db_inc_team_value(winnerID,"wins",1);
+        db_inc_team_value(winnerID,"score",10);
+
         rodar_load_winner();
+
+        for (n=0; n<rodar_data.at_cnt; n++) {
+            if (rodar_data.at[n].teamID==winnerID) continue;
+            db_inc_team_value(rodar_data.at[n].teamID,"losses",1);
+            db_inc_team_value(rodar_data.at[n].teamID,"score",-1);
+        }
     }
 }
 
@@ -448,7 +460,10 @@ void rodar_end_event(int winnerID) {
 TODO
 ====
 
-Remove team sizes?
+lookup team statistics
+lookup team members
+kill log?
+
 
 Tables
 ======

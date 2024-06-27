@@ -1236,17 +1236,17 @@ void list_queries(int cn) {
 
     pthread_mutex_lock(&data_mutex);
     for (q=wquery; q; q=q->next) {
-        if (q->type!=DT_LASTSEEN && q->type!=DT_READ_NOTES && q->type!=DT_LOAD && q->type!=DT_EXTERMINATE && q->type!=DT_RENAME && q->type!=DT_LOCKNAME && q->type!=DT_UNLOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: %s",q->nr,q->opt2);
         if (q->type==DT_READ_NOTES) log_char(cn,LOG_SYSTEM,0,"%d: query: read notes",q->nr);
-        if (q->type==DT_LASTSEEN) log_char(cn,LOG_SYSTEM,0,"%d: query: last seen",q->nr);
-        if (q->type==DT_LOAD) log_char(cn,LOG_SYSTEM,0,"%d: query: load char",q->nr);
-        if (q->type==DT_EXTERMINATE) log_char(cn,LOG_SYSTEM,0,"%d: query: exterminate %s",q->nr,q->opt1);
-        if (q->type==DT_RENAME) log_char(cn,LOG_SYSTEM,0,"%d: query: rename %s %s",q->nr,q->opt1,q->opt2);
-        if (q->type==DT_LOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: lock name %s",q->nr,q->opt1);
-        if (q->type==DT_UNLOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: unlock name %s",q->nr,q->opt1);
-        if (q->type==DT_LOAD_TEAM) log_char(cn,LOG_SYSTEM,0,"%d: query: load team %s",q->nr,q->opt1);
-        if (q->type==DT_LOAD_MEMBER) log_char(cn,LOG_SYSTEM,0,"%d: query: load member %s",q->nr,q->opt1);
-        if (q->type==DT_LOAD_EVENT) log_char(cn,LOG_SYSTEM,0,"%d: query: load event %s",q->nr,q->opt1);
+        else if (q->type==DT_LASTSEEN) log_char(cn,LOG_SYSTEM,0,"%d: query: last seen",q->nr);
+        else if (q->type==DT_LOAD) log_char(cn,LOG_SYSTEM,0,"%d: query: load char",q->nr);
+        else if (q->type==DT_EXTERMINATE) log_char(cn,LOG_SYSTEM,0,"%d: query: exterminate %s",q->nr,q->opt1);
+        else if (q->type==DT_RENAME) log_char(cn,LOG_SYSTEM,0,"%d: query: rename %s %s",q->nr,q->opt1,q->opt2);
+        else if (q->type==DT_LOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: lock name %s",q->nr,q->opt1);
+        else if (q->type==DT_UNLOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: unlock name %s",q->nr,q->opt1);
+        else if (q->type==DT_LOAD_TEAM) log_char(cn,LOG_SYSTEM,0,"%d: query: load team %s",q->nr,q->opt1);
+        else if (q->type==DT_LOAD_MEMBER) log_char(cn,LOG_SYSTEM,0,"%d: query: load member %s",q->nr,q->opt1);
+        else if (q->type==DT_LOAD_EVENT) log_char(cn,LOG_SYSTEM,0,"%d: query: load event %s",q->nr,q->opt1);
+        else log_char(cn,LOG_SYSTEM,0,"%d: query: %s",q->nr,q->opt2);
     }
     pthread_mutex_unlock(&data_mutex);
 
@@ -3766,10 +3766,10 @@ void db_write_team_status(int teamID,enum teamstatus status) {
     add_query(DT_QUERY,buf,"status update rodar team",0);
 }
 
-void db_inc_team_value(int teamID,char *value) {
+void db_inc_team_value(int teamID,char *value,int inc) {
     char buf[512];
 
-    sprintf(buf,"update rodar_team set '%s'='%s'+1 where ID=%d",value,value,teamID);
+    sprintf(buf,"update rodar_team set %s=%s%+d where ID=%d",value,value,inc,teamID);
 
     add_query(DT_QUERY,buf,"inc update rodar team",0);
 }

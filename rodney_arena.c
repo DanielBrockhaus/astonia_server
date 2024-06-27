@@ -137,7 +137,11 @@ void rodarmaster(int cn,int ret,int lastact) {
     // current event
     if (rodar_event_loaded() && rodar_get_event_cnt()>0) {
 
+
         rodar_get_event(0,&ev);
+        if (!rodar_data.ev.ID) {
+            rodar_data.ev=ev;
+        }
 
         if (time_now-ev.t>60*30) { // event is over, load new schedule
             rodar_cleanup_event();
@@ -1053,6 +1057,22 @@ void rodar_solver(int in,int cn) {
     call_item(IDR_RODARSOLVER,in,0,ticker+2);
 }
 
+int rodar_playerdeath(int cn,int cc) {
+    struct rodar_drd *dat;
+
+    dat=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
+    if (dat && dat->teamID) db_inc_team_value(dat->teamID,"killed",1);
+
+    if (cc) {
+        dat=set_data(cc,DRD_RODAR,sizeof(struct rodar_drd));
+        if (dat && dat->teamID) db_inc_team_value(dat->teamID,"kills",1);
+    }
+
+    log_char(cn,LOG_SYSTEM,0,"Rodney's Journeyman saves thee from certain death.");
+
+    return 2;
+}
+
 void immortal_dead(int cn,int co) {
     charlog(cn,"I JUST DIED! I'M SUPPOSED TO BE IMMORTAL!");
 }
@@ -1091,6 +1111,7 @@ int special_driver(int nr,int obj,int ret,int lastact) {
         case CDR_RODAR_PARSER:	    return rodar_parser(obj,(void *)(ret));
         case CDR_RODAR_CANATTACK:   return rodar_canattack(obj,ret);
         case CDR_RODAR_CANHELP:     return rodar_canhelp(obj,ret);
+        case CDR_RODAR_DEATH:       return rodar_playerdeath(obj,ret);
 
         default:		return 0;
     }

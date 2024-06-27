@@ -169,6 +169,7 @@
 #define CDR_RODAR_PARSER	126	// rodney's arena: parser for commands
 #define CDR_RODAR_CANATTACK	127	// rodney's arena: can_attack() sub
 #define CDR_RODAR_CANHELP	128	// rodney's arena: can_help() sub
+#define CDR_RODAR_DEATH 	129	// rodney's arena: statistics on arena death
 
 #define CDR_ROUVEN		130	// imperial vault
 #define CDR_RAMMY		131	// arkhata
