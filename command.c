@@ -2626,6 +2626,64 @@ int command(int cn,char *ptr) {   // 1=ok, 0=repeat
 
         return 1;
     }
+#define RODAR_TEST
+#ifdef RODAR_TEST
+if ((len=cmdcmp(ptr,"setlevel",8))) {
+        int level,n,in;
+
+        ptr+=len;
+        level=atoi(ptr);
+        ch[cn].exp=level2exp(level);
+        ch[cn].level=level;
+
+        if (level<30) {
+            ch[cn].flags&=~CF_ARCH;
+            ch[cn].value[1][V_DURATION]=0;
+            ch[cn].value[1][V_RAGE]=0;
+        }
+        if (level>35) {
+            ch[cn].flags|=CF_ARCH;
+            if ((ch[cn].flags&(CF_MAGE|CF_WARRIOR))==CF_MAGE && ch[cn].value[1][V_DURATION]==0) ch[cn].value[1][V_DURATION]=1;
+            if ((ch[cn].flags&(CF_MAGE|CF_WARRIOR))==CF_WARRIOR && ch[cn].value[1][V_RAGE]==0) ch[cn].value[1][V_RAGE]=1;
+        }
+        destroy_chareffects(cn);
+        for (n=12; n<30; n++) {
+            if ((in=ch[cn].item[n])) {
+                destroy_item(in);
+                ch[cn].item[n]=0;
+            }
+        }
+        for (n=0; n<=V_IMMUNITY; n++) {
+            if (n<=V_STR) {
+                if (ch[cn].value[1][n]>10) ch[cn].value[1][n]=10;
+            } else {
+                if (ch[cn].value[1][n]>1) ch[cn].value[1][n]=1;
+            }
+        }
+        if (ch[cn].value[1][V_RAGE]>1) ch[cn].value[1][V_RAGE]=1;
+        if (ch[cn].value[1][V_DURATION]>1) ch[cn].value[1][V_DURATION]=1;
+
+        ch[cn].exp_used=0;
+        ch[cn].flags|=CF_UPDATE;
+
+        update_char(cn);
+
+        return 1;
+    }
+
+    if ((len=cmdcmp(ptr,"ggold",5))) {
+        int gold;
+
+        ptr+=len; while (isspace(*ptr)) ptr++;
+
+        gold=atoi(ptr);
+
+        ch[cn].gold+=gold*100;
+        ch[cn].flags|=CF_ITEMS;
+
+        return 1;
+    }
+#endif
 
     if (cmd_chat(cn,ptr)) return 1;
 

@@ -463,7 +463,7 @@ TODO
 lookup team statistics
 lookup team members
 kill log?
-
+remove #rodar_test from command.c
 
 Tables
 ======
