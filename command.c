@@ -2631,6 +2631,11 @@ int command(int cn,char *ptr) {   // 1=ok, 0=repeat
 if ((len=cmdcmp(ptr,"setlevel",8))) {
         int level,n,in;
 
+        if (areaID==38 && ch[cn].x<240 && ch[cn].y<240) {
+            log_char(cn,LOG_SYSTEM,0,"No setlevel in the arena!");
+            return 1;
+        }
+
         ptr+=len;
         level=atoi(ptr);
         ch[cn].exp=level2exp(level);
@@ -2667,6 +2672,8 @@ if ((len=cmdcmp(ptr,"setlevel",8))) {
         ch[cn].flags|=CF_UPDATE;
 
         update_char(cn);
+
+        reset_name(cn);
 
         return 1;
     }

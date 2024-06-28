@@ -159,10 +159,9 @@ void rodarmaster(int cn,int ret,int lastact) {
         }
     }
 
-    if (rodar_data.ev.winnerID && dat->woneventID!=rodar_data.ev.winnerID) {
-
+    if (rodar_data.ev.winnerID && dat->woneventID!=rodar_data.ev.ID) {
         if (rodar_data.win_team.ID==rodar_data.ev.winnerID) {
-            dat->woneventID=rodar_data.ev.winnerID;
+            dat->woneventID=rodar_data.ev.ID;
             announce(cn,"Team %s (%d) has won event %d!",rodar_data.win_team.name,rodar_data.ev.winnerID,rodar_data.ev.ID);
         } else {
             rodar_team_byID(rodar_data.ev.winnerID,&rodar_data.win_team);
