@@ -160,11 +160,12 @@ void rodarmaster(int cn,int ret,int lastact) {
     }
 
     if (rodar_data.ev.winnerID && dat->woneventID!=rodar_data.ev.ID) {
+        xlog("%d %d %d",rodar_data.ev.winnerID,dat->woneventID,rodar_data.ev.ID);
         if (rodar_data.win_team.ID==rodar_data.ev.winnerID) {
             dat->woneventID=rodar_data.ev.ID;
             announce(cn,"Team %s (%d) has won event %d!",rodar_data.win_team.name,rodar_data.ev.winnerID,rodar_data.ev.ID);
         } else {
-            rodar_team_byID(rodar_data.ev.winnerID,&rodar_data.win_team);
+            rodar_load_winner();
         }
     }
 
@@ -207,6 +208,7 @@ static int cmd_show(int cn,char *ptr) {
     offset=atoi(ptr);
 
     if (!offset) {
+        xlog("%d %d",rodar_data.ev.ID,rodar_data.ev.winnerID);
         if (rodar_data.ev.ID && rodar_data.ev.winnerID) {
             if (rodar_data.ev.winnerID==rodar_data.win_team.ID) {
                 log_char(cn,LOG_SYSTEM,0,"The event %d is already over. Team %s (%d) has won.",
@@ -291,11 +293,14 @@ static int cmd_found(int cn,char *ptr) {
 
     // team was loaded and founder is cn
     if (team.ID && team.founderID==ch[cn].ID) {
-        log_char(cn,LOG_SYSTEM,0,"Success. You've founded the team '%s'!",team.name);
+
         // TODO: we waive the fee if the team is older than 3 seconds. this is a hack and should be fixed eventually.
         if (time_now-team.founded<3) {
+            log_char(cn,LOG_SYSTEM,0,"Success. You've founded the team '%s'!",team.name);
             ch[cn].gold-=1000*100;
             ch[cn].flags|=CF_ITEMS;
+        } else {
+            log_char(cn,LOG_SYSTEM,0,"That team seems to exist already.");
         }
         db_add_team_member(team.ID,ch[cn].ID,MEMBER_OWNER);
         return 2;
@@ -405,7 +410,7 @@ static int cmd_leave(int cn,char *ptr) {
     return 2;
 }
 
-static int cmd_activate(int cn,char *ptr,int godmode) {
+static int cmd_activate(int cn,char *ptr,int godmode,int submode) {
     char *tmp;
     struct rodar_team team;
     struct rodar_drd *dat;
@@ -413,15 +418,18 @@ static int cmd_activate(int cn,char *ptr,int godmode) {
 
     if (ch[cn].x<240 && ch[cn].y<240) {
         log_char(cn,LOG_SYSTEM,0,"No changing teams while being in an arena.");
-        return 2;
+        if (submode) return 4;
+        else return 2;
     }
 
     while (*ptr==' ') ptr++;
 
     for (tmp=ptr; *tmp; tmp++) {
         if (!isalpha(*tmp) && *tmp!=' ') {
-            log_char(cn,LOG_SYSTEM,0,"Syntax: /activate <name>. The name must be letters and spaces only.");
-            return 2;
+            if (submode) log_char(cn,LOG_SYSTEM,0,"Syntax: /enter <name>. The name must be letters and spaces only.");
+            else log_char(cn,LOG_SYSTEM,0,"Syntax: /activate <name>. The name must be letters and spaces only.");
+            if (submode) return 4;
+            else return 2;
         }
     }
 
@@ -433,12 +441,14 @@ static int cmd_activate(int cn,char *ptr,int godmode) {
 
     if (!team.ID) {
         log_char(cn,LOG_SYSTEM,0,"No team by that name.");
-        return 2;
+        if (submode) return 4;
+        else return 2;
     }
 
     if (team.status!=TEAM_ACTIVE) {
         log_char(cn,LOG_SYSTEM,0,"That team has been %s.",rodar_teamstatus2(team.status));
-        return 2;
+        if (submode) return 4;
+        else return 2;
     }
 
     if (godmode) type=MEMBER_OWNER;
@@ -449,11 +459,15 @@ static int cmd_activate(int cn,char *ptr,int godmode) {
 
     if (type==MEMBER_NONE) {
         log_char(cn,LOG_SYSTEM,0,"You are not member of team %s.",team.name);
-        return 2;
+        if (submode) return 4;
+        else return 2;
     }
 
     dat=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
-    if (!dat) return 2;
+    if (!dat) {
+        if (submode) return 4;
+        else return 2;
+    }
 
     dat->teamID=team.ID;
     dat->memtype=type;
@@ -807,7 +821,7 @@ static int cmd_ban(int cn,char *ptr,int doban) {
 }
 
 static int cmd_enter(int cn,char *ptr) {
-    int oldx,oldy,tmp;
+    int oldx,oldy,tmp,ret;
     struct rodar_drd *dat2;
 
     if (ch[cn].x<240 && ch[cn].y<240) {
@@ -821,7 +835,11 @@ static int cmd_enter(int cn,char *ptr) {
     }
 
     while (*ptr==' ') ptr++;
-    if (*ptr && cmd_activate(cn,ptr,0)==3) return 3;    // call activate to set team if needed
+    if (*ptr) {
+        ret=cmd_activate(cn,ptr,0,1);
+        if (ret==3) return 3;    // call activate to set team if needed
+        if (ret==4) return 2;
+    }
 
     dat2=set_data(cn,DRD_RODAR,sizeof(struct rodar_drd));
     if (!dat2) return 2;
@@ -864,7 +882,7 @@ int rodar_parser(int cn,char *ptr) {
         if (cmdcmp(ptr,"rodar",4)) return cmd_rodar(cn);
         if ((len=cmdcmp(ptr,"found",4))) return cmd_found(cn,ptr+len);
         if ((len=cmdcmp(ptr,"join",4))) return cmd_join(cn,ptr+len);
-        if ((len=cmdcmp(ptr,"activate",4))) return cmd_activate(cn,ptr+len,0);
+        if ((len=cmdcmp(ptr,"activate",4))) return cmd_activate(cn,ptr+len,0,0);
         if ((len=cmdcmp(ptr,"leave",4))) return cmd_leave(cn,ptr+len);
         if ((len=cmdcmp(ptr,"hire",4))) return cmd_hire(cn,ptr+len);
         if ((len=cmdcmp(ptr,"fire",4))) return cmd_fire(cn,ptr+len);
@@ -874,7 +892,7 @@ int rodar_parser(int cn,char *ptr) {
         if ((len=cmdcmp(ptr,"enter",4))) return cmd_enter(cn,ptr+len);
 
         if (ch[cn].flags&CF_GOD) {
-            if ((len=cmdcmp(ptr,"setteam",4))) return cmd_activate(cn,ptr+len,1);
+            if ((len=cmdcmp(ptr,"setteam",4))) return cmd_activate(cn,ptr+len,1,0);
             if ((len=cmdcmp(ptr,"rename",4))) return cmd_rename(cn,ptr+len);
             if ((len=cmdcmp(ptr,"ban",3))) return cmd_ban(cn,ptr+len,1);
             if ((len=cmdcmp(ptr,"unban",4))) return cmd_ban(cn,ptr+len,0);
