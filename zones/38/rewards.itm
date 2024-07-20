@@ -1,0 +1,12 @@
+
+reward_gold1000:
+name="Gold"
+description="1000 unit of Gold"
+sprite=51053
+value=25000
+flag=IF_TAKE
+flag=IF_USE
+driver=61
+arg="02E8030000"
+;
+

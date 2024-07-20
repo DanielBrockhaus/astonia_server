@@ -621,4 +621,15 @@ flag=IF_TAKE
 flag=IF_QUEST
 ;
 
+link_rodney_arena:
+name="Door"
+description="A steel door."
+sprite=20124
+flag=IF_USE
+flag=IF_MOVEBLOCK
+flag=IF_SIGHTBLOCK
+flag=IF_SOUNDBLOCK
+driver=10
+arg="FA00F500260001"   # x=250, y=245, a=38, quiet=1
+;
 

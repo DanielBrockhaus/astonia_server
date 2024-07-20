@@ -1057,7 +1057,17 @@ void clan_dungeon_chat(char *ptr) {
             xlog("clan %d: %s won a jewel from level % d spawn",cnr,ptr+19,level);
 
             add_clanlog(cnr,clan_serial(cnr),cID,5,"%s won a jewel from level %d spawn",ptr+19,level);
+            break;
 
+        case 'Y':   // %02d:Y:%10u:%s
+                    // 01:X:0123456789:Ishtar
+            clan[cnr].treasure.jewels+=1;
+            clan_changed=1;
+            cID=atoi(ptr+5);
+            xlog("clan %d: %s bought a jewel from Rodars Journeyman",cnr,ptr+16);
+
+            add_clanlog(cnr,clan_serial(cnr),cID,5,"%s bought a jewel from Rodars Journeyman",ptr+16);
+            break;
     }
 }
 

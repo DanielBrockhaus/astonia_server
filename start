@@ -11,6 +11,8 @@ sleep 1
 ./server -a 2 -d
 sleep 1
 ./server -a 3 -d
+sleep 1
+./server -a 38 -d
 # ... add them all here for a full server
 
 echo Done

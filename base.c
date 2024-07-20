@@ -3181,7 +3181,11 @@ void chip_stack(int in,int cn) {
     if (!cn) return;
     if (!it[in].carried) return;    // can only use if item is carried
 
-    if (it[in].ID==IID_BRONZECHIP) { name="chip"; item="bronzechip"; off=0; } else if (it[in].ID==IID_SILVERCHIP) { name="chip"; item="silverchip"; off=12; } else if (it[in].ID==IID_GOLDCHIP) { name="chip"; item="goldchip"; off=6; } else {
+    if (it[in].ID==IID_BRONZECHIP) { name="chip"; item="bronzechip"; off=0; }
+    else if (it[in].ID==IID_SILVERCHIP) { name="chip"; item="silverchip"; off=12; }
+    else if (it[in].ID==IID_GOLDCHIP) { name="chip"; item="goldchip"; off=6; }
+    else if (it[in].ID==IID_RODAR_CHIP) { name="chip"; item="rodar_chip"; off=12; }
+    else {
         log_char(cn,LOG_SYSTEM,0,"Bug #1445y");
         return;
     }

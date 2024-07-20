@@ -155,3 +155,39 @@ arg="64000000"
 ID=010000AE             # developer 1, ID 0xAC
 ;
 
+
+rodar_chip:
+name="Rodar Chip"
+description="1 Rodar Chip."
+sprite=53019
+value=1000
+flag=IF_TAKE
+flag=IF_USE
+driver=136
+arg="01000000"
+ID=010000CB             # developer 1, ID 0xCB
+;
+
+rodar_chip10:
+name="Rodar Chip"
+description="10 Rodar Chip."
+sprite=53020
+value=10000
+flag=IF_TAKE
+flag=IF_USE
+driver=136
+arg="0A000000"
+ID=010000CB             # developer 1, ID 0xCB
+;
+
+rodar_chip100:
+name="Rodar Chip"
+description="100 Rodar Chip."
+sprite=53021
+value=100000
+flag=IF_TAKE
+flag=IF_USE
+driver=136
+arg="64000000"
+ID=010000CB             # developer 1, ID 0xCB
+;

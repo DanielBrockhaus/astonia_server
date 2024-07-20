@@ -1236,7 +1236,7 @@ void cmd_renclub(int cn,char *ptr) {
 }
 
 int command(int cn,char *ptr) {   // 1=ok, 0=repeat
-    int len;
+    int len,ret;
     char buf[256];
     struct lostcon_ppd *ppd;
 
@@ -1261,6 +1261,11 @@ int command(int cn,char *ptr) {   // 1=ok, 0=repeat
     if (areaID==35 && char_driver(CDR_LQPARSER,CDT_SPECIAL,cn,(int)(ptr),0)==2) return 1;
     if (areaID==23 && char_driver(CDR_STRATEGY_PARSER,CDT_SPECIAL,cn,(int)(ptr),0)==2) return 1;
     if (areaID==24 && char_driver(CDR_STRATEGY_PARSER,CDT_SPECIAL,cn,(int)(ptr),0)==2) return 1;
+
+    if (areaID==38 && (ret=char_driver(CDR_RODAR_PARSER,CDT_SPECIAL,cn,(int)(ptr),0))) {
+        if (ret==2) return 1;
+        if (ret==3) return 0;
+    }
 
     if (*ptr!='#' && *ptr!='/') {
         if (ch[cn].flags&CF_SHUTUP) {

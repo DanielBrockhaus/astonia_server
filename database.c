@@ -84,7 +84,12 @@
 #define DT_UNLOCKNAME		18
 #define DT_CLUBS		19
 #define DT_PVPLIST		20
-#define DT_KARMALOG		21
+#define DT_KARMALOG         21
+#define DT_LOAD_TEAM        22
+#define DT_LOAD_MEMBER      23
+#define DT_LOAD_EVENT       24
+#define DT_LIST_MEMBERS     25
+#define DT_LIST_WINNERS     26
 
 #define MAXAREA		50
 #define MAXMIRROR	27
@@ -114,6 +119,11 @@ void db_read_clubs(void);
 void db_pvplist(char *killer,char *victim);
 int isbanned_iplog(int ip);
 void add_iplog(int ID,unsigned int ip);
+static void db_load_team(char *team);
+static void db_load_member(char *team,char *member);
+static void db_load_event(void);
+static void db_list_members(int teamID,int coID);
+static void db_list_winners(int offset,int coID);
 
 static pthread_t db_tid;
 static pthread_mutex_t data_mutex;
@@ -1230,14 +1240,19 @@ void list_queries(int cn) {
 
     pthread_mutex_lock(&data_mutex);
     for (q=wquery; q; q=q->next) {
-        if (q->type!=DT_LASTSEEN && q->type!=DT_READ_NOTES && q->type!=DT_LOAD && q->type!=DT_EXTERMINATE && q->type!=DT_RENAME && q->type!=DT_LOCKNAME && q->type!=DT_UNLOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: %s",q->nr,q->opt2);
         if (q->type==DT_READ_NOTES) log_char(cn,LOG_SYSTEM,0,"%d: query: read notes",q->nr);
-        if (q->type==DT_LASTSEEN) log_char(cn,LOG_SYSTEM,0,"%d: query: last seen",q->nr);
-        if (q->type==DT_LOAD) log_char(cn,LOG_SYSTEM,0,"%d: query: load char",q->nr);
-        if (q->type==DT_EXTERMINATE) log_char(cn,LOG_SYSTEM,0,"%d: query: exterminate %s",q->nr,q->opt1);
-        if (q->type==DT_RENAME) log_char(cn,LOG_SYSTEM,0,"%d: query: rename %s %s",q->nr,q->opt1,q->opt2);
-        if (q->type==DT_LOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: lock name %s",q->nr,q->opt1);
-        if (q->type==DT_UNLOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: unlock name %s",q->nr,q->opt1);
+        else if (q->type==DT_LASTSEEN) log_char(cn,LOG_SYSTEM,0,"%d: query: last seen",q->nr);
+        else if (q->type==DT_LOAD) log_char(cn,LOG_SYSTEM,0,"%d: query: load char",q->nr);
+        else if (q->type==DT_EXTERMINATE) log_char(cn,LOG_SYSTEM,0,"%d: query: exterminate %s",q->nr,q->opt1);
+        else if (q->type==DT_RENAME) log_char(cn,LOG_SYSTEM,0,"%d: query: rename %s %s",q->nr,q->opt1,q->opt2);
+        else if (q->type==DT_LOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: lock name %s",q->nr,q->opt1);
+        else if (q->type==DT_UNLOCKNAME) log_char(cn,LOG_SYSTEM,0,"%d: query: unlock name %s",q->nr,q->opt1);
+        else if (q->type==DT_LOAD_TEAM) log_char(cn,LOG_SYSTEM,0,"%d: query: load team %s",q->nr,q->opt1);
+        else if (q->type==DT_LOAD_MEMBER) log_char(cn,LOG_SYSTEM,0,"%d: query: load member %s",q->nr,q->opt1);
+        else if (q->type==DT_LOAD_EVENT) log_char(cn,LOG_SYSTEM,0,"%d: query: load event %s",q->nr,q->opt1);
+        else if (q->type==DT_LIST_MEMBERS) log_char(cn,LOG_SYSTEM,0,"%d: query: list members %s",q->nr,q->opt1);
+        else if (q->type==DT_LIST_WINNERS) log_char(cn,LOG_SYSTEM,0,"%d: query: list winners %s",q->nr,q->opt1);
+        else log_char(cn,LOG_SYSTEM,0,"%d: query: %s",q->nr,q->opt2);
     }
     pthread_mutex_unlock(&data_mutex);
 
@@ -1276,9 +1291,9 @@ static void db_thread_sub(void) {
 
         switch (type) {
             case DT_QUERY:		if (mysql_query_con(&mysql,opt1)) {
-                    elog("Failed to create %s entry query=\"%60.60s\": Error: %s (%d)",opt2,opt1,mysql_error(&mysql),mysql_errno(&mysql));
+                    elog("Failed to create %s entry query=\"%.60s\": Error: %s (%d)",opt2,opt1,mysql_error(&mysql),mysql_errno(&mysql));
                 }
-                if (mysql_affected_rows(&mysql)==0) elog("(%60.60s) affected %llu rows",opt1,mysql_affected_rows(&mysql));
+                if (mysql_affected_rows(&mysql)==0) elog("(%.60s) affected %llu rows",opt1,mysql_affected_rows(&mysql));
                 break;
             case DT_LOAD:		load_char(opt1,opt2);
                 break;
@@ -1314,11 +1329,21 @@ static void db_thread_sub(void) {
                 break;
             case DT_STAT_UPDATE:	db_stat_update();
                 break;
-            case DT_LASTSEEN:	db_lastseen(opt1,opt2);
+            case DT_LASTSEEN:	    db_lastseen(opt1,opt2);
                 break;
-            case DT_CLUBS:		db_read_clubs();
+            case DT_CLUBS:		    db_read_clubs();
                 break;
-            case DT_PVPLIST:	db_pvplist(opt1,opt2);
+            case DT_PVPLIST:	    db_pvplist(opt1,opt2);
+                break;
+            case DT_LOAD_TEAM:      db_load_team(opt1);
+                break;
+            case DT_LOAD_MEMBER:    db_load_member(opt1,opt2);
+                break;
+            case DT_LOAD_EVENT:     db_load_event();
+                break;
+            case DT_LIST_MEMBERS:   db_list_members(atoi(opt1),atoi(opt2));
+                break;
+            case DT_LIST_WINNERS:   db_list_winners(atoi(opt1),atoi(opt2));
                 break;
         }
 
@@ -1724,7 +1749,7 @@ void tick_login(void) {
 
         newbie=1;
 
-        sprintf(buf,"0000000000°c17%s°c18, a new player, has entered the game.",login.name);
+        sprintf(buf,"0000000000\260c17%s\260c18, a new player, has entered the game.",login.name);
         server_chat(1,buf);
 
     } else {                        // existing account, retrieve items
@@ -3597,4 +3622,281 @@ int isbanned_iplog(int ip) {
 
 
 
+// ----------------- Rodney's Arena, Team, Member, Schedule ------------------
+#include "rodar_helper.h"
+
+
+void db_create_team(char *name,int founderID) {
+    char buf[256];
+
+    sprintf(buf,"insert rodar_team set name='%s', founderID=%d",name,founderID);
+    add_query(DT_QUERY,buf,"create rodar team",0);
+}
+
+void db_add_team_member(int teamID,int charID,enum membertype type) {
+    char buf[256];
+
+    sprintf(buf,"insert rodar_member set teamID=%d, charID=%d, type='%s'",teamID,charID,rodar_membertype2(type));
+    add_query(DT_QUERY,buf,"add rodar team member",0);
+}
+
+void db_del_team_member(int teamID,int charID) {
+    char buf[256];
+
+    sprintf(buf,"delete from rodar_member where teamID=%d and charID=%d",teamID,charID);
+    add_query(DT_QUERY,buf,"del rodar team member",0);
+}
+
+void db_upd_team_member(int teamID,int charID,enum membertype type) {
+    char buf[256];
+
+    sprintf(buf,"update rodar_member set type='%s' where teamID=%d and charID=%d",rodar_membertype2(type),teamID,charID);
+    add_query(DT_QUERY,buf,"upd rodar team member",0);
+}
+
+void db_read_member(int teamID,int charID) {
+    char buf1[80],buf2[80];
+
+    sprintf(buf1,"%d",teamID);
+    sprintf(buf2,"%d",charID);
+
+    add_query(DT_LOAD_MEMBER,buf1,buf2,0);
+}
+
+void db_read_team(char *name) {
+    add_query(DT_LOAD_TEAM,name,NULL,0);
+}
+
+void db_read_team_byID(int ID) {
+    char buf[80];
+
+    sprintf(buf,"%d",ID);
+    db_read_team(buf);
+}
+
+static void db_load_team(char *name_or_ID) {
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    char buf[256];
+    struct rodar_team team;
+
+    sprintf(buf,"select ID,name,founderID,unix_timestamp(founded),status,wins,losses,kills,killed,score from rodar_team where %s='%s'",
+            isdigit(name_or_ID[0])?"ID":"name",name_or_ID);
+
+    if (mysql_query_con(&mysql,buf)) {
+        elog("Failed to select team ID=%s: Error: %s (%d)",name_or_ID,mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+    if (!(result=mysql_store_result_cnt(&mysql))) {
+        elog("Failed to store result: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+    if (mysql_num_rows(result)==0) {
+        rodar_cache_team(name_or_ID,NULL);
+        mysql_free_result_cnt(result);
+        return;
+    }
+    if (!(row=mysql_fetch_row(result))) {
+        elog("db_load_team: fetch_row returned NULL");
+        mysql_free_result_cnt(result);
+        return;
+    }
+    if (!row[0]) {
+        elog("db_load_team: one of the values NULL");
+        mysql_free_result_cnt(result);
+        return;
+    }
+
+    bzero(&team,sizeof(team));
+    team.ID=atoi(row[0]);
+    strncpy(team.name,row[1],79); team.name[79]=0;
+    if (row[2]) team.founderID=atoi(row[2]); else team.founderID=0;
+    team.founded=atoi(row[3]);
+    team.status=rodar_teamstatus(row[4]);
+    team.wins=atoi(row[5]);
+    team.losses=atoi(row[6]);
+    team.kills=atoi(row[7]);
+    team.killed=atoi(row[8]);
+    team.score=atoi(row[9]);
+
+    rodar_cache_team(name_or_ID,&team);
+
+    mysql_free_result_cnt(result);
+}
+
+static void db_load_member(char *teamID,char *charID) {
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    char buf[256];
+
+    sprintf(buf,"select type from rodar_member where teamID=%s and charID=%s",teamID,charID);
+
+    if (mysql_query_con(&mysql,buf)) {
+        elog("Failed to select team member: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+    if (!(result=mysql_store_result_cnt(&mysql))) {
+        elog("Failed to store result: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+    if (mysql_num_rows(result)==0) {
+        rodar_cache_member(atoi(teamID),atoi(charID),MEMBER_NONE);
+        mysql_free_result_cnt(result);
+        return;
+    }
+    if (!(row=mysql_fetch_row(result))) {
+        elog("db_load_member: fetch_row returned NULL");
+        mysql_free_result_cnt(result);
+        return;
+    }
+    if (!row[0]) {
+        elog("db_load_member: one of the values NULL");
+        mysql_free_result_cnt(result);
+        return;
+    }
+
+    rodar_cache_member(atoi(teamID),atoi(charID),rodar_membertype(row[0]));
+
+    mysql_free_result_cnt(result);
+}
+
+void db_write_team_name(int teamID,char *name) {
+    char buf[512];
+
+    sprintf(buf,"update rodar_team set name='%s' where ID=%d",name,teamID);
+
+    add_query(DT_QUERY,buf,"name update rodar team",0);
+}
+
+void db_write_team_status(int teamID,enum teamstatus status) {
+    char buf[512];
+
+    sprintf(buf,"update rodar_team set status='%s' where ID=%d",rodar_teamstatus2(status),teamID);
+
+    add_query(DT_QUERY,buf,"status update rodar team",0);
+}
+
+void db_inc_team_value(int teamID,char *value,int inc) {
+    char buf[512];
+
+    sprintf(buf,"update rodar_team set %s=%s%+d where ID=%d",value,value,inc,teamID);
+
+    add_query(DT_QUERY,buf,"inc update rodar team",0);
+}
+
+void db_read_event(void) {
+    add_query(DT_LOAD_EVENT,NULL,NULL,0);
+}
+
+static void db_load_event(void) {
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    char buf[256];
+
+    // grab all event entries that do not have a winner and are in the future or less than an hour overdue
+    sprintf(buf,"select ID,unix_timestamp(t),type,option,level,room,winnerID from rodar_event where isnull(winnerID) and t>from_unixtime(%d)",time_now-60*30);
+    if (mysql_query_con(&mysql,buf)) {
+        elog("Failed to select team event: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+    if (!(result=mysql_store_result_cnt(&mysql))) {
+        elog("Failed to store result: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+
+    rodar_reset_event();
+    while ((row=mysql_fetch_row(result))) {
+        if (!row[0]) continue;
+
+        rodar_add_event(atoi(row[0]),atoi(row[1]),rodar_eventtype(row[2]),rodar_eventopt(row[3]),atoi(row[4]),atoi(row[5]),row[6]?atoi(row[6]):0);
+    }
+    rodar_event_done();
+
+    mysql_free_result_cnt(result);
+}
+
+void db_add_event(int t,enum eventtype type,enum eventopt opt,int level,int room) {
+    char buf[256];
+
+    sprintf(buf,"insert into rodar_event set t=from_unixtime(%d),type='%s',option='%s',level=%d, room=%d",
+            t,rodar_eventtype2(type),rodar_eventopt2(opt),level,room);
+
+    add_query(DT_QUERY,buf,"add rodar event",0);
+}
+
+void db_win_event(int ID,int winnerID) {
+    char buf[256];
+
+    sprintf(buf,"update rodar_event set winnerID=%d where ID=%d",winnerID,ID);
+
+    add_query(DT_QUERY,buf,"update rodar event",0);
+}
+
+void db_read_members(int teamID,int coID) {
+    char buf1[80],buf2[80];
+
+    sprintf(buf1,"%d",teamID);
+    sprintf(buf2,"%d",coID);
+
+    add_query(DT_LIST_MEMBERS,buf1,buf2,0);
+}
+
+static void db_list_members(int teamID,int coID) {
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    char buf[256];
+
+    sprintf(buf,"select name,type from rodar_member,chars where teamID=%d and ID=charID",teamID);
+    if (mysql_query_con(&mysql,buf)) {
+        elog("Failed to select list members: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+    if (!(result=mysql_store_result_cnt(&mysql))) {
+        elog("Failed to store result: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+
+    while ((row=mysql_fetch_row(result))) {
+        if (!row[0] || !row[1]) continue;
+
+        tell_chat(0,coID,1,"\260c0%s, %s",row[0],row[1]);
+    }
+    mysql_free_result_cnt(result);
+}
+
+void db_read_winners(int offset,int coID) {
+    char buf1[80],buf2[80];
+
+    sprintf(buf1,"%d",offset);
+    sprintf(buf2,"%d",coID);
+
+    add_query(DT_LIST_WINNERS,buf1,buf2,0);
+}
+
+static void db_list_winners(int offset,int coID) {
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    char buf[256];
+
+    sprintf(buf,"select score,rodar_team.name,chars.name,wins,losses,kills,killed from rodar_team,chars where founderID=chars.ID order by score desc limit %d,10",offset);
+    if (mysql_query_con(&mysql,buf)) {
+        elog("Failed to select list members: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+    if (!(result=mysql_store_result_cnt(&mysql))) {
+        elog("Failed to store result: Error: %s (%d)",mysql_error(&mysql),mysql_errno(&mysql));
+        return;
+    }
+
+    tell_chat(0,coID,1,"\260c1 Score, Team, Founder, Wins, Loss, Kills, Killed");
+    while ((row=mysql_fetch_row(result))) {
+        if (!row[0] || !row[1]) continue;
+        if (!row[2] || !row[3]) continue;
+        if (!row[4] || !row[5]) continue;
+        if (!row[6]) continue;
+
+        tell_chat(0,coID,1,"\260c0 %s, %.10s, %s, %s, %s, %s, %s",row[0],row[1],row[2],row[3],row[4],row[5],row[6]);
+    }
+    mysql_free_result_cnt(result);
+}
 

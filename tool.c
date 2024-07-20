@@ -47,6 +47,7 @@
 #include "death.h"
 #include "club.h"
 #include "teufel_pk.h"
+#include "libload.h"
 
 #if __GNUC_MINOR__==8
 unsigned long long atoll(char *string) {
@@ -190,7 +191,7 @@ static int arena_check_target(int m) {
 }
 
 int can_help(int cn,int co) {
-    int m;
+    int m,ret;
     unsigned long long mf1,mf2;
 
     if (cn<0 || cn>=MAXCHARS) {
@@ -207,6 +208,11 @@ int can_help(int cn,int co) {
 
     if (cn==co) return 1;
     if (!cn) return 1;
+
+    if (areaID==38 && (ret=char_driver(CDR_RODAR_CANHELP,CDT_SPECIAL,cn,co,0))) {
+        if (ret==2) return 1;
+        if (ret==3) return 0;
+    }
 
     if ((ch[co].flags&CF_PLAYER) && (ch[co].flags&CF_PK) && !is_hate_empty(co)) return 0;
 
@@ -227,7 +233,7 @@ int can_help(int cn,int co) {
 // check if cn may attack co. cn may be zero, in that case, almost all
 // attacks are legal.
 int can_attack(int cn,int co) {
-    int c1,c2,m;
+    int c1,c2,m,ret;
     unsigned long long mf1,mf2;
 
     if (cn<0 || cn>=MAXCHARS) {
@@ -261,6 +267,11 @@ int can_attack(int cn,int co) {
 
     // check if one of them is in a peace-zone
     if ((mf1&MF_PEACE) || (mf2&MF_PEACE)) return 0;
+
+    if (areaID==38 && (ret=char_driver(CDR_RODAR_CANATTACK,CDT_SPECIAL,cn,co,0))) {
+        if (ret==2) return 1;
+        if (ret==3) return 0;
+    }
 
     // everything's fair in the arena
     if ((mf1&MF_ARENA) && (mf2&MF_ARENA) && pathfinder(ch[cn].x,ch[cn].y,ch[co].x,ch[co].y,0,arena_check_target,0)!=-1) {
@@ -2574,10 +2585,5 @@ int count_enhancements(int in) {
     }
     return cnt;
 }
-
-
-
-
-
 
 

@@ -588,8 +588,10 @@ static int area_save_char(int cn) {
     return 1;
 }
 
-static int arena_save_char(int cn) {
-    log_char(cn,LOG_SYSTEM,0,"Yuck. If you hadn't been in an arena... You'd be dead by now. Ave Caesar, morituri te salutant!");
+static int arena_save_char(int cn,int cc) {
+
+    if (areaID!=38 || char_driver(CDR_RODAR_DEATH,CDT_SPECIAL,cn,cc,0)!=2)
+        log_char(cn,LOG_SYSTEM,0,"Yuck. If you hadn't been in an arena... You'd be dead by now. Ave Caesar, morituri te salutant!");
 
     transfer_to_restarea(cn);
     ch[cn].hp=1*POWERSCALE;
@@ -746,7 +748,7 @@ int hurt(int cn,int dam,int cc,int armordiv,int armorper,int shieldper) {
                     log_char(cn,LOG_SYSTEM,0,"Fortunately, death is not real here. But neither is experience.");
                     ch[cn].hp=5*POWERSCALE;
                 } else if (ch[cn].flags&(CF_PLAYER|CF_PLAYERLIKE) && (map[ch[cn].x+ch[cn].y*MAXMAP].flags&MF_ARENA)) {  // arena death, no loss
-                    arena_save_char(cn);
+                    arena_save_char(cn,cc);
                 } else if (cc && (ch[cn].flags&CF_PLAYER) && (ch[cc].flags&CF_PLAYER)) {    // PK death, no saves
                     kill_char(cn,cc);
                     add_pk_kill(cc,cn);
