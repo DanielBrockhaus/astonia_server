@@ -432,7 +432,7 @@ void take_soldiers(int cn) {
             do {
                 if (ch[cn].flags&CF_MALE) pro=RANDOM(ARRAYSIZE(profile)/2);
                 else pro=RANDOM(ARRAYSIZE(profile)/2)+ARRAYSIZE(profile)/2;
-                for (m=0; m<n; m++) if (pro==ppd->soldier[n].profile) break;
+                for (m=0; m<n; m++) if (pro==ppd->soldier[m].profile) break;
             } while (m<n);
             assign_profile(n,pro,ppd);
         }
@@ -441,7 +441,7 @@ void take_soldiers(int cn) {
             ppd->soldier[n].rank=1;
             do {
                 pro=RANDOM(ARRAYSIZE(profile));
-                for (m=0; m<n; m++) if (pro==ppd->soldier[n].profile) break;
+                for (m=0; m<n; m++) if (pro==ppd->soldier[m].profile) break;
             } while (m<n);
             assign_profile(n,pro,ppd);
         }
@@ -498,7 +498,7 @@ void take_soldiers(int cn) {
             dat=set_data(co,DRD_FARMYDATA,sizeof(struct farmy_data));
             if (dat) {
                 for (m=0; m<MAXSOLDIER; m++) {
-                    if (ppd->soldier[n].type) {
+                    if (ppd->soldier[m].type) {
                         dat->platoon[m]=ppd->soldier[m].cn;
                         //say(co,"I am %s, slot %d is %s",ch[co].name,m,ch[dat->platoon[m]].name);
                     } else dat->platoon[m]=0;
@@ -508,7 +508,6 @@ void take_soldiers(int cn) {
             }
         }
     }
-
 }
 
 void drop_soldiers(int cn) {
