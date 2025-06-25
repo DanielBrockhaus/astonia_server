@@ -1850,6 +1850,19 @@ int store_citem(int cn) {
     return 0;
 }
 
+int store_item(int cn,int in)
+{
+	int n;
+
+	for (n=30; n<INVENTORYSIZE; n++) {
+		if (ch[cn].item[n]) continue;
+		ch[cn].item[n]=in;
+		it[in].carried=cn;
+		return 1;
+	}
+	return 0;
+}
+
 void look_values_bg(int cnID,int coID) {
     int co,n;
     char buf[512];
