@@ -681,7 +681,7 @@ void enumerate_graves(void) {
             if (it[in].driver!=IDR_LAB2_GRAVE) continue;
 
             dat=(struct lab2_grave_data *)it[in].drdata;
-
+			if (dat->item>=1&&dat->item<=4) continue; // is the grave actually a book
             dat->nr=max_grave++;
 
             if (map[mn].flags&MF_NOMAGIC) max_crypt++;
